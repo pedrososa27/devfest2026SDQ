@@ -525,7 +525,7 @@ export default function SchedulePage() {
                 <button
                   key={day}
                   onClick={() => setActiveDay(day)}
-                  className={active ? styles.tabActive : styles.tab}
+                  className={`${styles.tab} ${active ? styles.tabActive : ''}`}
                 >
                   <span className={styles.tabLabel}>Day {day}</span>
                   <span className={styles.tabDate}>{day === 1 ? 'Nov 14' : 'Nov 15'}</span>
@@ -545,10 +545,10 @@ export default function SchedulePage() {
                 <button
                   key={f.label}
                   onClick={() => setActiveFilter(f.label)}
-                  className={active ? styles.filterChipActive : styles.filterChip}
+                  className={`${styles.filterChip} ${active ? styles.filterChipActive : ''}`}
                   style={f.color ? { '--dot-color': f.color } as React.CSSProperties : undefined}
                 >
-                  {f.color && !active && <div className={styles.filterChipDot} />}
+                  {f.color && <div className={styles.filterChipDot} />}
                   <span className={styles.filterChipLabel}>{f.label}</span>
                 </button>
               );

@@ -1,0 +1,266 @@
+.section {
+  background-color: var(--bg-primary);
+  padding: 80px 120px;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 48px 20px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  width: 100%;
+  align-items: center;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eyebrowDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22D3EE;
+}
+
+.eyebrowText {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #22D3EE;
+  font-family: 'Geist Mono', monospace;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  text-align: center;
+  max-width: 600px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  width: 100%;
+  align-items: start;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.card {
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  position: relative;
+  height: fit-content;
+}
+
+.cardHighlighted {
+  border: 2px solid var(--label-color);
+}
+
+.flag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #FFFFFF;
+  padding: 4px 10px;
+  border-radius: 4px;
+  width: fit-content;
+}
+
+.flagText {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  font-family: 'Geist Mono', monospace;
+}
+
+.labelRow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticketLabel {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--label-color);
+  font-family: 'Geist Mono', monospace;
+  margin: 0;
+}
+
+.ticketName {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  margin: 0;
+}
+
+.priceRow {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.priceCurrency {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg-dollar);
+  font-family: 'Geist', system-ui, sans-serif;
+}
+
+.priceNum {
+  font-size: 42px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+}
+
+.priceNote {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--fg-dim);
+  font-family: 'Geist Mono', monospace;
+  margin-bottom: 4px;
+}
+
+.divider {
+  height: 1px;
+  background-color: var(--border-subtle);
+}
+
+.featureList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.featureItem {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.featureItemDim {
+  color: var(--fg-dim);
+}
+
+.featureIcon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.featureIconDim {
+  color: var(--fg-dim);
+}
+
+.btnPrimary {
+  border-radius: 9999px;
+  border: none;
+  background-color: #A855F7;
+  color: #FFFFFF;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 700;
+  font-family: 'Geist', system-ui, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+.btnSecondary {
+  border-radius: 9999px;
+  border: 1px solid var(--btn-border, var(--border-subtle));
+  background-color: var(--bg-btn-sec);
+  color: var(--fg-primary);
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Geist', system-ui, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+.btnSupporter {
+  border-radius: 9999px;
+  border: 1px solid #EC4899;
+  background-color: var(--bg-btn-sec);
+  color: #EC4899;
+  padding: 14px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Geist', system-ui, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}

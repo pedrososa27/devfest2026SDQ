@@ -29,7 +29,6 @@ export default function Speakers() {
   return (
     <section id="speakers" className="py-20 md:py-32 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <p className="text-blue-600 font-semibold mb-4">FEATURED SPEAKERS</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -40,7 +39,6 @@ export default function Speakers() {
           </p>
         </div>
 
-        {/* Speakers Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {speakers.map((speaker) => (
             <div

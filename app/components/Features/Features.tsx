@@ -25,7 +25,6 @@ export default function Features() {
   return (
     <section className="py-20 md:py-32 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Header */}
         <div className="text-center mb-16">
           <p className="text-blue-600 font-semibold mb-4">WHY ATTEND</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
@@ -33,7 +32,6 @@ export default function Features() {
           </h2>
         </div>
 
-        {/* Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature) => (
             <div

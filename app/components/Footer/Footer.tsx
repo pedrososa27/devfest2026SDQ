@@ -1,7 +1,7 @@
 'use client';
 
-import { useTheme } from '../context/ThemeContext';
-import styles from './footer.module.scss';
+import { useTheme } from '../../context/ThemeContext';
+import styles from './Footer.module.scss';
 
 export default function Footer() {
   const { isDark } = useTheme();
@@ -65,11 +65,8 @@ export default function Footer() {
         '--accent-green':  t.accentGreen,
       } as React.CSSProperties}
     >
-      {/* Top Section */}
       <div className={styles.topSection}>
-        {/* Brand Section */}
         <div className={styles.brandSection}>
-          {/* Logo */}
           <div className={styles.logoContainer}>
             <div className={styles.logoMark}>
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" strokeWidth="2">
@@ -82,12 +79,10 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Tagline */}
           <p className={styles.tagline}>
             The largest community-run tech event in the Dominican Republic. Powered by GDG Santo Domingo.
           </p>
 
-          {/* Social Icons */}
           <div className={styles.socialRow}>
             {socialLinks.map((social) => (
               <button key={social.name} className={styles.socialIcon}>
@@ -99,7 +94,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Link Columns */}
         <div className={styles.linkColumns}>
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category} className={styles.linkColumn}>
@@ -114,18 +108,14 @@ export default function Footer() {
         </div>
       </div>
 
-      {/* Divider */}
       <div className={styles.divider} />
 
-      {/* Bottom Section */}
       <div className={styles.bottomSection}>
-        {/* Copyright */}
         <div className={styles.copyright}>
           <div className={styles.statusDot} />
           <span>© 2026 GDG Santo Domingo // Built with ❤ by the community</span>
         </div>
 
-        {/* Legal Links */}
         <div className={styles.legalLinks}>
           {['Privacy', 'Terms', 'Cookies'].map((link) => (
             <a key={link} href="#" className={styles.legalLink}>

@@ -1,0 +1,191 @@
+.section {
+  background-color: var(--bg-section);
+  padding: 96px 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 48px 20px;
+  }
+}
+
+// ─── Header ──────────────────────────────────────────────────────────────────
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  justify-content: center;
+}
+
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--bg-badge);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 6px 14px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--fg-secondary);
+  text-transform: uppercase;
+}
+
+.title {
+  font-family: 'Geist', system-ui, sans-serif;
+  font-size: 56px;
+  font-weight: 700;
+  letter-spacing: -2px;
+  text-align: center;
+  color: var(--fg-primary);
+  margin: 0;
+  max-width: 900px;
+
+  @media (max-width: 767px) {
+    font-size: 36px;
+    letter-spacing: -1px;
+  }
+}
+
+.description {
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--fg-muted);
+  margin: 0;
+  max-width: 620px;
+}
+
+// ─── Video Card ───────────────────────────────────────────────────────────────
+.videoCard {
+  position: relative;
+  width: 960px;
+  max-width: 100%;
+  height: 540px;
+  background-color: #000000;
+  border-radius: 12px;
+  border: 1px solid var(--border-strong);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  gap: 24px;
+  justify-content: space-between;
+  box-shadow: var(--video-shadow);
+
+  @media (max-width: 767px) {
+    height: 220px;
+  }
+}
+
+.videoTopBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 10;
+}
+
+.recapBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: rgba(10, 10, 15, 0.7);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+}
+
+.durationBadge {
+  display: flex;
+  align-items: center;
+  background-color: rgba(10, 10, 15, 0.7);
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 11px;
+  font-family: 'IBM Plex Mono', monospace;
+  color: #FFFFFF;
+}
+
+.playButton {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 96px;
+  height: 96px;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 20;
+  box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4);
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
+.playIcon {
+  font-size: 36px;
+  margin-left: 4px;
+}
+
+.videoInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  z-index: 10;
+}
+
+.videoTitle {
+  font-family: 'Geist', system-ui, sans-serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.videoMeta {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  color: var(--fg-secondary);
+  margin: 0;
+}
+
+// ─── YouTube Button ───────────────────────────────────────────────────────────
+.ytButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background-color: #EA4335;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 24px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Geist', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: #D33C2F;
+  }
+}

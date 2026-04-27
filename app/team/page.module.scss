@@ -528,6 +528,25 @@
   font-family: 'Geist Mono', monospace;
 }
 
+// ─── Volunteers avatar grid (max 8 per row, incomplete rows centered) ─────────
+.volGrid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 100%;
+}
+
+.volGridItem {
+  width: calc(100% / 8);
+  display: flex;
+  justify-content: center;
+  padding: 8px 0;
+
+  @media (max-width: 767px) {
+    width: calc(100% / 4);
+  }
+}
+
 // ─── Volunteers section stat ─────────────────────────────────────────────────
 .volSectionNum {
   display: flex;

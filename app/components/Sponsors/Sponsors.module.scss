@@ -1,0 +1,162 @@
+.section {
+  background-color: var(--bg-primary);
+  padding: 100px 120px;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 48px 20px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 56px;
+  align-items: center;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  align-items: center;
+  width: 100%;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 9999px;
+  background-color: var(--bg-section);
+  border: 1px solid var(--border-subtle);
+  padding: 6px 14px;
+  width: fit-content;
+}
+
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #22D3EE;
+}
+
+.badgeText {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  color: #22D3EE;
+  font-family: 'Geist Mono', monospace;
+}
+
+.title {
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  margin: 0;
+  text-align: center;
+}
+
+.subtitle {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  text-align: center;
+  max-width: 560px;
+}
+
+.tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.tier {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.tierHeader {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.tierLabel {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  color: var(--fg-primary);
+  font-family: 'Geist Mono', monospace;
+}
+
+.tierDivider {
+  flex: 1;
+  height: 1px;
+  background-color: var(--border-subtle);
+}
+
+.tierCount {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-dim);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.sponsorGrid {
+  display: grid;
+  gap: 14px;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+.sponsorCard {
+  border-radius: 10px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.sponsorName {
+  font-weight: 600;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  text-align: center;
+}
+
+.sponsorBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border-radius: 9999px;
+  background-color: var(--bg-card);
+  border: 1px solid #A855F7;
+  padding: 14px 28px;
+  color: var(--fg-primary);
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}

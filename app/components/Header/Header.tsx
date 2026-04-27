@@ -3,9 +3,9 @@
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
-import { useTheme } from '../context/ThemeContext';
-import { useBreakpoint } from '../hooks/useBreakpoint';
-import styles from './header.module.scss';
+import { useTheme } from '../../context/ThemeContext';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
+import styles from './Header.module.scss';
 
 export default function Header() {
   const { isDark, toggleTheme } = useTheme();
@@ -13,12 +13,10 @@ export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
-  // Close mobile menu on route change
   useEffect(() => {
     setIsMobileMenuOpen(false);
   }, [pathname]);
 
-  // Close mobile menu when resizing to desktop
   useEffect(() => {
     if (!isMobile) setIsMobileMenuOpen(false);
   }, [isMobile]);
@@ -70,9 +68,7 @@ export default function Header() {
         '--toggle-bg':     t.toggleBg,
       } as React.CSSProperties}
     >
-      {/* Header Top Row */}
       <div className={styles.topRow}>
-        {/* Logo */}
         <div className={styles.logoContainer}>
           <div className={styles.logoMark}>
             <span className={styles.logoMarkText}>{'<>'}</span>
@@ -83,7 +79,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Desktop Nav Links */}
         {!isMobile && (
           <nav className={styles.desktopNav}>
             {navLinks.map((link) => (
@@ -99,7 +94,6 @@ export default function Header() {
           </nav>
         )}
 
-        {/* Right Actions - Desktop */}
         {!isMobile && (
           <div className={styles.desktopActions}>
             <button onClick={toggleTheme} className={styles.themeToggle}>
@@ -112,7 +106,6 @@ export default function Header() {
           </div>
         )}
 
-        {/* Mobile Menu Button */}
         {isMobile && (
           <div className={styles.mobileActions}>
             <button
@@ -127,10 +120,8 @@ export default function Header() {
         )}
       </div>
 
-      {/* Mobile Menu - dropdown (always rendered, animated via max-height + opacity) */}
       {isMobile && (
         <nav className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
-          {/* Nav Links */}
           <div className={styles.mobileNavLinks}>
             {navLinks.map((link) => (
               <Link
@@ -145,7 +136,6 @@ export default function Header() {
             ))}
           </div>
 
-          {/* Theme Toggle Row */}
           <div className={styles.mobileThemeRow}>
             <span className={styles.mobileThemeLabel}>
               {isDark ? 'Dark mode' : 'Light mode'}
@@ -161,7 +151,6 @@ export default function Header() {
             </button>
           </div>
 
-          {/* Action Buttons */}
           <div className={styles.mobileMenuButtons}>
             <button className={styles.mobileCfpButton}>Call for Papers</button>
             <button className={styles.mobileRegisterButton}>

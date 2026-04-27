@@ -172,9 +172,11 @@ function VolGroup({ Icon, iconColor, title, subtitle, count, countColor, members
           <span className={styles.volGroupCountText}>{count}</span>
         </div>
       </div>
-      <div className="flex flex-wrap gap-3 justify-center">
+      <div className={styles.volGrid}>
         {members.map((m) => (
-          <VolAvatar key={m.initials + m.name} initials={m.initials} fullName={m.name} color={m.color} />
+          <div key={m.initials + m.name} className={styles.volGridItem}>
+            <VolAvatar initials={m.initials} fullName={m.name} color={m.color} />
+          </div>
         ))}
       </div>
     </div>

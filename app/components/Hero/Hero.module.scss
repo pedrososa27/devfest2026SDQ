@@ -1,0 +1,189 @@
+.hero {
+  width: 100%;
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse 120% 90% at 50% 10%, var(--glow-1) 0%, transparent 100%),
+    radial-gradient(ellipse 80% 80% at 15% 90%, var(--glow-2) 0%, transparent 100%);
+  padding: 96px 120px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 80px 20px 64px;
+    gap: 20px;
+  }
+}
+
+.badge {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 7px 14px;
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  max-width: 100%;
+}
+
+.badgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: #22D3EE;
+  flex-shrink: 0;
+}
+
+.badgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: var(--fg-secondary);
+  text-transform: uppercase;
+
+  @media (max-width: 767px) {
+    font-size: 10px;
+    letter-spacing: 1px;
+  }
+}
+
+.subtitle {
+  font-family: 'Geist Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  color: #A855F7;
+  text-align: center;
+
+  @media (max-width: 767px) {
+    font-size: 13px;
+    letter-spacing: 2px;
+  }
+}
+
+.title {
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  font-size: 88px;
+  font-weight: 700;
+  letter-spacing: -3px;
+  line-height: 1.05;
+  text-align: center;
+  color: var(--fg-primary);
+  max-width: 1000px;
+  margin: 0;
+
+  @media (max-width: 767px) {
+    font-size: 42px;
+    letter-spacing: -1.5px;
+    max-width: 100%;
+  }
+}
+
+.description {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  text-align: center;
+  color: var(--fg-muted);
+  max-width: 680px;
+  margin: 0;
+
+  @media (max-width: 767px) {
+    font-size: 15px;
+    max-width: 100%;
+  }
+}
+
+.metaRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.metaChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  font-size: 13px;
+  color: var(--fg-primary);
+  font-family: 'Geist Mono', monospace;
+}
+
+.ctaRow {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 16px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.primaryButton {
+  background-color: #A855F7;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 9999px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Geist', system-ui, sans-serif;
+  cursor: pointer;
+  transition: opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+
+  &:hover {
+    opacity: 0.88;
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+.btnArrow {
+  font-size: 16px;
+}
+
+.secondaryButton {
+  background-color: var(--btn-sec-bg);
+  color: var(--fg-primary);
+  border: 1px solid var(--border-strong);
+  border-radius: 9999px;
+  padding: 14px 28px;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Geist', system-ui, sans-serif;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  &:hover {
+    background-color: var(--btn-sec-hover);
+  }
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}

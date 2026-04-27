@@ -1,0 +1,239 @@
+.section {
+  background-color: var(--bg-section);
+  padding: 80px 120px;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 48px 20px;
+  }
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.headerRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 0;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+  }
+}
+
+.headerLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 720px;
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  color: #22D3EE;
+  font-family: 'Geist Mono', monospace;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.eyebrow::before {
+  content: '// ';
+}
+
+.title {
+  font-size: 40px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.statsBadge {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  padding: 12px 20px;
+  flex-shrink: 0;
+}
+
+.statsNum {
+  font-size: 24px;
+  font-weight: 700;
+  color: #A855F7;
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.statsInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.statsLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg-primary);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.statsSubLabel {
+  font-size: 11px;
+  font-weight: 400;
+  color: var(--fg-dim);
+  font-family: 'Geist Mono', monospace;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.col {
+  border-radius: 8px;
+  border: 1px solid var(--border-subtle);
+  background-color: var(--bg-card);
+  padding: 32px;
+  gap: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.colIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.colTitle {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  margin: 0;
+}
+
+.colText {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.codeChip {
+  border-radius: 4px;
+  background-color: var(--bg-code);
+  padding: 10px 14px;
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px;
+  color: var(--fg-primary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.codePrompt {
+  color: #A855F7;
+  font-weight: 700;
+}
+
+.gdgRow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.gdgChip {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 4px;
+  background-color: var(--bg-code);
+  padding: 8px 12px;
+}
+
+.gdgDot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.gdgName {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, sans-serif;
+  margin-left: 4px;
+}
+
+.gdgMembers {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--fg-dim);
+  font-family: 'Geist Mono', monospace;
+}
+
+.statsStrip {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+  }
+}
+
+.stripStat {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stripNum {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  font-family: 'IBM Plex Mono', monospace;
+}
+
+.stripLabel {
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  color: var(--fg-dim);
+  font-family: 'Geist Mono', monospace;
+  text-transform: uppercase;
+}
