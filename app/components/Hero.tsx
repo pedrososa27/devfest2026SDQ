@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function Hero() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   return (
     <section
@@ -13,17 +15,24 @@ export default function Hero() {
         backgroundColor: isDark ? '#0A0A0F' : '#FFFFFF',
         backgroundImage: isDark
           ? `
-            radial-gradient(circle at 50% 10%, rgba(168, 85, 247, 0.35) 0%, transparent 50%),
-            radial-gradient(circle at 15% 90%, rgba(34, 211, 238, 0.25) 0%, transparent 50%)
+            radial-gradient(ellipse 120% 90% at 50% 10%, rgba(168, 85, 247, 0.35) 0%, transparent 100%),
+            radial-gradient(ellipse 80% 80% at 15% 90%, rgba(34, 211, 238, 0.25) 0%, transparent 100%)
           `
-          : 'none',
-        padding: '96px 120px',
+          : `
+            radial-gradient(ellipse 120% 90% at 50% 10%, rgba(124, 58, 237, 0.35) 0%, transparent 100%),
+            radial-gradient(ellipse 80% 80% at 15% 90%, rgba(8, 145, 178, 0.25) 0%, transparent 100%)
+          `,
+        paddingTop: isMobile ? '80px' : '96px',
+        paddingBottom: isMobile ? '64px' : '96px',
+        paddingLeft: isMobile ? '20px' : '120px',
+        paddingRight: isMobile ? '20px' : '120px',
         minHeight: '100vh',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        gap: '28px',
+        gap: isMobile ? '20px' : '28px',
+        boxSizing: 'border-box',
       }}
     >
       {/* Hero Badge */}
@@ -33,13 +42,14 @@ export default function Hero() {
           borderColor: isDark ? '#2A2A35' : '#E5E5E5',
           borderWidth: '1px',
           borderRadius: '9999px',
-          paddingLeft: '16px',
-          paddingRight: '16px',
-          paddingTop: '8px',
-          paddingBottom: '8px',
+          paddingLeft: '14px',
+          paddingRight: '14px',
+          paddingTop: '7px',
+          paddingBottom: '7px',
           display: 'flex',
-          gap: '10px',
+          gap: '8px',
           alignItems: 'center',
+          maxWidth: '100%',
         }}
       >
         <div
@@ -48,14 +58,15 @@ export default function Hero() {
             height: '8px',
             borderRadius: '50%',
             backgroundColor: '#22D3EE',
+            flexShrink: 0,
           }}
         />
         <span
           style={{
             fontFamily: 'Geist Mono, monospace',
-            fontSize: '12px',
+            fontSize: isMobile ? '10px' : '12px',
             fontWeight: 500,
-            letterSpacing: '2px',
+            letterSpacing: isMobile ? '1px' : '2px',
             color: isDark ? '#A1A1AA' : '#888888',
             textTransform: 'uppercase',
           }}
@@ -68,9 +79,9 @@ export default function Hero() {
       <span
         style={{
           fontFamily: 'Geist Mono, monospace',
-          fontSize: '16px',
+          fontSize: isMobile ? '13px' : '16px',
           fontWeight: 500,
-          letterSpacing: '3px',
+          letterSpacing: isMobile ? '2px' : '3px',
           color: '#A855F7',
           textAlign: 'center',
         }}
@@ -82,13 +93,13 @@ export default function Hero() {
       <h1
         style={{
           fontFamily: 'Geist, system-ui, -apple-system',
-          fontSize: '88px',
+          fontSize: isMobile ? '42px' : '88px',
           fontWeight: 700,
-          letterSpacing: '-3px',
-          lineHeight: 1.02,
+          letterSpacing: isMobile ? '-1.5px' : '-3px',
+          lineHeight: 1.05,
           textAlign: 'center',
           color: isDark ? '#FFFFFF' : '#141413',
-          maxWidth: '1000px',
+          maxWidth: isMobile ? '100%' : '1000px',
           margin: 0,
         }}
       >
@@ -100,12 +111,12 @@ export default function Hero() {
       <p
         style={{
           fontFamily: 'Inter, system-ui, -apple-system',
-          fontSize: '18px',
+          fontSize: isMobile ? '15px' : '18px',
           fontWeight: 400,
           lineHeight: 1.6,
           textAlign: 'center',
           color: isDark ? '#A1A1AA' : '#47362C',
-          maxWidth: '680px',
+          maxWidth: isMobile ? '100%' : '680px',
           margin: 0,
         }}
       >
@@ -116,8 +127,10 @@ export default function Hero() {
       <div
         style={{
           display: 'flex',
-          gap: '12px',
+          flexWrap: 'wrap',
+          gap: '10px',
           alignItems: 'center',
+          justifyContent: 'center',
           marginTop: '4px',
         }}
       >
@@ -171,9 +184,11 @@ export default function Hero() {
       <div
         style={{
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
           gap: '12px',
           alignItems: 'center',
           marginTop: '16px',
+          width: isMobile ? '100%' : 'auto',
         }}
       >
         {/* Primary Button */}
@@ -185,8 +200,8 @@ export default function Hero() {
             borderRadius: '9999px',
             paddingLeft: '28px',
             paddingRight: '28px',
-            paddingTop: '12px',
-            paddingBottom: '12px',
+            paddingTop: '14px',
+            paddingBottom: '14px',
             fontSize: '15px',
             fontWeight: 600,
             fontFamily: 'Geist, system-ui',
@@ -194,7 +209,9 @@ export default function Hero() {
             transition: 'all 0.2s',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             gap: '10px',
+            width: isMobile ? '100%' : 'auto',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = '#9945E5';
@@ -216,8 +233,8 @@ export default function Hero() {
             borderRadius: '9999px',
             paddingLeft: '28px',
             paddingRight: '28px',
-            paddingTop: '12px',
-            paddingBottom: '12px',
+            paddingTop: '14px',
+            paddingBottom: '14px',
             fontSize: '15px',
             fontWeight: 600,
             fontFamily: 'Geist, system-ui',
@@ -225,7 +242,9 @@ export default function Hero() {
             transition: 'all 0.2s',
             display: 'flex',
             alignItems: 'center',
+            justifyContent: 'center',
             gap: '8px',
+            width: isMobile ? '100%' : 'auto',
           }}
           onMouseEnter={(e) => {
             e.currentTarget.style.backgroundColor = isDark ? '#2A2A35' : '#E5E5E5';

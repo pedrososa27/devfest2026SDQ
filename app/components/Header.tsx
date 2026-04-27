@@ -1,116 +1,97 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
+import { useTheme } from '../context/ThemeContext';
 import { useBreakpoint } from '../hooks/useBreakpoint';
+import styles from './header.module.scss';
 
 export default function Header() {
-  const isDarkSystem = useDarkMode();
+  const { isDark, toggleTheme } = useTheme();
   const isMobile = useBreakpoint();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [userThemeOverride, setUserThemeOverride] = useState<boolean | null>(null);
-  
-  const isDark = userThemeOverride !== null ? userThemeOverride : isDarkSystem;
+  const pathname = usePathname();
+
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [pathname]);
+
+  // Close mobile menu when resizing to desktop
+  useEffect(() => {
+    if (!isMobile) setIsMobileMenuOpen(false);
+  }, [isMobile]);
+
+  const t = {
+    bgPrimary:    isDark ? '#0A0A0F' : '#FFFFFF',
+    bgSecondary:  isDark ? '#1A1A24' : '#F5F5F5',
+    bgCard:       isDark ? '#1E1E2A' : '#F0F0F0',
+    borderSubtle: isDark ? '#2A2A35' : '#E5E5E5',
+    borderMuted:  isDark ? '#3A3A48' : '#CCCCCC',
+    fgPrimary:    isDark ? '#FFFFFF'  : '#141413',
+    fgSecondary:  isDark ? '#A1A1AA' : '#888888',
+    fgMuted:      isDark ? '#A1A1AA' : '#666666',
+    neonPurple:   '#A855F7',
+    neonCyan:     '#06B6D4',
+    neonPink:     '#EC4899',
+    accentGreen:  '#34A853',
+    toggleBg:     isDark ? '#A855F7' : '#E5E5E5',
+  };
 
   const navLinks = [
-    { label: 'Home', weight: 500, isActive: true },
-    { label: 'Schedule', weight: 400, isActive: false },
-    { label: 'Speakers', weight: 400, isActive: false },
-    { label: 'Sponsors', weight: 400, isActive: false },
-    { label: 'About', weight: 400, isActive: false },
-  ];
+    { label: 'Home', href: '/', weight: 500 },
+    { label: 'Schedule', href: '/schedule', weight: 400 },
+    { label: 'Speakers', href: '/speakers', weight: 400 },
+    { label: 'Team', href: '/team', weight: 400 },
+    { label: 'FAQ', href: '/faq', weight: 400 },
+    { label: 'Code of Conduct', href: '/code-of-conduct', weight: 400 },
+  ].map((link) => ({
+    ...link,
+    isActive: link.href !== '#' ? pathname === link.href : false,
+  }));
 
   return (
     <header
+      className={styles.header}
       style={{
-        height: isMobile ? 'auto' : '72px',
-        backgroundColor: isDark ? '#0A0A0F' : '#FFFFFF',
-        borderBottomColor: isDark ? '#2A2A35' : '#E5E5E5',
-        borderBottomWidth: '1px',
-        borderBottomStyle: 'solid',
-        width: '100%',
-        paddingLeft: isMobile ? '16px' : '120px',
-        paddingRight: isMobile ? '16px' : '120px',
-        paddingTop: 0,
-        paddingBottom: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        boxSizing: 'border-box',
-      }}
+        '--bg-primary':    t.bgPrimary,
+        '--bg-secondary':  t.bgSecondary,
+        '--bg-card':       t.bgCard,
+        '--border-subtle': t.borderSubtle,
+        '--border-muted':  t.borderMuted,
+        '--fg-primary':    t.fgPrimary,
+        '--fg-secondary':  t.fgSecondary,
+        '--fg-muted':      t.fgMuted,
+        '--neon-purple':   t.neonPurple,
+        '--neon-cyan':     t.neonCyan,
+        '--neon-pink':     t.neonPink,
+        '--accent-green':  t.accentGreen,
+        '--toggle-bg':     t.toggleBg,
+      } as React.CSSProperties}
     >
       {/* Header Top Row */}
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: isMobile ? 'space-between' : 'flex-start',
-          minHeight: '72px',
-          width: '100%',
-          gap: isMobile ? '12px' : '0px',
-        }}
-      >
+      <div className={styles.topRow}>
         {/* Logo */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '10px', flexShrink: 0 }}>
-          {/* Logo Mark - 36x36px */}
-          <div
-            style={{
-              width: '36px',
-              height: '36px',
-              backgroundColor: '#A855F7',
-              borderRadius: '8px',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              flexShrink: 0,
-            }}
-          >
-            <span style={{ fontSize: '20px', color: '#FFFFFF', fontWeight: 600 }}>{'<>'}</span>
+        <div className={styles.logoContainer}>
+          <div className={styles.logoMark}>
+            <span className={styles.logoMarkText}>{'<>'}</span>
           </div>
-
-          {/* Logo Text Group */}
-          <div style={{ display: 'flex', flexDirection: 'column', lineHeight: 1 }}>
-            <div
-              style={{
-                fontSize: '16px',
-                fontWeight: 700,
-                color: isDark ? '#FFFFFF' : '#141413',
-                fontFamily: 'Geist, system-ui, -apple-system',
-                letterSpacing: '-0.3px',
-              }}
-            >
-              DevFest
-            </div>
-            <div
-              style={{
-                fontSize: '10px',
-                fontWeight: 500,
-                color: '#A855F7',
-                fontFamily: 'Geist Mono, monospace',
-                letterSpacing: '1px',
-              }}
-            >
-              SANTO DOMINGO
-            </div>
+          <div className={styles.logoTextGroup}>
+            <div className={styles.logoName}>DevFest</div>
+            <div className={styles.logoSubtitle}>SANTO DOMINGO</div>
           </div>
         </div>
 
-        {/* Desktop Nav Links - hidden on mobile */}
+        {/* Desktop Nav Links */}
         {!isMobile && (
-          <nav style={{ display: 'flex', gap: '36px', alignItems: 'center', flex: 1, justifyContent: 'center' }}>
+          <nav className={styles.desktopNav}>
             {navLinks.map((link) => (
               <Link
                 key={link.label}
-                href="#"
-                style={{
-                  fontSize: '14px',
-                  fontWeight: link.weight,
-                  color: link.isActive ? (isDark ? '#FFFFFF' : '#141413') : (isDark ? '#A1A1AA' : '#888888'),
-                  textDecoration: 'none',
-                  fontFamily: 'Inter, system-ui',
-                  cursor: 'pointer',
-                  whiteSpace: 'nowrap',
-                }}
+                href={link.href}
+                className={link.isActive ? styles.navLinkActive : styles.navLink}
+                style={{ fontWeight: link.weight }}
               >
                 {link.label}
               </Link>
@@ -120,204 +101,71 @@ export default function Header() {
 
         {/* Right Actions - Desktop */}
         {!isMobile && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexShrink: 0, marginLeft: 'auto' }}>
-            {/* Theme Toggle */}
-            <button
-              onClick={() => setUserThemeOverride(!isDark)}
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '9999px',
-                backgroundColor: isDark ? '#1A1A24' : '#F5F5F5',
-                border: `1px solid ${isDark ? '#2A2A35' : '#E5E5E5'}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                padding: 0,
-                flexShrink: 0,
-              }}
-            >
-              <span style={{ fontSize: '18px', color: isDark ? '#FFFFFF' : '#141413' }}>🌙</span>
+          <div className={styles.desktopActions}>
+            <button onClick={toggleTheme} className={styles.themeToggle}>
+              <span className={styles.themeToggleIcon}>🌙</span>
             </button>
-
-            {/* CFP Link */}
-            <button
-              style={{
-                backgroundColor: 'transparent',
-                color: isDark ? '#FFFFFF' : '#141413',
-                border: `1px solid ${isDark ? '#3A3A48' : '#CCCCCC'}`,
-                borderRadius: '9999px',
-                paddingLeft: '18px',
-                paddingRight: '18px',
-                paddingTop: '10px',
-                paddingBottom: '10px',
-                fontSize: '13px',
-                fontWeight: 500,
-                fontFamily: 'Inter, system-ui',
-                cursor: 'pointer',
-                flexShrink: 0,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Call for Papers
-            </button>
-
-            {/* Register Button */}
-            <button
-              style={{
-                backgroundColor: '#A855F7',
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: '9999px',
-                paddingLeft: '20px',
-                paddingRight: '20px',
-                paddingTop: '10px',
-                paddingBottom: '10px',
-                fontSize: '13px',
-                fontWeight: 600,
-                fontFamily: 'Inter, system-ui',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                flexShrink: 0,
-                whiteSpace: 'nowrap',
-              }}
-            >
-              Register
-              <span style={{ fontSize: '14px' }}>→</span>
+            <button className={styles.cfpButton}>Call for Papers</button>
+            <button className={styles.registerButton}>
+              Register <span>→</span>
             </button>
           </div>
         )}
 
         {/* Mobile Menu Button */}
         {isMobile && (
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginLeft: 'auto', flexShrink: 0 }}>
-            {/* Theme Toggle Mobile */}
-            <button
-              onClick={() => setUserThemeOverride(!isDark)}
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '9999px',
-                backgroundColor: isDark ? '#1A1A24' : '#F5F5F5',
-                border: `1px solid ${isDark ? '#2A2A35' : '#E5E5E5'}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                cursor: 'pointer',
-                padding: 0,
-              }}
-            >
-              <span style={{ fontSize: '18px', color: isDark ? '#FFFFFF' : '#141413' }}>🌙</span>
-            </button>
-
-            {/* Hamburger Menu */}
+          <div className={styles.mobileActions}>
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '8px',
-                backgroundColor: isDark ? '#1A1A24' : '#F5F5F5',
-                border: 'none',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                cursor: 'pointer',
-                padding: 0,
-              }}
+              className={styles.hamburger}
             >
-              <div style={{ width: '20px', height: '2px', backgroundColor: isDark ? '#FFFFFF' : '#141413' }} />
-              <div style={{ width: '20px', height: '2px', backgroundColor: isDark ? '#FFFFFF' : '#141413' }} />
-              <div style={{ width: '20px', height: '2px', backgroundColor: isDark ? '#FFFFFF' : '#141413' }} />
+              <div className={`${styles.bar} ${isMobileMenuOpen ? styles.barTopOpen : ''}`} />
+              <div className={`${styles.bar} ${isMobileMenuOpen ? styles.barMidOpen : ''}`} />
+              <div className={`${styles.bar} ${isMobileMenuOpen ? styles.barBottomOpen : ''}`} />
             </button>
           </div>
         )}
       </div>
 
-      {/* Mobile Menu - dropdown */}
-      {isMobile && isMobileMenuOpen && (
-        <nav
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '12px',
-            paddingTop: '16px',
-            paddingBottom: '16px',
-            borderTopColor: isDark ? '#2A2A35' : '#E5E5E5',
-            borderTopWidth: '1px',
-            borderTopStyle: 'solid',
-            marginTop: '12px',
-          }}
-        >
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href="#"
-              style={{
-                fontSize: '14px',
-                fontWeight: link.weight,
-                color: link.isActive ? (isDark ? '#FFFFFF' : '#141413') : (isDark ? '#A1A1AA' : '#888888'),
-                textDecoration: 'none',
-                fontFamily: 'Inter, system-ui',
-                cursor: 'pointer',
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
+      {/* Mobile Menu - dropdown (always rendered, animated via max-height + opacity) */}
+      {isMobile && (
+        <nav className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ''}`}>
+          {/* Nav Links */}
+          <div className={styles.mobileNavLinks}>
+            {navLinks.map((link) => (
+              <Link
+                key={link.label}
+                href={link.href}
+                className={`${styles.mobileNavLink} ${link.isActive ? styles.mobileNavLinkActive : ''}`}
+                style={{ fontWeight: link.weight }}
+              >
+                <span>{link.label}</span>
+                {link.isActive && <div className={styles.activeDot} />}
+              </Link>
+            ))}
+          </div>
 
-          {/* Mobile Action Buttons */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', marginTop: '12px' }}>
-            {/* CFP Link Mobile */}
-            <button
-              style={{
-                backgroundColor: 'transparent',
-                color: isDark ? '#FFFFFF' : '#141413',
-                border: `1px solid ${isDark ? '#3A3A48' : '#CCCCCC'}`,
-                borderRadius: '8px',
-                paddingLeft: '16px',
-                paddingRight: '16px',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-                fontSize: '13px',
-                fontWeight: 500,
-                fontFamily: 'Inter, system-ui',
-                cursor: 'pointer',
-                width: '100%',
-              }}
-            >
-              Call for Papers
+          {/* Theme Toggle Row */}
+          <div className={styles.mobileThemeRow}>
+            <span className={styles.mobileThemeLabel}>
+              {isDark ? 'Dark mode' : 'Light mode'}
+            </span>
+            <button onClick={toggleTheme} className={styles.mobileToggle}>
+              <div
+                className={`${styles.mobileToggleThumb} ${
+                  isDark ? styles.mobileToggleThumbDark : styles.mobileToggleThumbLight
+                }`}
+              >
+                {isDark ? '🌙' : '☀️'}
+              </div>
             </button>
+          </div>
 
-            {/* Register Button Mobile */}
-            <button
-              style={{
-                backgroundColor: '#A855F7',
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: '8px',
-                paddingLeft: '16px',
-                paddingRight: '16px',
-                paddingTop: '12px',
-                paddingBottom: '12px',
-                fontSize: '13px',
-                fontWeight: 600,
-                fontFamily: 'Inter, system-ui',
-                cursor: 'pointer',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                gap: '6px',
-                width: '100%',
-              }}
-            >
-              Register
-              <span style={{ fontSize: '14px' }}>→</span>
+          {/* Action Buttons */}
+          <div className={styles.mobileMenuButtons}>
+            <button className={styles.mobileCfpButton}>Call for Papers</button>
+            <button className={styles.mobileRegisterButton}>
+              Register Now <span>→</span>
             </button>
           </div>
         </nav>

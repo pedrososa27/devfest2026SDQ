@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function PastTalks() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   const talks = [
     { 
@@ -40,17 +42,20 @@ export default function PastTalks() {
   return (
     <section style={{
       backgroundColor: isDark ? '#0A0A0F' : '#FFFFFF',
-      paddingTop: '80px',
-      paddingBottom: '80px',
-      paddingLeft: '120px',
-      paddingRight: '120px',
+      paddingTop: isMobile ? '48px' : '80px',
+      paddingBottom: isMobile ? '48px' : '80px',
+      paddingLeft: isMobile ? '20px' : '120px',
+      paddingRight: isMobile ? '20px' : '120px',
+      boxSizing: 'border-box',
     }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
         {/* Header */}
         <div style={{
           display: 'flex',
-          alignItems: 'flex-end',
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'flex-start' : 'flex-end',
           justifyContent: 'space-between',
+          gap: isMobile ? '20px' : '0px',
           width: '100%',
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
@@ -145,10 +150,11 @@ export default function PastTalks() {
         {/* Carousel */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(4, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(4, 1fr)',
           gap: '20px',
           width: '100%',
         }}>
+        
           {talks.map((talk, idx) => (
             <div
               key={idx}
@@ -197,7 +203,7 @@ export default function PastTalks() {
                   position: 'absolute',
                   bottom: '8px',
                   left: '8px',
-                  backgroundColor: 'rgba(10, 10, 15, 0.8)',
+                  backgroundColor: isDark ? 'rgba(10, 10, 15, 0.8)' : 'rgba(255,255,255,0.85)',
                   color: isDark ? '#FFFFFF' : '#141413',
                   padding: '4px 8px',
                   borderRadius: '4px',
@@ -278,8 +284,10 @@ export default function PastTalks() {
         {/* Footer with YouTube link */}
         <div style={{
           display: 'flex',
+          flexDirection: isMobile ? 'column' : 'row',
           justifyContent: 'space-between',
-          alignItems: 'center',
+          alignItems: isMobile ? 'flex-start' : 'center',
+          gap: isMobile ? '12px' : '0px',
           borderTop: `1px solid ${isDark ? '#2A2A35' : '#E5E5E5'}`,
           paddingTop: '20px',
           width: '100%',

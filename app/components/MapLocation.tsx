@@ -1,20 +1,23 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function MapLocation() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   const getColor = (dark:any, light:any) => isDark ? dark : light;
 
   return (
     <section style={{
       backgroundColor: getColor('#13131A', '#FAF9F5'),
-      paddingTop: '80px',
-      paddingBottom: '80px',
-      paddingLeft: '120px',
-      paddingRight: '120px',
+      paddingTop: isMobile ? '48px' : '80px',
+      paddingBottom: isMobile ? '48px' : '80px',
+      paddingLeft: isMobile ? '20px' : '120px',
+      paddingRight: isMobile ? '20px' : '120px',
+      boxSizing: 'border-box',
     }}>
       <div style={{ 
         display: 'flex', 
@@ -60,7 +63,7 @@ export default function MapLocation() {
         {/* Map and info two column layout */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
           gap: '24px',
           width: '100%',
         }}>
@@ -69,7 +72,7 @@ export default function MapLocation() {
             borderRadius: '8px',
             border: `1px solid ${getColor('#2A2A35', '#E5E5E5')}`,
             overflow: 'hidden',
-            height: '420px',
+            height: isMobile ? '280px' : '420px',
             position: 'relative',
             backgroundColor: getColor('#0A0A0F', '#F8F8F8'),
             backgroundImage: `linear-gradient(135deg, ${getColor('#1A1A2E', '#F0F0F0')} 0%, ${getColor('#13131A', '#FFFFFF')} 100%)`,
@@ -99,7 +102,7 @@ export default function MapLocation() {
               position: 'absolute',
               top: '16px',
               left: '16px',
-              backgroundColor: 'rgba(10, 10, 15, 0.8)',
+              backgroundColor: getColor('rgba(10, 10, 15, 0.8)', 'rgba(255,255,255,0.85)'),
               padding: '6px 10px',
               borderRadius: '4px',
               fontSize: '11px',
@@ -113,7 +116,7 @@ export default function MapLocation() {
               position: 'absolute',
               bottom: '16px',
               left: '16px',
-              backgroundColor: 'rgba(10, 10, 15, 0.8)',
+              backgroundColor: getColor('rgba(10, 10, 15, 0.8)', 'rgba(255,255,255,0.85)'),
               padding: '4px 10px',
               borderRadius: '4px',
               fontSize: '10px',
@@ -316,7 +319,7 @@ export default function MapLocation() {
                 padding: '12px 18px',
                 borderRadius: '9999px',
                 backgroundColor: '#A855F7',
-                color: '#0A0A0F',
+                color: '#FFFFFF',
                 border: 'none',
                 fontSize: '14px',
                 fontWeight: 700,

@@ -1,0 +1,465 @@
+// ─── Root ───────────────────────────────────────────────────────────────────
+.page {
+  background: var(--bg-primary);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+// ─── Hero ───────────────────────────────────────────────────────────────────
+.hero {
+  background:
+    radial-gradient(120% 90% at 50% 10%, var(--neon-purple-a35) 0%, transparent 100%),
+    radial-gradient(80% 80% at 85% 90%, var(--neon-cyan-a25) 0%, transparent 100%),
+    var(--bg-primary);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-tertiary);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+}
+
+.badgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 2px;
+}
+
+.headline {
+  font-family: 'Geist', system-ui;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -3px;
+  line-height: 1.02;
+  text-align: center;
+  margin: 0;
+  max-width: 1100px;
+}
+
+.subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 680px;
+  margin: 0;
+}
+
+.searchBar {
+  background: var(--bg-card);
+  padding: 14px 20px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-strong);
+  box-shadow: 0 8px 32px #a855f722;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.searchInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--fg-primary);
+  caret-color: var(--neon-purple);
+}
+
+.searchKbd {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: var(--bg-tertiary);
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--border-subtle);
+}
+
+.searchKbdText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  color: var(--fg-muted);
+}
+
+// ─── Categories nav ─────────────────────────────────────────────────────────
+.categoriesNav {
+  background: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.catButton {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  cursor: pointer;
+  border: 1px solid var(--border-subtle);
+  background: var(--bg-card);
+  transition: all 0.2s;
+
+  &.catActive {
+    border: none;
+    background: var(--neon-purple);
+
+    .catLabel {
+      font-weight: 600;
+      color: #ffffff;
+    }
+
+    .catCount {
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+.catLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+.catCount {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+// ─── FAQ list section ────────────────────────────────────────────────────────
+.faqSection {
+  background: var(--bg-primary);
+}
+
+// ─── Sidebar ────────────────────────────────────────────────────────────────
+.sidebarBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-tertiary);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  align-self: flex-start;
+}
+
+.sidebarDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--neon-cyan);
+  flex-shrink: 0;
+}
+
+.sidebarBadgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.sidebarHeading {
+  font-family: 'Geist', system-ui;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.quickLinks {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.quickLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 0;
+  cursor: pointer;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid var(--border-subtle);
+  }
+}
+
+.quickLinkLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+// ─── FAQ Accordion ──────────────────────────────────────────────────────────
+.accordion {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  flex: 1;
+}
+
+.item {
+  background: var(--bg-card);
+  border-radius: 16px;
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &.itemOpen {
+    border-color: var(--neon-purple);
+    box-shadow: 0 8px 32px #a855f722;
+  }
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 20px 24px;
+  cursor: pointer;
+
+  &.itemHeaderOpen {
+    padding: 24px 24px 0 24px;
+  }
+}
+
+.itemHeaderInner {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex: 1;
+  min-width: 0;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  padding: 5px 10px;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+
+.tagDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--item-dot-color);
+}
+
+.tagLabel {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.question {
+  font-family: 'Geist', system-ui;
+  font-size: 17px;
+  font-weight: 500;
+  color: var(--fg-primary);
+  letter-spacing: -0.2px;
+
+  &.questionOpen {
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: -0.3px;
+  }
+}
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  transition: background 0.2s;
+
+  &.toggleBtnOpen {
+    background: var(--neon-purple);
+    border: none;
+  }
+}
+
+.itemBody {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px 24px 24px 24px;
+}
+
+.divider {
+  height: 1px;
+  background: var(--border-subtle);
+  width: 100%;
+}
+
+.answer {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.itemFooter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.itemFooterLink {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  padding: 8px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+}
+
+.itemFooterLinkLabel {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+.helpfulHint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+}
+
+.helpfulEmoji {
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.helpfulHintText {
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  color: var(--fg-muted);
+}
+
+// ─── CTA Section ────────────────────────────────────────────────────────────
+.ctaSection {
+  background: var(--bg-secondary);
+}
+
+.ctaCard {
+  border-radius: 20px;
+  border: 1px solid var(--neon-purple);
+  background:
+    radial-gradient(90% 140% at 85% 50%, var(--neon-purple-a40) 0%, transparent 100%),
+    var(--bg-card);
+  box-shadow: 0 20px 60px #a855f744;
+}
+
+.ctaBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  align-self: flex-start;
+  background: var(--bg-tertiary);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+}
+
+.ctaBadgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.ctaHeadline {
+  font-family: 'Geist', system-ui;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -1.5px;
+  line-height: 1.05;
+  margin: 0;
+}
+
+.ctaBody {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.ctaBtnPrimary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 9999px;
+  border: none;
+  cursor: pointer;
+  background: var(--neon-purple);
+  box-shadow: 0 8px 24px #a855f740;
+}
+
+.ctaBtnPrimaryLabel {
+  font-family: 'Geist', system-ui;
+  font-size: 15px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.ctaBtnSecondary {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 28px;
+  border-radius: 9999px;
+  cursor: pointer;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-strong);
+}
+
+.ctaBtnSecondaryLabel {
+  font-family: 'Geist', system-ui;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--fg-primary);
+}

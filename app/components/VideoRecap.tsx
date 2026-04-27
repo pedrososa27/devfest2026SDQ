@@ -1,21 +1,27 @@
 'use client';
 
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 import Image from 'next/image';
 
 export default function VideoRecap() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   return (
     <section
       style={{
         backgroundColor: isDark ? '#13131A' : '#FAF9F5',
-        padding: '96px 120px',
+        paddingTop: isMobile ? '48px' : '96px',
+        paddingBottom: isMobile ? '48px' : '96px',
+        paddingLeft: isMobile ? '20px' : '120px',
+        paddingRight: isMobile ? '20px' : '120px',
         display: 'flex',
         flexDirection: 'column',
         gap: '48px',
         alignItems: 'center',
         justifyContent: 'center',
+        boxSizing: 'border-box',
       }}
     >
       {/* Header */}
@@ -56,9 +62,9 @@ export default function VideoRecap() {
         <h2
           style={{
             fontFamily: 'Geist, system-ui',
-            fontSize: '56px',
+            fontSize: isMobile ? '36px' : '56px',
             fontWeight: 700,
-            letterSpacing: '-2px',
+            letterSpacing: isMobile ? '-1px' : '-2px',
             textAlign: 'center',
             color: isDark ? '#FFFFFF' : '#141413',
             margin: 0,
@@ -89,8 +95,9 @@ export default function VideoRecap() {
       <div
         style={{
           position: 'relative',
-          width: '960px',
-          height: '540px',
+          width: isMobile ? '100%' : '960px',
+          maxWidth: '960px',
+          height: isMobile ? '220px' : '540px',
           backgroundColor: '#000000',
           borderRadius: '12px',
           borderColor: isDark ? '#3A3A48' : '#CCCCCC',

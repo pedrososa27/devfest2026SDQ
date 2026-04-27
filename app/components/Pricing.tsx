@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function Pricing() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   const getColor = (dark:any, light:any) => isDark ? dark : light;
 
@@ -78,10 +80,11 @@ export default function Pricing() {
   return (
     <section style={{
       backgroundColor: getColor('#0A0A0F', '#FFFFFF'),
-      paddingTop: '80px',
-      paddingBottom: '80px',
-      paddingLeft: '120px',
-      paddingRight: '120px',
+      paddingTop: isMobile ? '48px' : '80px',
+      paddingBottom: isMobile ? '48px' : '80px',
+      paddingLeft: isMobile ? '20px' : '120px',
+      paddingRight: isMobile ? '20px' : '120px',
+      boxSizing: 'border-box',
     }}>
       <div style={{
         display: 'flex',
@@ -147,7 +150,7 @@ export default function Pricing() {
         {/* Pricing cards */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
           gap: '20px',
           width: '100%',
           alignItems: 'start',

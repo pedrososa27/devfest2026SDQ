@@ -1,10 +1,12 @@
 'use client';
 
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 import Image from 'next/image';
 
 export default function EventInfo() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   const cards = [
     {
@@ -36,19 +38,23 @@ export default function EventInfo() {
       <section
         style={{
           backgroundColor: isDark ? '#13131A' : '#FAF9F5',
-          padding: '72px 120px',
+          paddingTop: isMobile ? '48px' : '72px',
+          paddingBottom: isMobile ? '48px' : '72px',
+          paddingLeft: isMobile ? '20px' : '120px',
+          paddingRight: isMobile ? '20px' : '120px',
           display: 'flex',
           flexDirection: 'column',
           gap: '40px',
           alignItems: 'center',
           justifyContent: 'center',
+          boxSizing: 'border-box',
         }}
       >
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(3, 1fr)',
-            gap: '20px',
+            gridTemplateColumns: isMobile ? '1fr' : 'repeat(3, 1fr)',
+            gap: '16px',
             width: '100%',
             maxWidth: '1200px',
           }}
@@ -134,7 +140,10 @@ export default function EventInfo() {
       <section
         style={{
           backgroundColor: isDark ? '#0A0A0F' : '#FFFFFF',
-          padding: '64px 120px',
+          paddingTop: isMobile ? '48px' : '64px',
+          paddingBottom: isMobile ? '48px' : '64px',
+          paddingLeft: isMobile ? '20px' : '120px',
+          paddingRight: isMobile ? '20px' : '120px',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -145,14 +154,16 @@ export default function EventInfo() {
           borderBottomWidth: '1px',
           borderBottomStyle: 'solid',
           borderBottomColor: isDark ? '#2A2A35' : '#E5E5E5',
+          boxSizing: 'border-box',
         }}
       >
         <div
           style={{
-            display: 'flex',
-            gap: '0px',
+            display: isMobile ? 'grid' : 'flex',
+            gridTemplateColumns: isMobile ? 'repeat(3, 1fr)' : undefined,
+            gap: isMobile ? '0px' : '0px',
             alignItems: 'center',
-            justifyContent: 'space-between',
+            justifyContent: isMobile ? undefined : 'space-between',
             width: '100%',
             maxWidth: '1200px',
           }}
@@ -164,7 +175,7 @@ export default function EventInfo() {
             { num: '30+', label: 'SPEAKERS', color: '#A855F7' },
             { num: '500+', label: 'ATTENDEES / DAY', color: '#22D3EE' },
           ].map((stat, idx) => (
-            <div key={idx} style={{ display: 'flex', alignItems: 'center', flex: 1 }}>
+            <div key={idx} style={{ display: 'flex', alignItems: 'center', flex: isMobile ? undefined : 1 }}>
               <div
                 style={{
                   display: 'flex',
@@ -174,12 +185,13 @@ export default function EventInfo() {
                   gap: '8px',
                   flex: 1,
                   textAlign: 'center',
+                  padding: isMobile ? '16px 8px' : undefined,
                 }}
               >
                 <span
                   style={{
                     fontFamily: 'IBM Plex Mono, monospace',
-                    fontSize: '56px',
+                    fontSize: isMobile ? '36px' : '56px',
                     fontWeight: 700,
                     color: stat.color,
                     lineHeight: 1,
@@ -190,9 +202,9 @@ export default function EventInfo() {
                 <span
                   style={{
                     fontFamily: 'Geist Mono, monospace',
-                    fontSize: '12px',
+                    fontSize: isMobile ? '9px' : '12px',
                     fontWeight: 500,
-                    letterSpacing: '3px',
+                    letterSpacing: isMobile ? '1px' : '3px',
                     color: isDark ? '#A1A1AA' : '#47362C',
                     textTransform: 'uppercase',
                   }}
@@ -200,7 +212,7 @@ export default function EventInfo() {
                   {stat.label}
                 </span>
               </div>
-              {idx < 4 && (
+              {!isMobile && idx < 4 && (
                 <div
                   style={{
                     width: '1px',

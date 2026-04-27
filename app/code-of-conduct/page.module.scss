@@ -1,0 +1,588 @@
+// ─── Root ─────────────────────────────────────────────────────────────────────
+.page {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background: var(--bg-primary);
+}
+
+// ─── Section backgrounds ──────────────────────────────────────────────────────
+.sectionPrimary {
+  background: var(--bg-primary);
+}
+
+.sectionSecondary {
+  background: var(--bg-secondary);
+}
+
+// ─── Hero ─────────────────────────────────────────────────────────────────────
+.hero {
+  background-color: var(--bg-primary);
+  background-image:
+    radial-gradient(120% 90% at 50% 10%, #34A8534D 0%, transparent 100%),
+    radial-gradient(80% 80% at 85% 85%, color-mix(in srgb, var(--neon-purple) 25%, transparent) 0%, transparent 100%);
+}
+
+.versionBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-tertiary);
+  padding: 8px 16px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+}
+
+.versionBadgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 2px;
+}
+
+.heroKicker {
+  font-family: 'Geist Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--accent-green);
+  letter-spacing: 3px;
+}
+
+.heroHeadline {
+  font-family: 'Geist', system-ui;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -3px;
+  line-height: 1.02;
+  text-align: center;
+  margin: 0;
+  max-width: 1100px;
+}
+
+.heroSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 18px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 760px;
+  margin: 0;
+}
+
+.metaBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.metaBtnText {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+.reportIncidentBtn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--accent-red);
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 16px;
+  cursor: pointer;
+}
+
+.reportIncidentBtnText {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+// ─── Shared section kicker / heading / subtitle ───────────────────────────────
+.sectionKicker {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--accent-green);
+  letter-spacing: 2px;
+}
+
+.sectionHeading {
+  font-family: 'Geist', system-ui;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  text-align: center;
+  margin: 0;
+}
+
+.sectionHeadingLeft {
+  font-family: 'Geist', system-ui;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -1.5px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.sectionSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 680px;
+  margin: 0;
+}
+
+.reportSectionSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  text-align: center;
+  max-width: 740px;
+  margin: 0;
+}
+
+// ─── 01 Pledge cards ──────────────────────────────────────────────────────────
+.pledgeCard {
+  background: var(--bg-card);
+  border-radius: 16px;
+  padding: 24px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.pledgeIcon {
+  width: 44px;
+  height: 44px;
+  border-radius: 10px;
+  background: var(--accent-bg);
+  border: 1px solid var(--accent-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.pledgeTitle {
+  font-family: 'Geist', system-ui;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -0.3px;
+}
+
+.pledgeDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+// ─── 02 Behavior columns ──────────────────────────────────────────────────────
+.behaviorCard {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.behaviorGood {
+  border: 1px solid #34A85355;
+  box-shadow: 0 8px 32px #34A85322;
+}
+
+.behaviorBad {
+  border: 1px solid #EA433555;
+  box-shadow: 0 8px 32px #EA433522;
+}
+
+.behaviorHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.behaviorIconGreen {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.behaviorIconRed {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: var(--accent-red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.behaviorTitle {
+  font-family: 'Geist', system-ui;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -0.5px;
+}
+
+.behaviorList {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.behaviorItem {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.behaviorDotGood {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  background: #34A85322;
+  border: 1px solid #34A85355;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.behaviorDotBad {
+  width: 24px;
+  height: 24px;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  background: #EA433522;
+  border: 1px solid #EA433555;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.behaviorItemText {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  line-height: 1.55;
+  margin: 0;
+}
+
+// ─── 03 Report channels ───────────────────────────────────────────────────────
+.reportCard {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 28px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.channelTopRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.channelIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--ch-icon-bg);
+  box-shadow: 0 8px 24px var(--ch-icon-shadow);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.channelPill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  padding: 5px 10px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-subtle);
+}
+
+.channelPillDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--ch-pill-dot);
+}
+
+.channelPillLabel {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.channelTitle {
+  font-family: 'Geist', system-ui;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -0.4px;
+}
+
+.channelDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  line-height: 1.55;
+  margin: 0;
+  flex: 1;
+}
+
+.channelFooter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding-top: 8px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.channelFooterText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+// ─── 04 Enforcement ───────────────────────────────────────────────────────────
+.enforcementHeadLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.enforcementSectionSubtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 15px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  max-width: 420px;
+  margin: 0;
+}
+
+.enforcementStep {
+  background: var(--bg-card);
+  padding: 24px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.enforcementStepNoBorderLeft {
+  border-left: none;
+}
+
+.stepNumRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.stepNum {
+  font-family: 'Geist Mono', monospace;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--step-color);
+}
+
+.stepTitle {
+  font-family: 'Geist', system-ui;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -0.3px;
+}
+
+.stepDesc {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--fg-secondary);
+  line-height: 1.5;
+  margin: 0;
+}
+
+// ─── Attribution & Contact ────────────────────────────────────────────────────
+.attrCard {
+  background: var(--bg-card);
+  border-radius: 18px;
+  padding: 32px;
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.attrHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.attrLabel {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.attrTitle {
+  font-family: 'Geist', system-ui;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -0.5px;
+  margin: 0;
+}
+
+.attrText {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.attrTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.attrTag {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--bg-tertiary);
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.attrTagLabel {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+.contactCard {
+  border-radius: 18px;
+  padding: 32px;
+  border: 1px solid var(--accent-green);
+  background: var(--bg-card);
+  background-image: radial-gradient(90% 140% at 85% 50%, #34A85366 0%, transparent 100%);
+  box-shadow: 0 16px 48px #34A85333;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.contactLabel {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.contactTitle {
+  font-family: 'Geist', system-ui;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  letter-spacing: -1px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.contactText {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.contactBtns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-top: 6px;
+}
+
+.contactPrimaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--accent-green);
+  border: none;
+  border-radius: 9999px;
+  padding: 12px 22px;
+  cursor: pointer;
+}
+
+.contactPrimaryBtnText {
+  font-family: 'Geist', system-ui;
+  font-size: 14px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.contactSecondaryBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-strong);
+  border-radius: 9999px;
+  padding: 12px 22px;
+  cursor: pointer;
+}
+
+.contactSecondaryBtnText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}

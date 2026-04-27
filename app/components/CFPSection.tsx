@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function CFPSection() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   const getColor = (dark: string, light: string) => isDark ? dark : light;
 
@@ -21,10 +23,11 @@ export default function CFPSection() {
   return (
     <section style={{
       backgroundColor: getColor('#13131A', '#FAF9F5'),
-      paddingTop: '80px',
-      paddingBottom: '80px',
-      paddingLeft: '350px',
-      paddingRight: '350px',
+      paddingTop: isMobile ? '48px' : '80px',
+      paddingBottom: isMobile ? '48px' : '80px',
+      paddingLeft: isMobile ? '20px' : '25%',
+      paddingRight: isMobile ? '20px' : '25%',
+      boxSizing: 'border-box',
     }}>
       <div style={{
         display: 'flex',
@@ -88,9 +91,9 @@ export default function CFPSection() {
           {/* Content */}
           <div style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 420px',
-            gap: '48px',
-            padding: '56px 64px',
+            gridTemplateColumns: isMobile ? '1fr' : '1fr 420px',
+            gap: isMobile ? '32px' : '48px',
+            padding: isMobile ? '28px 24px' : '56px 64px',
             alignItems: 'start',
           }}>
             {/* Left side */}
@@ -129,9 +132,9 @@ export default function CFPSection() {
 
               {/* Title */}
               <h2 style={{
-                fontSize: '52px',
+                fontSize: isMobile ? '32px' : '52px',
                 fontWeight: 700,
-                letterSpacing: '-1.5px',
+                letterSpacing: isMobile ? '-0.8px' : '-1.5px',
                 lineHeight: 1.05,
                 color: getColor('#FFFFFF', '#141413'),
                 fontFamily: 'Geist',
@@ -180,8 +183,9 @@ export default function CFPSection() {
               {/* Buttons */}
               <div style={{
                 display: 'flex',
+                flexDirection: isMobile ? 'column' : 'row',
                 gap: '12px',
-                alignItems: 'center',
+                alignItems: isMobile ? 'stretch' : 'center',
               }}>
                 <button style={{
                   borderRadius: '9999px',
@@ -195,6 +199,7 @@ export default function CFPSection() {
                   cursor: 'pointer',
                   display: 'flex',
                   alignItems: 'center',
+                  justifyContent: 'center',
                   gap: '8px',
                 }}>
                   <span>Submit your talk</span>

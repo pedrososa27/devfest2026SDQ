@@ -1,10 +1,12 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function Sponsors() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   const getColor = (dark:any, light:any) => isDark ? dark : light;
 
@@ -95,10 +97,11 @@ export default function Sponsors() {
   return (
     <section style={{
       backgroundColor: getColor('#0A0A0F', '#FFFFFF'),
-      paddingTop: '100px',
-      paddingBottom: '100px',
-      paddingLeft: '120px',
-      paddingRight: '120px',
+      paddingTop: isMobile ? '48px' : '100px',
+      paddingBottom: isMobile ? '48px' : '100px',
+      paddingLeft: isMobile ? '20px' : '120px',
+      paddingRight: isMobile ? '20px' : '120px',
+      boxSizing: 'border-box',
     }}>
       <div style={{
         display: 'flex',
@@ -227,7 +230,9 @@ export default function Sponsors() {
               {/* Sponsors Grid */}
               <div style={{
                 display: 'grid',
-                gridTemplateColumns: `repeat(${Math.min(tier.sponsors.length, tier.sponsors.length)}, 1fr)`,
+                gridTemplateColumns: isMobile
+                  ? `repeat(${Math.min(tier.sponsors.length, 2)}, 1fr)`
+                  : `repeat(${tier.sponsors.length}, 1fr)`,
                 gap: tier.label === 'PARTNERS' ? '10px' : tier.label === 'SILVER' ? '12px' : tier.label === 'GOLD' ? '14px' : '16px',
                 width: '100%',
               }}>

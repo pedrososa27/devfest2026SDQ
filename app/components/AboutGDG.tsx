@@ -1,25 +1,30 @@
 'use client';
 
 import Image from 'next/image';
-import { useDarkMode } from '../hooks/useDarkMode';
+import { useTheme } from '../context/ThemeContext';
+import { useBreakpoint } from '../hooks/useBreakpoint';
 
 export default function AboutGDG() {
-  const isDark = useDarkMode();
+  const { isDark } = useTheme();
+  const isMobile = useBreakpoint();
 
   return (
     <section style={{
       backgroundColor: isDark ? '#13131A' : '#FAF9F5',
-      paddingTop: '80px',
-      paddingBottom: '80px',
-      paddingLeft: '120px',
-      paddingRight: '120px',
+      paddingTop: isMobile ? '48px' : '80px',
+      paddingBottom: isMobile ? '48px' : '80px',
+      paddingLeft: isMobile ? '20px' : '120px',
+      paddingRight: isMobile ? '20px' : '120px',
+      boxSizing: 'border-box',
     }}>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '48px' }}>
         {/* Header */}
         <div style={{
           display: 'flex',
-          alignItems: 'flex-end',
+          flexDirection: isMobile ? 'column' : 'row',
+          alignItems: isMobile ? 'flex-start' : 'flex-end',
           justifyContent: 'space-between',
+          gap: isMobile ? '20px' : '0px',
           width: '100%',
         }}>
           <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', maxWidth: '720px' }}>
@@ -100,7 +105,7 @@ export default function AboutGDG() {
         {/* Two columns */}
         <div style={{
           display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
+          gridTemplateColumns: isMobile ? '1fr' : '1fr 1fr',
           gap: '24px',
           width: '100%',
         }}>
@@ -267,8 +272,10 @@ export default function AboutGDG() {
 
         {/* Meta strip with stats */}
         <div style={{
-          display: 'flex',
-          justifyContent: 'space-between',
+          display: isMobile ? 'grid' : 'flex',
+          gridTemplateColumns: isMobile ? '1fr 1fr' : undefined,
+          gap: isMobile ? '20px' : '0px',
+          justifyContent: isMobile ? undefined : 'space-between',
           borderTop: `1px solid ${isDark ? '#2A2A35' : '#E5E5E5'}`,
           paddingTop: '20px',
           width: '100%',

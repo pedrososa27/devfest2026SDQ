@@ -1,0 +1,394 @@
+// ─── Root ────────────────────────────────────────────────────────────────────
+.header {
+  background-color: var(--bg-primary);
+  border-bottom: 1px solid var(--border-subtle);
+  width: 100%;
+  padding: 0 120px;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  height: 72px;
+
+  @media (max-width: 767px) {
+    height: auto;
+    padding: 0 16px;
+  }
+}
+
+// ─── Top Row ─────────────────────────────────────────────────────────────────
+.topRow {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 72px;
+  width: 100%;
+
+  @media (max-width: 767px) {
+    justify-content: space-between;
+    gap: 12px;
+  }
+}
+
+// ─── Logo ────────────────────────────────────────────────────────────────────
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  background-color: var(--neon-purple);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoMarkText {
+  font-size: 20px;
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.logoTextGroup {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+
+.logoName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  letter-spacing: -0.3px;
+}
+
+.logoSubtitle {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--neon-purple);
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: 1px;
+}
+
+// ─── Desktop Nav ─────────────────────────────────────────────────────────────
+.desktopNav {
+  display: flex;
+  gap: 36px;
+  align-items: center;
+  flex: 1;
+  justify-content: center;
+}
+
+.navLink {
+  font-size: 14px;
+  color: var(--fg-secondary);
+  text-decoration: none;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--fg-primary);
+  }
+}
+
+.navLinkActive {
+  font-size: 14px;
+  color: var(--fg-primary);
+  text-decoration: none;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+// ─── Desktop Actions ─────────────────────────────────────────────────────────
+.desktopActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.themeToggle {
+  width: 40px;
+  height: 40px;
+  border-radius: 9999px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.2s, border-color 0.2s;
+
+  &:hover {
+    background-color: var(--bg-card);
+  }
+}
+
+.themeToggleIcon {
+  font-size: 18px;
+  color: var(--fg-primary);
+}
+
+.cfpButton {
+  background-color: transparent;
+  color: var(--fg-primary);
+  border: 1px solid var(--border-muted);
+  border-radius: 9999px;
+  padding: 10px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+}
+
+.registerButton {
+  background-color: var(--neon-purple);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 10px 20px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}
+
+// ─── Mobile Actions ───────────────────────────────────────────────────────────
+.mobileActions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: auto;
+  flex-shrink: 0;
+}
+
+.hamburger {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--bg-card);
+  }
+}
+
+// Hamburger bars
+.bar {
+  width: 18px;
+  height: 2px;
+  background-color: var(--fg-primary);
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.barTopOpen {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.barMidOpen {
+  opacity: 0;
+}
+
+.barBottomOpen {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+// ─── Mobile Menu ─────────────────────────────────────────────────────────────
+.mobileMenu {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  border-top: 0px solid var(--border-subtle);
+  padding-bottom: 0;
+  transition:
+    max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.2s ease,
+    padding-bottom 0.3s ease;
+}
+
+.mobileMenuOpen {
+  max-height: 800px;
+  opacity: 1;
+  border-top-width: 1px;
+  padding-bottom: 20px;
+  transition:
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease 0.05s,
+    padding-bottom 0.35s ease;
+}
+
+// Mobile nav links list
+.mobileNavLinks {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileNavLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  color: var(--fg-muted);
+  text-decoration: none;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--bg-card);
+  transition: color 0.2s;
+
+  &:hover {
+    color: var(--fg-primary);
+  }
+}
+
+.mobileNavLinkActive {
+  color: var(--fg-primary);
+}
+
+.activeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--neon-purple);
+  flex-shrink: 0;
+}
+
+// Mobile theme toggle row
+.mobileThemeRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--bg-card);
+}
+
+.mobileThemeLabel {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', system-ui, sans-serif;
+}
+
+.mobileToggle {
+  width: 44px;
+  height: 26px;
+  border-radius: 9999px;
+  background-color: var(--toggle-bg);
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 0;
+  transition: background-color 0.2s;
+}
+
+.mobileToggleThumb {
+  position: absolute;
+  top: 3px;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background-color: #ffffff;
+  transition: left 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+
+.mobileToggleThumbDark {
+  left: 21px;
+}
+
+.mobileToggleThumbLight {
+  left: 3px;
+}
+
+// Mobile action buttons
+.mobileMenuButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding-top: 16px;
+}
+
+.mobileCfpButton {
+  background-color: transparent;
+  color: var(--fg-primary);
+  border: 1px solid var(--border-muted);
+  border-radius: 9999px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  transition: background-color 0.2s;
+
+  &:hover {
+    background-color: var(--bg-secondary);
+  }
+}
+
+.mobileRegisterButton {
+  background-color: var(--neon-purple);
+  color: #ffffff;
+  border: none;
+  border-radius: 9999px;
+  padding: 13px 16px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Inter', system-ui, sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  transition: opacity 0.2s;
+
+  &:hover {
+    opacity: 0.88;
+  }
+}

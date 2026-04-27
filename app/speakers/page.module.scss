@@ -1,0 +1,624 @@
+// ── Root ───────────────────────────────────────────────────────
+.page {
+  min-height: 100vh;
+  background-color: var(--bg-primary);
+}
+
+// ── SVG colour helpers ─────────────────────────────────────────
+.svgFgSecondary { color: var(--fg-secondary); }
+.svgFgMuted     { color: var(--fg-muted); }
+.svgAccentYellow { color: var(--accent-yellow); }
+.svgNeonPurple  { color: var(--neon-purple); }
+
+// ── PhotoBlob ──────────────────────────────────────────────────
+.photoBlob {
+  position: relative;
+  overflow: hidden;
+  background-color: var(--blob-bg);
+}
+
+.photoBlobGlow1 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 40% 35%,
+    var(--glow-0) 0%,
+    var(--glow-1) 55%,
+    transparent 80%
+  );
+  filter: blur(28px);
+}
+
+.photoBlobGlow2 {
+  position: absolute;
+  top: 45%;
+  left: 52%;
+  transform: translate(-50%, -50%);
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--glow-2) 0%,
+    var(--glow-3) 60%,
+    transparent 100%
+  );
+  filter: blur(14px);
+}
+
+// ── Hero ────────────────────────────────────────────────────────
+.hero {
+  background: var(--hero-bg);
+}
+
+.heroBadge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+}
+
+.heroBadgeDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--neon-pink);
+  flex-shrink: 0;
+}
+
+.heroBadgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 2px;
+}
+
+.heroLabel {
+  font-family: 'Geist Mono', monospace;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--neon-purple);
+  letter-spacing: 3px;
+}
+
+.heroTitle {
+  font-family: 'Geist', system-ui;
+  color: var(--fg-primary);
+}
+
+.heroSubtitle {
+  font-family: 'Inter', system-ui;
+  font-weight: 400;
+  color: var(--fg-secondary);
+}
+
+.heroPills {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.heroPill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+
+.heroPillDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.heroPillText {
+  font-family: 'Inter', system-ui;
+  font-size: 13px;
+  color: var(--fg-primary);
+}
+
+// ── Filter Bar ─────────────────────────────────────────────────
+.filterBar {
+  background-color: var(--bg-secondary);
+  border-top: 1px solid var(--border-subtle);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.filterLabelRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filterLabelText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 2px;
+}
+
+.searchBox {
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+}
+
+.searchText {
+  font-family: 'Inter', system-ui;
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.filterChips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.filterChip {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 9999px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filterChipActive {
+  background-color: var(--neon-purple);
+  border-color: var(--neon-purple);
+}
+
+.filterChipDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.filterChipLabel {
+  font-family: 'Inter', system-ui;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+.filterChipLabelActive {
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.filterChipCount {
+  font-family: 'Inter', system-ui;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-muted);
+}
+
+.filterChipCountActive {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+// ── Keynote Section ────────────────────────────────────────────
+.keynoteSection {
+  background-color: var(--bg-primary);
+}
+
+.keynoteSectionHeader {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.keynoteLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: var(--bg-tertiary);
+  align-self: flex-start;
+}
+
+.keynoteLabelText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1.5px;
+}
+
+.keynoteTitle {
+  font-family: 'Geist', system-ui;
+  color: var(--fg-primary);
+}
+
+.keynoteDesc {
+  font-family: 'Inter', system-ui;
+  font-size: 15px;
+  color: var(--fg-secondary);
+}
+
+.keynoteCard {
+  flex: 1;
+  border-radius: 16px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.keynotePhotoArea {
+  position: relative;
+}
+
+.keynoteDayTag {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 9999px;
+  background-color: var(--day-tag-bg);
+  border: 1px solid var(--border-strong);
+}
+
+.keynoteDayTagDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.keynoteDayTagText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--day-tag-text);
+  letter-spacing: 1.5px;
+}
+
+.keynoteBody {
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.keynoteNameRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.keynoteName {
+  font-family: 'Geist', system-ui;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  line-height: 1.2;
+}
+
+.keynoteRole {
+  font-family: 'Inter', system-ui;
+  font-size: 14px;
+  color: var(--fg-secondary);
+  margin-top: 4px;
+}
+
+.keynoteLocationBadge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 6px;
+  background-color: var(--bg-tertiary);
+  flex-shrink: 0;
+}
+
+.keynoteLocationDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+  flex-shrink: 0;
+}
+
+.keynoteLocationText {
+  font-family: 'Inter', system-ui;
+  font-size: 12px;
+  color: var(--fg-primary);
+}
+
+.keynoteTalk {
+  font-family: 'Inter', system-ui;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--fg-primary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.keynotePills {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.keynotePill {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 6px;
+  background-color: var(--bg-tertiary);
+}
+
+.keynotePillDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.keynotePillTextColored {
+  font-family: 'Inter', system-ui;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-primary);
+}
+
+.keynotePillTextMuted {
+  font-family: 'Inter', system-ui;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+}
+
+// ── Speakers Grid ──────────────────────────────────────────────
+.speakersSection {
+  background-color: var(--bg-secondary);
+}
+
+.speakersGridHeader {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.speakersGridTitle {
+  font-family: 'Geist', system-ui;
+  color: var(--fg-primary);
+}
+
+.sortBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.sortBtnText {
+  font-family: 'Inter', system-ui;
+  font-size: 13px;
+  color: var(--fg-secondary);
+}
+
+.sortBtnArrow {
+  font-size: 13px;
+  color: var(--fg-muted);
+}
+
+.speakerCard {
+  border-radius: 12px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  transition: border-color 0.2s, transform 0.15s;
+
+  &:hover {
+    border-color: var(--neon-purple);
+  }
+}
+
+.speakerPhotoArea {
+  position: relative;
+}
+
+.speakerTrackTag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  background-color: var(--day-tag-bg);
+  border: 1px solid var(--border-strong);
+}
+
+.speakerTrackDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.speakerTrackText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--day-tag-text);
+  letter-spacing: 0.5px;
+}
+
+.speakerBody {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.speakerName {
+  font-family: 'Geist', system-ui;
+  color: var(--fg-primary);
+}
+
+.speakerRole {
+  font-family: 'Inter', system-ui;
+  color: var(--fg-secondary);
+}
+
+.speakerLocationRow {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+.speakerLocationText {
+  font-family: 'Inter', system-ui;
+  font-size: 11px;
+  color: var(--fg-muted);
+}
+
+.loadMore {
+  display: flex;
+  justify-content: center;
+  padding-top: 16px;
+}
+
+.loadMoreBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  border-radius: 9999px;
+  background-color: transparent;
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-secondary);
+  font-family: 'Inter', system-ui;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: border-color 0.2s, color 0.2s;
+
+  &:hover {
+    border-color: var(--neon-purple);
+    color: var(--neon-purple);
+  }
+}
+
+// ── CTA ────────────────────────────────────────────────────────
+.ctaSection {
+  background: var(--cta-bg);
+}
+
+.ctaCard {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+}
+
+.ctaBadge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 6px;
+  background-color: var(--bg-tertiary);
+}
+
+.ctaBadgeText {
+  font-family: 'Geist Mono', monospace;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-secondary);
+  letter-spacing: 1px;
+}
+
+.ctaTitle {
+  font-family: 'Geist', system-ui;
+  color: var(--fg-primary);
+}
+
+.ctaSubtext {
+  font-family: 'Inter', system-ui;
+  font-size: 16px;
+  color: var(--fg-secondary);
+  line-height: 1.6;
+  margin: 0;
+  max-width: 560px;
+}
+
+.ctaButtons {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.ctaSubmitBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  background-color: var(--neon-purple);
+  border: none;
+  color: #ffffff;
+  font-family: 'Inter', system-ui;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ctaGuidelinesBtn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-primary);
+  font-family: 'Inter', system-ui;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}

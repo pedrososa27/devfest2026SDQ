@@ -1,0 +1,218 @@
+// ─── Root ────────────────────────────────────────────────────────────────────
+.footer {
+  background-color: var(--bg-primary);
+  border-top: 1px solid var(--border-subtle);
+  padding: 60px 120px 32px;
+  box-sizing: border-box;
+
+  @media (max-width: 767px) {
+    padding: 40px 20px 32px;
+  }
+}
+
+// ─── Top Section ─────────────────────────────────────────────────────────────
+.topSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 80px;
+  margin-bottom: 40px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
+
+// ─── Brand Section ────────────────────────────────────────────────────────────
+.brandSection {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 340px;
+  flex-shrink: 0;
+
+  @media (max-width: 767px) {
+    width: 100%;
+  }
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logoMark {
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background-color: var(--neon-purple);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.logoTextGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.logoName {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  font-family: 'Geist', sans-serif;
+  margin: 0;
+  line-height: 1;
+}
+
+.logoSubtitle {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--neon-purple);
+  font-family: 'Geist Mono', monospace;
+  letter-spacing: 0.5px;
+}
+
+.tagline {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+  line-height: 1.6;
+  margin: 0;
+}
+
+// ─── Social Icons ─────────────────────────────────────────────────────────────
+.socialRow {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.socialIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--fg-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+
+  &:hover {
+    background-color: var(--neon-purple);
+    border-color: var(--neon-purple);
+    color: #ffffff;
+  }
+}
+
+// ─── Link Columns ─────────────────────────────────────────────────────────────
+.linkColumns {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 40px;
+  flex: 1;
+  justify-content: flex-end;
+
+  @media (max-width: 767px) {
+    flex-wrap: wrap;
+    gap: 28px;
+    flex: unset;
+    justify-content: flex-start;
+    width: 100%;
+  }
+}
+
+.linkColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.linkColumnHeading {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: var(--fg-dim);
+  font-family: 'Geist Mono', monospace;
+  margin: 0 0 2px;
+}
+
+.footerLink {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--neon-purple);
+  }
+}
+
+// ─── Divider ─────────────────────────────────────────────────────────────────
+.divider {
+  height: 1px;
+  background-color: var(--border-subtle);
+  margin-bottom: 24px;
+}
+
+// ─── Bottom Section ───────────────────────────────────────────────────────────
+.bottomSection {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+}
+
+.statusDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-green);
+  flex-shrink: 0;
+}
+
+.legalLinks {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.legalLink {
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--fg-muted);
+  font-family: 'Inter', sans-serif;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: var(--neon-purple);
+  }
+}
