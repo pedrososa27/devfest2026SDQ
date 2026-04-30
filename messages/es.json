@@ -198,7 +198,13 @@
       "venue": "Sede",
       "speakers": "Ponentes y CFP",
       "conduct": "Código de Conducta"
-    }
+    },
+    "sidebarBrowsing": "NAVEGANDO TODO · 24",
+    "quickLink1": "Boletos y Reembolsos",
+    "quickLink2": "Agenda y Sesiones",
+    "quickLink3": "Sede y Viaje",
+    "quickLink4": "Ponentes y CFP",
+    "quickLink5": "Código de Conducta"
   },
   "schedulePage": {
     "badgeText": "AGENDA // NOV 14-15, 2026",
@@ -222,7 +228,19 @@
     "talk": "CHARLA",
     "workshop": "TALLER",
     "break": "PAUSA",
-    "panel": "PANEL"
+    "panel": "PANEL",
+    "evening": "NOCHE",
+    "afterPartyTitle": "After-party en Lúdico Rooftop",
+    "afterPartySubtitle": "Bebidas, conversaciones y DJ en vivo — se requiere credencial",
+    "afterPartyTime": "19:30 — 22:00",
+    "noSessions": "No se encontraron sesiones para este filtro.",
+    "ctaBadge": "PLANIFICA TU DÍA",
+    "ctaTitle": "Llévate la agenda contigo.",
+    "ctaDesc": "Descarga el programa completo de dos días como archivo .ics y ábrelo directamente en Google Calendar, Apple Calendar o Outlook.",
+    "downloadBtn": "Descargar agenda (.ics)",
+    "calendarBtn": "Agregar a Google Calendar",
+    "ctaMeta1": "Se actualiza automáticamente si hay cambios",
+    "ctaMeta2": "Compatible con zonas horarias (ADT / UTC-4)"
   },
   "speakersPage": {
     "badgeText": "LINEUP MUNDIAL // EDICIÓN 2026",
@@ -270,7 +288,26 @@
     "volDesignTitle": "Diseño",
     "volDesignSub": "Señalización, slides, gráficos para redes",
     "volCommsTitle": "Contenido y Comunicaciones",
-    "volCommsSub": "Notas, posts en redes, contenido de recap"
+    "volCommsSub": "Notas, posts en redes, contenido de recap",
+    "coreTeamTitle": "Organizadores principales",
+    "coreTeamSubtitle": "Las cuatro personas al timón — programación, operaciones, contenido y el capítulo GDG detrás de todo.",
+    "coreTeamBadge": "4 líderes // 6 meses // 1 fin de semana",
+    "committeeTitle": "Capitanes de track y responsables de área",
+    "committeeSubtitle": "Doce personas gestionando los tracks, relaciones con partners y los hilos operativos que sostienen una conferencia de dos días.",
+    "tabAll": "Todos (12)",
+    "tabByTrack": "Por track",
+    "tabByArea": "Por área",
+    "volCrewTitle": "El equipo en el terreno.",
+    "volCrewSubtitle": "45+ voluntarios en cinco áreas — gestionando el registro, la línea de micrófonos, el livestream, la señalización y todo lo demás.",
+    "volSectionLabel": "VOLUNTARIOS",
+    "ctaPill": "POSTULACIONES DE VOLUNTARIOS // ABIERTAS PARA 2027",
+    "ctaHeadline": "¿Quieres estar en esta página el próximo año?",
+    "ctaSubtitle": "Los roles de voluntario abren en mayo. No se requiere experiencia previa — solo disposición para ayudar, aprender y conocer a muchas personas construyendo cosas en la isla.",
+    "ctaBtnPrimary": "Ser voluntario",
+    "ctaBtnSecondary": "Ver roles disponibles",
+    "ctaMetaApps": "Postulaciones abren mayo 2026",
+    "ctaMetaWorkstreams": "5 áreas de trabajo",
+    "ctaMetaHours": "~20 hrs de compromiso"
   },
   "conductPage": {
     "version": "v 2.1 · ÚLTIMA ACTUALIZACIÓN MAR 2026",
@@ -307,7 +344,18 @@
     "removal_desc": "Para incidentes graves: se le pide a la persona que abandone el lugar. Sin reembolso. Las charlas de los ponentes pueden ser eliminadas del programa.",
     "ban": "Prohibición permanente",
     "ban_desc": "Para violaciones graves o repetidas: una prohibición permanente de todos los eventos de GDG Santo Domingo y espacios comunitarios en línea.",
-    "title": "Código de Conducta"
+    "title": "Código de Conducta",
+    "reportSectionSubtitle": "Si algo ocurre durante el evento — o ya ha ocurrido — elige el canal que te parezca más seguro. Todos los reportes son tomados en serio y gestionados por un equipo dedicado de respuesta CoC en menos de 24 horas.",
+    "enforcementSubtitle": "Cada reporte es único, pero esta es la escala general que usamos. El equipo CoC tiene plena discreción para saltar pasos según la gravedad.",
+    "attrLabel": "ATRIBUCIÓN",
+    "attrTitle": "Construido sobre hombros de gigantes.",
+    "attrText": "Este Código de Conducta adapta el lenguaje del Contributor Covenant v2.1 y las guías de la comunidad global de GDG, con adaptaciones específicas para Santo Domingo y la comunidad dominicana de developers.",
+    "attrTag1": "Contributor Covenant 2.1",
+    "attrTag2": "GDG Community Guidelines",
+    "contactLabel": "ESTAMOS ESCUCHANDO",
+    "contactTitle": "¿Necesitas hablar con nosotros?",
+    "contactText": "Commúnicate con el equipo CoC — directamente, de forma privada y en tus términos.",
+    "fileReport": "Reportar un caso"
   },
   "languageSwitcher": {
     "label": "Idioma",

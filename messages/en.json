@@ -198,7 +198,13 @@
       "venue": "Venue",
       "speakers": "Speakers & CFP",
       "conduct": "Code of Conduct"
-    }
+    },
+    "sidebarBrowsing": "BROWSING ALL · 24",
+    "quickLink1": "Tickets & Refunds",
+    "quickLink2": "Schedule & Sessions",
+    "quickLink3": "Venue & Travel",
+    "quickLink4": "Speakers & CFP",
+    "quickLink5": "Code of Conduct"
   },
   "schedulePage": {
     "badgeText": "EVENT SCHEDULE // NOV 14-15, 2026",
@@ -222,7 +228,19 @@
     "talk": "TALK",
     "workshop": "WORKSHOP",
     "break": "BREAK",
-    "panel": "PANEL"
+    "panel": "PANEL",
+    "evening": "EVENING",
+    "afterPartyTitle": "After-party at Lúdico Rooftop",
+    "afterPartySubtitle": "Drinks, hallway conversations, and live DJ — badge required",
+    "afterPartyTime": "19:30 — 22:00",
+    "noSessions": "No sessions found for this filter.",
+    "ctaBadge": "PLAN YOUR DAY",
+    "ctaTitle": "Take the schedule with you.",
+    "ctaDesc": "Download the full two-day program as an .ics file and drop it straight into Google Calendar, Apple Calendar, or Outlook.",
+    "downloadBtn": "Download schedule (.ics)",
+    "calendarBtn": "Add to Google Calendar",
+    "ctaMeta1": "Auto-updates if sessions change",
+    "ctaMeta2": "Timezone-aware (ADT / UTC-4)"
   },
   "speakersPage": {
     "badgeText": "WORLD-CLASS LINEUP // 2026 EDITION",
@@ -270,7 +288,26 @@
     "volDesignTitle": "Design",
     "volDesignSub": "Signage, slides, social graphics",
     "volCommsTitle": "Content & Comms",
-    "volCommsSub": "Notes, social posts, recap content"
+    "volCommsSub": "Notes, social posts, recap content",
+    "coreTeamTitle": "Lead organizers",
+    "coreTeamSubtitle": "The four people steering the ship — programming, operations, content, and the GDG chapter behind it all.",
+    "coreTeamBadge": "4 leads // 6 months // 1 weekend",
+    "committeeTitle": "Track captains & area owners",
+    "committeeSubtitle": "Twelve people running the tracks, partner relationships, and the operational threads that hold a two-day conference together.",
+    "tabAll": "All 12",
+    "tabByTrack": "By track",
+    "tabByArea": "By area",
+    "volCrewTitle": "The crew on the floor.",
+    "volCrewSubtitle": "45+ volunteers across five workstreams — handling check-in, the mic line, livestream, signage, and everything in between.",
+    "volSectionLabel": "VOLUNTEERS",
+    "ctaPill": "VOLUNTEER APPLICATIONS // OPEN FOR 2027",
+    "ctaHeadline": "Want to be on this page next year?",
+    "ctaSubtitle": "Volunteer roles open in May. No prior experience required — just a willingness to help, learn, and meet a lot of people building things on the island.",
+    "ctaBtnPrimary": "Become a volunteer",
+    "ctaBtnSecondary": "See open roles",
+    "ctaMetaApps": "Apps open May 2026",
+    "ctaMetaWorkstreams": "5 workstreams",
+    "ctaMetaHours": "~20 hrs commitment"
   },
   "conductPage": {
     "version": "v 2.1 · LAST UPDATED MAR 2026",
@@ -307,7 +344,18 @@
     "removal_desc": "For serious incidents: the person is asked to leave the venue. No refund. Speakers' talks may be removed from the program.",
     "ban": "Permanent ban",
     "ban_desc": "For severe or repeat violations: a permanent ban from all GDG Santo Domingo events and online community spaces.",
-    "title": "Code of Conduct"
+    "title": "Code of Conduct",
+    "reportSectionSubtitle": "If something happens during the event — or has already happened — pick whichever channel feels safest. All reports are taken seriously and handled by a dedicated CoC response team within 24 hours.",
+    "enforcementSubtitle": "Every report is unique, but here's the general ladder we use. The CoC team has full discretion to skip steps depending on severity.",
+    "attrLabel": "ATTRIBUTION",
+    "attrTitle": "Built on shoulders of giants.",
+    "attrText": "This Code of Conduct adapts language from the Contributor Covenant v2.1 and the GDG global community guidelines, with localizations specific to Santo Domingo and the broader Dominican developer community.",
+    "attrTag1": "Contributor Covenant 2.1",
+    "attrTag2": "GDG Community Guidelines",
+    "contactLabel": "WE'RE LISTENING",
+    "contactTitle": "Need to talk to us?",
+    "contactText": "Reach the CoC committee — directly, privately, and on your terms.",
+    "fileReport": "File a report"
   },
   "languageSwitcher": {
     "label": "Language",

@@ -268,7 +268,7 @@ export default function CodeOfConductPage() {
             {tp('reportTitle')}
           </h2>
           <p className={styles.reportSectionSubtitle}>
-            If something happens during the event — or has already happened — pick whichever channel feels safest. All reports are taken seriously and handled by a dedicated CoC response team within 24 hours.
+            {tp('reportSectionSubtitle')}
           </p>
         </div>
 
@@ -320,7 +320,7 @@ export default function CodeOfConductPage() {
             </h2>
           </div>
           <p className={styles.enforcementSectionSubtitle}>
-            Every report is unique, but here&apos;s the general ladder we use. The CoC team has full discretion to skip steps depending on severity.
+            {tp('enforcementSubtitle')}
           </p>
         </div>
 
@@ -356,14 +356,14 @@ export default function CodeOfConductPage() {
           <div className={styles.attrCard}>
             <div className={styles.attrHeader}>
               <BookOpen size={18} color="var(--neon-cyan)" />
-              <span className={styles.attrLabel}>ATTRIBUTION</span>
+            <span className={styles.attrLabel}>{tp('attrLabel')}</span>
             </div>
-            <h3 className={styles.attrTitle}>Built on shoulders of giants.</h3>
+            <h3 className={styles.attrTitle}>{tp('attrTitle')}</h3>
             <p className={styles.attrText}>
-              This Code of Conduct adapts language from the Contributor Covenant v2.1 and the GDG global community guidelines, with localizations specific to Santo Domingo and the broader Dominican developer community.
+              {tp('attrText')}
             </p>
             <div className={styles.attrTags}>
-              {['Contributor Covenant 2.1', 'GDG Community Guidelines'].map(label => (
+              {[tp('attrTag1'), tp('attrTag2')].map(label => (
                 <div key={label} className={styles.attrTag}>
                   <span className={styles.attrTagLabel}>{label}</span>
                   <ArrowUpRight size={11} color="var(--fg-muted)" />
@@ -376,16 +376,16 @@ export default function CodeOfConductPage() {
           <div className={styles.contactCard}>
             <div className={styles.contactHeader}>
               <ShieldCheck size={18} color="var(--accent-green)" />
-              <span className={styles.contactLabel}>WE&apos;RE LISTENING</span>
+              <span className={styles.contactLabel}>{tp('contactLabel')}</span>
             </div>
-            <h3 className={styles.contactTitle}>Need to talk to us?</h3>
+            <h3 className={styles.contactTitle}>{tp('contactTitle')}</h3>
             <p className={styles.contactText}>
-              Reach the CoC committee — directly, privately, and on your terms.
+              {tp('contactText')}
             </p>
             <div className={styles.contactBtns}>
               <button className={styles.contactPrimaryBtn}>
                 <FileText size={14} color="#ffffff" />
-                <span className={styles.contactPrimaryBtnText}>File a report</span>
+                <span className={styles.contactPrimaryBtnText}>{tp('fileReport')}</span>
               </button>
               <button className={styles.contactSecondaryBtn}>
                 <Mail size={14} color="var(--fg-primary)" />

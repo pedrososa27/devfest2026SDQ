@@ -623,7 +623,7 @@ export default function SchedulePage() {
         {filterSessions(dayData.evening).length > 0 && (
           <div className={styles.timeBlock}>
             <BlockHeader
-              label="EVENING"
+              label={tp('evening')}
               iconColor={t.neonPink}
               timeRange="17:30 — 20:00"
             />
@@ -632,18 +632,18 @@ export default function SchedulePage() {
             ))}
 
             {/* After-party strip */}
-            {activeFilter === 'All' && (
+            {activeFilter === filterAll && (
               <div className={`flex items-center gap-4 px-6 py-5 rounded-2xl flex-wrap md:flex-nowrap ${styles.breakStrip}`}>
                 <div className={styles.breakIcon}>
                   <span className="text-[18px]">🎉</span>
                 </div>
                 <div className="flex-1">
-                  <div className={styles.breakTitle}>After-party at Lúdico Rooftop</div>
+                  <div className={styles.breakTitle}>{tp('afterPartyTitle')}</div>
                   <div className={styles.breakSubtitle}>
-                    Drinks, hallway conversations, and live DJ — badge required
+                    {tp('afterPartySubtitle')}
                   </div>
                 </div>
-                <span className={styles.breakTime}>19:30 — 22:00</span>
+                <span className={styles.breakTime}>{tp('afterPartyTime')}</span>
               </div>
             )}
           </div>
@@ -654,7 +654,7 @@ export default function SchedulePage() {
           filterSessions(dayData.afternoon).length === 0 &&
           filterSessions(dayData.evening).length === 0 && (
             <div className={styles.emptyState}>
-              No sessions found for this filter.
+              {tp('noSessions')}
             </div>
           )}
       </section>
@@ -679,18 +679,17 @@ export default function SchedulePage() {
               <line x1="8" y1="2" x2="8" y2="6" />
               <line x1="3" y1="10" x2="21" y2="10" />
             </svg>
-            <span className={styles.ctaBadgeText}>PLAN YOUR DAY</span>
+            <span className={styles.ctaBadgeText}>{tp('ctaBadge')}</span>
           </div>
 
           {/* Title */}
           <h2 className={`text-[32px] md:text-[40px] m-0 ${styles.ctaTitle}`}>
-            Take the schedule with you.
+            {tp('ctaTitle')}
           </h2>
 
           {/* Desc */}
           <p className={styles.ctaDesc}>
-            Download the full two-day program as an .ics file and drop it straight into Google
-            Calendar, Apple Calendar, or Outlook.
+            {tp('ctaDesc')}
           </p>
 
           {/* Buttons */}
@@ -710,7 +709,7 @@ export default function SchedulePage() {
                 <polyline points="7 10 12 15 17 10" />
                 <line x1="12" y1="15" x2="12" y2="3" />
               </svg>
-              Download schedule (.ics)
+              {tp('downloadBtn')}
             </button>
 
             <button className={styles.btnSecondary}>
@@ -729,15 +728,15 @@ export default function SchedulePage() {
                 <line x1="8" y1="2" x2="8" y2="6" />
                 <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
-              Add to Google Calendar
+              {tp('calendarBtn')}
             </button>
           </div>
 
           {/* Meta */}
           <div className={styles.ctaMeta}>
             {[
-              'Auto-updates if sessions change',
-              'Timezone-aware (ADT / UTC-4)',
+              tp('ctaMeta1'),
+              tp('ctaMeta2'),
             ].map((label) => (
               <div key={label} className={styles.ctaMetaItem}>
                 <svg

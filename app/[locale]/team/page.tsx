@@ -306,14 +306,14 @@ export default function TeamPage() {
         <div className="flex items-end justify-between flex-wrap gap-5">
           <div className={styles.sectionHeaderContent}>
             <SectionKicker num="// 01" label={tp('coreTeam')} color={t.neonPurple} />
-            <div className={`text-[32px] md:text-[48px] ${styles.sectionTitle}`}>Lead organizers</div>
+            <div className={`text-[32px] md:text-[48px] ${styles.sectionTitle}`}>{tp('coreTeamTitle')}</div>
             <p className={styles.sectionSubtitle}>
-              The four people steering the ship — programming, operations, content, and the GDG chapter behind it all.
+              {tp('coreTeamSubtitle')}
             </p>
           </div>
           <div className={styles.sectionBadge}>
             <Sparkles size={14} color={t.neonCyan} />
-            <span className={styles.sectionBadgeText}>4 leads // 6 months // 1 weekend</span>
+            <span className={styles.sectionBadgeText}>{tp('coreTeamBadge')}</span>
           </div>
         </div>
 
@@ -327,17 +327,17 @@ export default function TeamPage() {
         <div className="flex items-end justify-between flex-wrap gap-5">
           <div className={styles.sectionHeaderContent}>
             <SectionKicker num="// 02" label={tp('committee')} color={t.neonCyan} />
-            <div className={`text-[28px] md:text-[42px] ${styles.sectionTitleSm}`}>Track captains &amp; area owners</div>
+            <div className={`text-[28px] md:text-[42px] ${styles.sectionTitleSm}`}>{tp('committeeTitle')}</div>
             <p className={styles.sectionSubtitleSm}>
-              Twelve people running the tracks, partner relationships, and the operational threads that hold a two-day conference together.
+              {tp('committeeSubtitle')}
             </p>
           </div>
           {/* Tabs: All 12 / By track / By area */}
           <div className={styles.tabs}>
             {[
-              { label: 'All 12', active: true },
-              { label: 'By track', active: false },
-              { label: 'By area', active: false },
+              { label: tp('tabAll'), active: true },
+              { label: tp('tabByTrack'), active: false },
+              { label: tp('tabByArea'), active: false },
             ].map(({ label, active }) => (
               <div key={label} className={`${styles.tab} ${active ? styles.tabActive : styles.tabInactive}`}>
                 <span>{label}</span>
@@ -356,15 +356,15 @@ export default function TeamPage() {
         <div className="flex items-end justify-between flex-wrap gap-5">
           <div className={styles.sectionHeaderContent}>
             <SectionKicker num="// 03" label={tp('volunteers')} color={t.neonPink} />
-            <div className={`text-[28px] md:text-[42px] ${styles.sectionTitleSm}`}>The crew on the floor.</div>
+            <div className={`text-[28px] md:text-[42px] ${styles.sectionTitleSm}`}>{tp('volCrewTitle')}</div>
             <p className={styles.sectionSubtitleSm}>
-              45+ volunteers across five workstreams — handling check-in, the mic line, livestream, signage, and everything in between.
+              {tp('volCrewSubtitle')}
             </p>
           </div>
           {/* Big number */}
           <div className={styles.volSectionNum}>
             <span className={styles.volSectionBigNum}>45</span>
-            <span className={styles.volSectionNumLabel}>VOLUNTEERS</span>
+            <span className={styles.volSectionNumLabel}>{tp('volSectionLabel')}</span>
           </div>
         </div>
 
@@ -379,25 +379,25 @@ export default function TeamPage() {
           {/* Pill */}
           <div className={styles.ctaPill}>
             <div className={styles.ctaPillDot} />
-            <span className={styles.ctaPillText}>VOLUNTEER APPLICATIONS // OPEN FOR 2027</span>
+            <span className={styles.ctaPillText}>{tp('ctaPill')}</span>
           </div>
 
           <div className={`text-[36px] md:text-[52px] ${styles.ctaHeadline}`}>
-            Want to be on this page next year?
+            {tp('ctaHeadline')}
           </div>
 
           <p className={styles.ctaSubtitle}>
-            Volunteer roles open in May. No prior experience required — just a willingness to help, learn, and meet a lot of people building things on the island.
+            {tp('ctaSubtitle')}
           </p>
 
           {/* Buttons */}
           <div className={styles.ctaButtons}>
             <button className={styles.ctaBtnPrimary}>
-              Become a volunteer
+              {tp('ctaBtnPrimary')}
               <ArrowRight size={14} color="#FFFFFF" />
             </button>
             <button className={styles.ctaBtnSecondary}>
-              See open roles
+              {tp('ctaBtnSecondary')}
               <ClipboardList size={14} color={t.fgPrimary} />
             </button>
           </div>
@@ -406,15 +406,15 @@ export default function TeamPage() {
           <div className={styles.ctaMeta}>
             <div className={styles.ctaMetaItem}>
               <Calendar size={14} color={t.neonCyan} />
-              <span className={styles.ctaMetaText}>Apps open May 2026</span>
+              <span className={styles.ctaMetaText}>{tp('ctaMetaApps')}</span>
             </div>
             <div className={styles.ctaMetaItem}>
               <Sparkles size={14} color={t.neonPink} />
-              <span className={styles.ctaMetaText}>5 workstreams</span>
+              <span className={styles.ctaMetaText}>{tp('ctaMetaWorkstreams')}</span>
             </div>
             <div className={styles.ctaMetaItem}>
               <Clock3 size={14} color={t.accentYellow} />
-              <span className={styles.ctaMetaText}>~20 hrs commitment</span>
+              <span className={styles.ctaMetaText}>{tp('ctaMetaHours')}</span>
             </div>
           </div>
         </div>

@@ -143,11 +143,11 @@ const FAQ_DATA: FaqItem[] = [
 ];
 
 const QUICK_LINKS = [
-  'Tickets & Refunds',
-  'Schedule & Sessions',
-  'Venue & Travel',
-  'Speakers & CFP',
-  'Code of Conduct',
+  'quickLink1',
+  'quickLink2',
+  'quickLink3',
+  'quickLink4',
+  'quickLink5',
 ];
 
 export default function FAQPage() {
@@ -275,15 +275,15 @@ export default function FAQPage() {
           {/* Sidebar badge */}
           <div className={styles.sidebarBadge}>
             <div className={styles.sidebarDot} />
-            <span className={styles.sidebarBadgeText}>BROWSING ALL · 24</span>
+            <span className={styles.sidebarBadgeText}>{tp('sidebarBrowsing')}</span>
           </div>
 
           <h3 className={styles.sidebarHeading}>{tp('quickLinksTitle')}</h3>
 
           <div className={styles.quickLinks}>
-            {QUICK_LINKS.map(link => (
-              <div key={link} className={styles.quickLink}>
-                <span className={styles.quickLinkLabel}>{link}</span>
+            {QUICK_LINKS.map(key => (
+              <div key={key} className={styles.quickLink}>
+                <span className={styles.quickLinkLabel}>{tp(key as Parameters<typeof tp>[0])}</span>
                 <ArrowUpRight size={14} color={t.fgMuted} />
               </div>
             ))}
