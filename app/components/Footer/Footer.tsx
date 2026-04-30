@@ -1,10 +1,12 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Footer.module.scss';
 
 export default function Footer() {
   const { isDark } = useTheme();
+  const tf = useTranslations('footer');
 
   const t = {
     bgPrimary:    isDark ? '#0A0A0F' : '#FFFFFF',
@@ -80,7 +82,7 @@ export default function Footer() {
           </div>
 
           <p className={styles.tagline}>
-            The largest community-run tech event in the Dominican Republic. Powered by GDG Santo Domingo.
+            {tf('tagline')}
           </p>
 
           <div className={styles.socialRow}>
@@ -97,10 +99,10 @@ export default function Footer() {
         <div className={styles.linkColumns}>
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category} className={styles.linkColumn}>
-              <h4 className={styles.linkColumnHeading}>{category}</h4>
+              <h4 className={styles.linkColumnHeading}>{tf(`categories.${category}`)}</h4>
               {links.map((link) => (
                 <a key={link} href="#" className={styles.footerLink}>
-                  {link}
+                  {tf(`links.${link}`)}
                 </a>
               ))}
             </div>
@@ -113,7 +115,7 @@ export default function Footer() {
       <div className={styles.bottomSection}>
         <div className={styles.copyright}>
           <div className={styles.statusDot} />
-          <span>© 2026 GDG Santo Domingo // Built with ❤ by the community</span>
+          <span>{tf('copyright')}</span>
         </div>
 
         <div className={styles.legalLinks}>

@@ -1,65 +1,67 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Pricing.module.scss';
 
 export default function Pricing() {
   const { isDark } = useTheme();
+  const t = useTranslations('pricing');
 
   const tickets = [
     {
-      label: '// STUDENT',
+      label: t('student.label'),
       labelColor: '#22D3EE',
-      name: 'Student',
+      name: t('student.name'),
       price: 'Free',
-      priceNote: 'with valid ID',
+      priceNote: t('student.priceNote'),
       features: [
-        { text: 'Full main stage access', included: true },
-        { text: 'Lunch and coffee breaks', included: true },
-        { text: 'DevFest sticker pack', included: true },
-        { text: 'Community networking lounge', included: true },
-        { text: 'Workshops and afterparty', included: false },
+        { text: t('student.f1'), included: true },
+        { text: t('student.f2'), included: true },
+        { text: t('student.f3'), included: true },
+        { text: t('student.f4'), included: true },
+        { text: t('student.f5'), included: false },
       ],
-      button: 'Apply with student ID',
+      button: t('student.btn'),
       buttonStyle: 'secondary' as const,
       buttonBorderColor: isDark ? '#3A3A48' : '#CCCCCC',
       featureIconColor: '#22D3EE',
       highlighted: false,
     },
     {
-      flag: 'MOST POPULAR',
+      flag: t('popular'),
       flagBg: '#A855F7',
-      label: '// GENERAL',
+      label: t('general.label'),
       labelColor: '#A855F7',
-      name: 'General Admission',
+      name: t('general.name'),
       price: '$25',
-      priceNote: 'USD',
+      priceNote: t('general.priceNote'),
       features: [
-        { text: 'All 6 tech tracks (AI, Dev, Security, Data, UI/UX, Testing)', included: true },
-        { text: 'DevFest T-shirt and sticker pack', included: true },
-        { text: 'Lunch, coffee and afterparty access', included: true },
-        { text: 'Speaker Q&A lounge', included: true },
-        { text: 'Hands-on workshops', included: false },
+        { text: t('general.f1'), included: true },
+        { text: t('general.f2'), included: true },
+        { text: t('general.f3'), included: true },
+        { text: t('general.f4'), included: true },
+        { text: t('general.f5'), included: false },
       ],
-      button: 'Get general ticket',
+      button: t('general.btn'),
       buttonStyle: 'primary' as const,
       featureIconColor: '#A855F7',
       highlighted: true,
     },
     {
-      label: '// SUPPORTER',
+      label: t('supporter.label'),
       labelColor: '#EC4899',
-      name: 'Supporter',
+      name: t('supporter.name'),
       price: '$75',
-      priceNote: 'USD',
+      priceNote: t('supporter.priceNote'),
       features: [
-        { text: 'Everything in General', included: true },
-        { text: 'Exclusive merch bundle (hoodie + cap + pins)', included: true },
-        { text: 'Access to 2 hands-on workshops', included: true },
-        { text: 'VIP speaker dinner invite', included: true },
+        { text: t('supporter.f1'), included: true },
+        { text: t('supporter.f2'), included: true },
+        { text: t('supporter.f3'), included: true },
+        { text: t('supporter.f4'), included: true },
       ],
-      button: 'Become a supporter',
+      button: t('supporter.btn'),
       buttonStyle: 'supporter' as const,
       featureIconColor: '#EC4899',
       highlighted: false,
@@ -85,11 +87,11 @@ export default function Pricing() {
         <div className={styles.header}>
           <div className={styles.eyebrow}>
             <div className={styles.eyebrowDot} />
-            <span className={styles.eyebrowText}>// TICKETS</span>
+            <span className={styles.eyebrowText}>{t('eyebrow')}</span>
           </div>
-          <h2 className={styles.title}>Get your ticket</h2>
+          <h2 className={styles.title}>{t('title')}</h2>
           <p className={styles.subtitle}>
-            Pick your tier. All tickets include access to the main stage, lunch, and the afterparty.
+            {t('subtitle')}
           </p>
         </div>
 

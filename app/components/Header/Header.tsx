@@ -2,7 +2,8 @@
 
 import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useTranslations, useLocale } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import styles from './Header.module.scss';
@@ -12,6 +13,9 @@ export default function Header() {
   const isMobile = useBreakpoint();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const locale = useLocale();
+  const router = useRouter();
+  const t = useTranslations('nav');
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -21,7 +25,18 @@ export default function Header() {
     if (!isMobile) setIsMobileMenuOpen(false);
   }, [isMobile]);
 
-  const t = {
+  // Strip locale prefix for active link comparison
+  const pathWithoutLocale = locale === 'es' ? pathname : pathname.replace(`/${locale}`, '') || '/';
+
+  // Language switcher: toggle between es and en
+  const handleLangSwitch = () => {
+    const nextLocale = locale === 'es' ? 'en' : 'es';
+    const strippedPath = pathWithoutLocale;
+    const newPath = nextLocale === 'es' ? strippedPath : `/${nextLocale}${strippedPath === '/' ? '' : strippedPath}`;
+    router.push(newPath);
+  };
+
+  const colors = {
     bgPrimary:    isDark ? '#0A0A0F' : '#FFFFFF',
     bgSecondary:  isDark ? '#1A1A24' : '#F5F5F5',
     bgCard:       isDark ? '#1E1E2A' : '#F0F0F0',
@@ -38,34 +53,37 @@ export default function Header() {
   };
 
   const navLinks = [
-    { label: 'Home', href: '/', weight: 500 },
-    { label: 'Schedule', href: '/schedule', weight: 400 },
-    { label: 'Speakers', href: '/speakers', weight: 400 },
-    { label: 'Team', href: '/team', weight: 400 },
-    { label: 'FAQ', href: '/faq', weight: 400 },
-    { label: 'Code of Conduct', href: '/code-of-conduct', weight: 400 },
+    { labelKey: 'home' as const, href: '/', weight: 500 },
+    { labelKey: 'schedule' as const, href: '/schedule', weight: 400 },
+    { labelKey: 'speakers' as const, href: '/speakers', weight: 400 },
+    { labelKey: 'team' as const, href: '/team', weight: 400 },
+    { labelKey: 'faq' as const, href: '/faq', weight: 400 },
+    { labelKey: 'codeOfConduct' as const, href: '/code-of-conduct', weight: 400 },
   ].map((link) => ({
     ...link,
-    isActive: link.href !== '#' ? pathname === link.href : false,
+    label: t(link.labelKey),
+    isActive: pathWithoutLocale === link.href,
+    // Build href with locale prefix for English
+    fullHref: locale === 'es' ? link.href : `/${locale}${link.href === '/' ? '' : link.href}`,
   }));
 
   return (
     <header
       className={styles.header}
       style={{
-        '--bg-primary':    t.bgPrimary,
-        '--bg-secondary':  t.bgSecondary,
-        '--bg-card':       t.bgCard,
-        '--border-subtle': t.borderSubtle,
-        '--border-muted':  t.borderMuted,
-        '--fg-primary':    t.fgPrimary,
-        '--fg-secondary':  t.fgSecondary,
-        '--fg-muted':      t.fgMuted,
-        '--neon-purple':   t.neonPurple,
-        '--neon-cyan':     t.neonCyan,
-        '--neon-pink':     t.neonPink,
-        '--accent-green':  t.accentGreen,
-        '--toggle-bg':     t.toggleBg,
+        '--bg-primary':    colors.bgPrimary,
+        '--bg-secondary':  colors.bgSecondary,
+        '--bg-card':       colors.bgCard,
+        '--border-subtle': colors.borderSubtle,
+        '--border-muted':  colors.borderMuted,
+        '--fg-primary':    colors.fgPrimary,
+        '--fg-secondary':  colors.fgSecondary,
+        '--fg-muted':      colors.fgMuted,
+        '--neon-purple':   colors.neonPurple,
+        '--neon-cyan':     colors.neonCyan,
+        '--neon-pink':     colors.neonPink,
+        '--accent-green':  colors.accentGreen,
+        '--toggle-bg':     colors.toggleBg,
       } as React.CSSProperties}
     >
       <div className={styles.topRow}>
@@ -83,8 +101,8 @@ export default function Header() {
           <nav className={styles.desktopNav}>
             {navLinks.map((link) => (
               <Link
-                key={link.label}
-                href={link.href}
+                key={link.labelKey}
+                href={link.fullHref}
                 className={link.isActive ? styles.navLinkActive : styles.navLink}
                 style={{ fontWeight: link.weight }}
               >
@@ -99,9 +117,12 @@ export default function Header() {
             <button onClick={toggleTheme} className={styles.themeToggle}>
               <span className={styles.themeToggleIcon}>🌙</span>
             </button>
-            <button className={styles.cfpButton}>Call for Papers</button>
+            <button onClick={handleLangSwitch} className={styles.cfpButton}>
+              {locale === 'es' ? 'EN' : 'ES'}
+            </button>
+            <button className={styles.cfpButton}>{t('callForPapers')}</button>
             <button className={styles.registerButton}>
-              Register <span>→</span>
+              {t('register')} <span>→</span>
             </button>
           </div>
         )}
@@ -125,8 +146,8 @@ export default function Header() {
           <div className={styles.mobileNavLinks}>
             {navLinks.map((link) => (
               <Link
-                key={link.label}
-                href={link.href}
+                key={link.labelKey}
+                href={link.fullHref}
                 className={`${styles.mobileNavLink} ${link.isActive ? styles.mobileNavLinkActive : ''}`}
                 style={{ fontWeight: link.weight }}
               >
@@ -152,9 +173,12 @@ export default function Header() {
           </div>
 
           <div className={styles.mobileMenuButtons}>
-            <button className={styles.mobileCfpButton}>Call for Papers</button>
+            <button onClick={handleLangSwitch} className={styles.mobileCfpButton}>
+              {locale === 'es' ? '🌐 English' : '🌐 Español'}
+            </button>
+            <button className={styles.mobileCfpButton}>{t('callForPapers')}</button>
             <button className={styles.mobileRegisterButton}>
-              Register Now <span>→</span>
+              {t('register')} <span>→</span>
             </button>
           </div>
         </nav>

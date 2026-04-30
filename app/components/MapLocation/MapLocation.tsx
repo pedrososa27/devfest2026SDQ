@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './MapLocation.module.scss';
 
 export default function MapLocation() {
   const { isDark } = useTheme();
+  const t = useTranslations('mapLocation');
 
   return (
     <section
@@ -33,9 +35,9 @@ export default function MapLocation() {
         <div className={styles.header}>
           <div className={styles.eyebrow}>
             <Image src="/icons/location-pink.png" alt="Venue icon" width={12} height={12} />
-            <span className={styles.eyebrowText}>// VENUE</span>
+            <span className={styles.eyebrowText}>{t('eyebrow')}</span>
           </div>
-          <h2 className={styles.title}>Find us in Santo Domingo</h2>
+          <h2 className={styles.title}>{t('title')}</h2>
         </div>
 
         {/* Two column layout */}
@@ -61,12 +63,12 @@ export default function MapLocation() {
             </div>
 
             <div className={styles.venueBlock}>
-              <p className={styles.venueLabel}>VENUE</p>
+              <p className={styles.venueLabel}>{t('venueLabel')}</p>
               <h3 className={styles.venueName}>Universidad UNIBE</h3>
             </div>
 
             <div className={styles.addressBlock}>
-              <p className={styles.addressLabel}>ADDRESS</p>
+              <p className={styles.addressLabel}>{t('addressLabel')}</p>
               <p className={styles.addressText}>
                 Av. Francisco Prats Ramirez 210<br />
                 Ensanche Piantini, Santo Domingo<br />
@@ -77,7 +79,7 @@ export default function MapLocation() {
             <div className={styles.divider} />
 
             <div className={styles.nearbyBlock}>
-              <p className={styles.nearbyLabel}>NEARBY</p>
+              <p className={styles.nearbyLabel}>{t('nearbyLabel')}</p>
               <div className={styles.nearbyItem}>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2">
                   <path d="M2 6h16M6 6v-2c0-1 0-2 2-2h0c2 0 2 1 2 2v2M6 6v10M18 6v10M3 16h2M19 16h2M3 20h18"></path>
@@ -101,7 +103,7 @@ export default function MapLocation() {
             <div className={styles.btnRow}>
               <button className={styles.dirBtn}>
                 <Image src="/icons/direction.png" alt="Directions icon" width={14} height={14} />
-                Get directions
+                {t('directionsBtn')}
               </button>
               <button className={styles.shareBtn}>
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
@@ -111,7 +113,7 @@ export default function MapLocation() {
                   <line x1="8.59" y1="13.51" x2="15.42" y2="17.49"></line>
                   <line x1="15.41" y1="6.51" x2="8.59" y2="10.49"></line>
                 </svg>
-                Share
+                {t('shareBtn')}
               </button>
             </div>
           </div>

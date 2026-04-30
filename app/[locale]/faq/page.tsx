@@ -5,9 +5,9 @@ import {
   Info, Search, LayoutGrid, Ticket, CalendarDays, MapPin, Mic, ShieldCheck,
   Plus, Minus, ArrowUpRight, MessageCircle, Mail, Send, ArrowRight
 } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useTheme } from '../../context/ThemeContext';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import styles from './page.module.scss';
 
 function useTokens(isDark: boolean) {

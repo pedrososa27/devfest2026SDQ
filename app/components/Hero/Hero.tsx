@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Hero.module.scss';
 
 export default function Hero() {
   const { isDark } = useTheme();
+  const t = useTranslations('hero');
 
   return (
     <section
@@ -40,44 +42,45 @@ export default function Hero() {
       {/* Hero Badge */}
       <div className={styles.badge}>
         <div className={styles.badgeDot} />
-        <span className={styles.badgeText}>GDG SANTO DOMINGO // COMMUNITY EVENT</span>
+        <span className={styles.badgeText}>{t('badge')}</span>
       </div>
 
       {/* Subtitle */}
-      <span className={styles.subtitle}>DevFest Santo Domingo 2023</span>
+      <span className={styles.subtitle}>{t('subtitle')}</span>
 
       {/* Main Title */}
       <h1 className={styles.title}>
-        Where developers<br />
-        build the future.
+        {t('title').split('\n').map((line, i, arr) => (
+          <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
+        ))}
       </h1>
 
       {/* Description */}
       <p className={styles.description}>
-        Two days of deep-dive talks on AI, Cybersecurity, Testing, Data engineering, and UI/UX — built by the Dominican dev community, for the Dominican dev community.
+        {t('description')}
       </p>
 
       {/* Meta Info */}
       <div className={styles.metaRow}>
         <div className={styles.metaChip}>
           <Image src="/icons/date.png" alt="Calendar icon" width={16} height={16} />
-          Nov 18-19, 2023
+          {t('date')}
         </div>
         <div className={styles.metaChip}>
           <Image src="/icons/location-pink.png" alt="Location icon" width={16} height={16} />
-          Santo Domingo, DR
+          {t('location')}
         </div>
       </div>
 
       {/* CTA Buttons */}
       <div className={styles.ctaRow}>
         <button className={styles.primaryButton}>
-          Register Now
+          {t('registerBtn')}
           <span className={styles.btnArrow}>→</span>
         </button>
         <button className={styles.secondaryButton}>
           <Image src="/icons/schedule-white.png" alt="Calendar icon" width={16} height={16} />
-          View Schedule
+          {t('scheduleBtn')}
         </button>
       </div>
     </section>

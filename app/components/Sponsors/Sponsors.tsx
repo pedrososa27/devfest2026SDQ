@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Sponsors.module.scss';
 
 export default function Sponsors() {
   const { isDark } = useTheme();
+  const t = useTranslations('sponsors');
 
   const tiers = [
     {
@@ -85,9 +87,9 @@ export default function Sponsors() {
             <div className={styles.badgeDot} />
             <span className={styles.badgeText}>// POWERED BY</span>
           </div>
-          <h2 className={styles.title}>Our Sponsors</h2>
+          <h2 className={styles.title}>{t('title')}</h2>
           <p className={styles.subtitle}>
-            Meet the companies making DevFest Santo Domingo possible.
+            {t('subtitle')}
           </p>
         </div>
 
@@ -123,7 +125,7 @@ export default function Sponsors() {
 
         {/* Become a Sponsor */}
         <button className={styles.sponsorBtn}>
-          <span>Become a Sponsor</span>
+          <span>{t('becomeBtn')}</span>
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#A855F7" strokeWidth="2">
             <line x1="7" y1="17" x2="17" y2="7"></line>
             <polyline points="7 7 17 7 17 17"></polyline>

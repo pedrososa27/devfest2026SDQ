@@ -7,10 +7,10 @@ import {
   BookOpen, ArrowUpRight, MessageCircleWarning,
   TriangleAlert, DoorOpen, Ban,
 } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
-import { useBreakpoint } from '../hooks/useBreakpoint';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useTheme } from '../../context/ThemeContext';
+import { useBreakpoint } from '../../hooks/useBreakpoint';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import styles from './page.module.scss';
 
 function useTokens(isDark: boolean) {

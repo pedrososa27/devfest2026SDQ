@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './AboutGDG.module.scss';
 
 export default function AboutGDG() {
   const { isDark } = useTheme();
+  const t = useTranslations('about');
 
   return (
     <section
@@ -25,15 +27,15 @@ export default function AboutGDG() {
         <div className={styles.headerRow}>
           <div className={styles.headerLeft}>
             <span className={styles.eyebrow}>
-              <Image src="/icons/tagIcon.png" alt="About icon" width={12} height={12} /> ABOUT
+              <Image src="/icons/tagIcon.png" alt="About icon" width={12} height={12} /> {t('eyebrow')}
             </span>
-            <h2 className={styles.title}>Community-powered. Globally connected.</h2>
+            <h2 className={styles.title}>{t('title')}</h2>
           </div>
           <div className={styles.statsBadge}>
             <span className={styles.statsNum}>500+</span>
             <div className={styles.statsInfo}>
-              <span className={styles.statsLabel}>Global DevFests</span>
-              <span className={styles.statsSubLabel}>across 100+ countries</span>
+              <span className={styles.statsLabel}>{t('statsLabel')}</span>
+              <span className={styles.statsSubLabel}>{t('statsSubLabel')}</span>
             </div>
           </div>
         </div>
@@ -45,9 +47,9 @@ export default function AboutGDG() {
             <div className={styles.colIcon} style={{ backgroundColor: '#A855F7' }}>
               <Image src="/icons/schedule-white.png" alt="DevFest icon" width={24} height={24} />
             </div>
-            <h3 className={styles.colTitle}>What is DevFest?</h3>
+            <h3 className={styles.colTitle}>{t('devfestTitle')}</h3>
             <p className={styles.colText}>
-              DevFest is the annual tech conference organized by Google Developer Groups around the world. Each edition brings together developers, designers, and tech enthusiasts to explore the latest in Android, Web, Cloud, AI/ML, and community-driven technology.
+              {t('devfestText')}
             </p>
             <div className={styles.codeChip}>
               <span className={styles.codePrompt}>&gt;</span>
@@ -60,9 +62,9 @@ export default function AboutGDG() {
             <div className={styles.colIcon} style={{ backgroundColor: '#22D3EE' }}>
               <Image src="/icons/gdgIcon.png" alt="GDG icon" width={24} height={24} />
             </div>
-            <h3 className={styles.colTitle}>What is a GDG?</h3>
+            <h3 className={styles.colTitle}>{t('gdgTitle')}</h3>
             <p className={styles.colText}>
-              Google Developer Groups are community-run chapters for developers interested in Google technologies. GDG Santo Domingo is the local chapter for the Dominican Republic — we host meetups, workshops, study jams, and of course, DevFest.
+              {t('gdgText')}
             </p>
             <div className={styles.gdgRow}>
               <div className={styles.gdgChip}>
@@ -72,7 +74,7 @@ export default function AboutGDG() {
                 <div className={styles.gdgDot} style={{ backgroundColor: '#34A853' }} />
                 <span className={styles.gdgName}>GDG Santo Domingo</span>
               </div>
-              <span className={styles.gdgMembers}>1.2k+ members</span>
+              <span className={styles.gdgMembers}>{t('gdgMembers')}</span>
             </div>
           </div>
         </div>

@@ -1,11 +1,13 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import Image from 'next/image';
 import styles from './VideoRecap.module.scss';
 
 export default function VideoRecap() {
   const { isDark } = useTheme();
+  const t = useTranslations('videoRecap');
 
   return (
     <section
@@ -25,11 +27,11 @@ export default function VideoRecap() {
       <div className={styles.header}>
         <div className={styles.eyebrow}>
           <Image src="/icons/record.png" alt="Video icon" width={12} height={12} />
-          <span>ARCHIVE // 2022</span>
+          <span>{t('eyebrow')}</span>
         </div>
-        <h2 className={styles.title}>Watch our last recap</h2>
+        <h2 className={styles.title}>{t('title')}</h2>
         <p className={styles.description}>
-          See what DevFest Santo Domingo 2022 looked like — talks, hallway conversations, and the community energy.
+          {t('description')}
         </p>
       </div>
 
@@ -39,7 +41,7 @@ export default function VideoRecap() {
         <div className={styles.videoTopBar}>
           <div className={styles.recapBadge}>
             <span>📺</span>
-            <span>OFFICIAL RECAP</span>
+            <span>{t('recapLabel')}</span>
           </div>
           <div className={styles.durationBadge}>04:32</div>
         </div>
@@ -51,15 +53,15 @@ export default function VideoRecap() {
 
         {/* Bottom Info */}
         <div className={styles.videoInfo}>
-          <h3 className={styles.videoTitle}>DevFest SDQ 2022 Recap</h3>
-          <p className={styles.videoMeta}>GDG Santo Domingo • 12K views</p>
+          <h3 className={styles.videoTitle}>{t('videoTitle')}</h3>
+          <p className={styles.videoMeta}>{t('videoMeta')}</p>
         </div>
       </div>
 
       {/* YouTube Button */}
       <button className={styles.ytButton}>
         <Image src="/icons/yt.png" alt="YouTube icon" width={16} height={16} />
-        <span>Watch on YouTube</span>
+        <span>{t('watchBtn')}</span>
       </button>
     </section>
   );

@@ -1,42 +1,44 @@
 'use client';
 
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import Image from 'next/image';
 import styles from './EventInfo.module.scss';
 
 export default function EventInfo() {
   const { isDark } = useTheme();
+  const t = useTranslations('eventInfo');
 
   const cards = [
     {
-      label: '// DATE',
-      title: 'November 18-19',
-      description: 'Two full days of tech talks, workshops, and networking with the local community.',
+      label: t('dateLabel'),
+      title: t('dateTitle'),
+      description: t('dateDesc'),
       iconColor: '#A855F7',
       icon: 'schedule-purple',
     },
     {
-      label: '// VENUE',
-      title: 'Universidad UNIBE',
-      description: 'Santo Domingo, Dominican Republic — accessible campus with modern auditoriums.',
+      label: t('venueLabel'),
+      title: t('venueTitle'),
+      description: t('venueDesc'),
       iconColor: '#22D3EE',
       icon: 'location',
     },
     {
-      label: '// FORMAT',
-      title: 'In-person + Streaming',
-      description: 'Attend live on campus or join remotely through our official YouTube live stream.',
+      label: t('formatLabel'),
+      title: t('formatTitle'),
+      description: t('formatDesc'),
       iconColor: '#EC4899',
       icon: 'red',
     },
   ];
 
   const stats = [
-    { num: '2', label: 'DAYS', color: '#A855F7' },
-    { num: '2', label: 'TRACKS', color: '#22D3EE' },
-    { num: '25+', label: 'TALKS', color: '#EC4899' },
-    { num: '30+', label: 'SPEAKERS', color: '#A855F7' },
-    { num: '500+', label: 'ATTENDEES / DAY', color: '#22D3EE' },
+    { num: '2', label: t('statsDays'), color: '#A855F7' },
+    { num: '2', label: t('statsTracks'), color: '#22D3EE' },
+    { num: '25+', label: t('statsTalks'), color: '#EC4899' },
+    { num: '30+', label: t('statsSpeakers'), color: '#A855F7' },
+    { num: '500+', label: t('statsAttendees'), color: '#22D3EE' },
   ];
 
   return (

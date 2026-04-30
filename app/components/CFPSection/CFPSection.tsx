@@ -1,19 +1,21 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './CFPSection.module.scss';
 
 export default function CFPSection() {
   const { isDark } = useTheme();
+  const t = useTranslations('cfp');
 
   const topics = [
-    { name: 'Artificial Intelligence and ML', icon: 'ML' },
-    { name: 'Cybersecurity', icon: 'cyber' },
-    { name: 'Testing and Quality', icon: 'testing' },
-    { name: 'Data Engineering', icon: 'data' },
-    { name: 'UI/UX Design', icon: 'ux' },
-    { name: 'Software Development', icon: 'dev' },
+    { name: t('topics.ai'), icon: 'ML' },
+    { name: t('topics.cyber'), icon: 'cyber' },
+    { name: t('topics.testing'), icon: 'testing' },
+    { name: t('topics.data'), icon: 'data' },
+    { name: t('topics.ux'), icon: 'ux' },
+    { name: t('topics.dev'), icon: 'dev' },
   ];
 
   return (
@@ -51,26 +53,26 @@ export default function CFPSection() {
             <div className={styles.leftCol}>
               <div className={styles.openBadge}>
                 <div className={styles.openDot} />
-                <span className={styles.openText}>CALL FOR PAPERS // OPEN</span>
+                <span className={styles.openText}>{t('openBadge')}</span>
               </div>
-              <h2 className={styles.cfpTitle}>Got something to share?</h2>
+              <h2 className={styles.cfpTitle}>{t('title')}</h2>
               <div className={styles.terminal}>
                 <span className={styles.termPrompt}>$</span>
-                <span className={styles.termCommand}>submit --talk --deadline="Oct 15, 2023"</span>
+                <span className={styles.termCommand}>{t('termCommand')}</span>
                 <div className={styles.cursor} />
               </div>
               <p className={styles.cfpDesc}>
-                Submit your talk proposal and be part of the biggest GDG event in the Caribbean. We are looking for talks on AI, Cybersecurity, Testing, Data, UI/UX, and anything pushing tech forward.
+                {t('description')}
               </p>
               <div className={styles.btns}>
                 <button className={styles.primaryBtn}>
-                  <span>Submit your talk</span>
+                  <span>{t('submitBtn')}</span>
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                     <line x1="5" y1="12" x2="19" y2="12"></line>
                     <polyline points="12 5 19 12 12 19"></polyline>
                   </svg>
                 </button>
-                <button className={styles.secondaryBtn}>Speaker Guide</button>
+                <button className={styles.secondaryBtn}>{t('guideBtn')}</button>
               </div>
             </div>
 
@@ -82,7 +84,7 @@ export default function CFPSection() {
               </div>
               <div className={styles.topicsHeader}>
                 <span className={styles.lineNum}>01</span>
-                <span className={styles.topicsTitle}># Topics we love</span>
+                <span className={styles.topicsTitle}>{t('topicsTitle')}</span>
               </div>
               <div className={styles.topicsList}>
                 {topics.map((topic, idx) => (
@@ -94,7 +96,7 @@ export default function CFPSection() {
               </div>
               <div className={styles.deadline}>
                 <Image src="/icons/submisions.png" alt="Clock icon" width={16} height={16} />
-                <span className={styles.deadlineText}>Submissions close Oct 15, 2023</span>
+                <span className={styles.deadlineText}>{t('deadline')}</span>
               </div>
             </div>
           </div>

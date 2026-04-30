@@ -1,0 +1,237 @@
+{
+  "nav": {
+    "home": "Home",
+    "schedule": "Schedule",
+    "speakers": "Speakers",
+    "team": "Team",
+    "faq": "FAQ",
+    "codeOfConduct": "Code of Conduct",
+    "callForPapers": "Call for Papers",
+    "register": "Register"
+  },
+  "hero": {
+    "badge": "GDG SANTO DOMINGO // COMMUNITY EVENT",
+    "subtitle": "DevFest Santo Domingo 2023",
+    "title": "Where developers\nbuild the future.",
+    "description": "Two days of deep-dive talks on AI, Cybersecurity, Testing, Data engineering, and UI/UX — built by the Dominican dev community, for the Dominican dev community.",
+    "date": "Nov 18-19, 2023",
+    "location": "Santo Domingo, DR",
+    "registerBtn": "Register Now",
+    "scheduleBtn": "View Schedule"
+  },
+  "eventInfo": {
+    "dateLabel": "// DATE",
+    "dateTitle": "November 18-19",
+    "dateDesc": "Two full days of tech talks, workshops, and networking with the local community.",
+    "venueLabel": "// VENUE",
+    "venueTitle": "Universidad UNIBE",
+    "venueDesc": "Santo Domingo, Dominican Republic — accessible campus with modern auditoriums.",
+    "formatLabel": "// FORMAT",
+    "formatTitle": "In-person + Streaming",
+    "formatDesc": "Attend live on campus or join remotely through our official YouTube live stream.",
+    "statsDays": "DAYS",
+    "statsTracks": "TRACKS",
+    "statsTalks": "TALKS",
+    "statsSpeakers": "SPEAKERS",
+    "statsAttendees": "ATTENDEES / DAY"
+  },
+  "about": {
+    "eyebrow": "ABOUT",
+    "title": "Community-powered. Globally connected.",
+    "statsLabel": "Global DevFests",
+    "statsSubLabel": "across 100+ countries",
+    "devfestTitle": "What is DevFest?",
+    "devfestText": "DevFest is the annual tech conference organized by Google Developer Groups around the world. Each edition brings together developers, designers, and tech enthusiasts to explore the latest in Android, Web, Cloud, AI/ML, and community-driven technology.",
+    "gdgTitle": "What is a GDG?",
+    "gdgText": "Google Developer Groups are community-run chapters for developers interested in Google technologies. GDG Santo Domingo is the local chapter for the Dominican Republic — we host meetups, workshops, study jams, and of course, DevFest.",
+    "gdgMembers": "1.2k+ members"
+  },
+  "cfp": {
+    "openBadge": "CALL FOR PAPERS // OPEN",
+    "title": "Got something to share?",
+    "termCommand": "submit --talk --deadline=\"Oct 15, 2023\"",
+    "description": "Submit your talk proposal and be part of the biggest GDG event in the Caribbean. We are looking for talks on AI, Cybersecurity, Testing, Data, UI/UX, and anything pushing tech forward.",
+    "submitBtn": "Submit your talk",
+    "guideBtn": "Speaker Guide",
+    "topicsTitle": "# Topics we love",
+    "topics": {
+      "ai": "Artificial Intelligence and ML",
+      "cyber": "Cybersecurity",
+      "testing": "Testing and Quality",
+      "data": "Data Engineering",
+      "ux": "UI/UX Design",
+      "dev": "Software Development"
+    },
+    "deadline": "Submissions close Oct 15, 2023"
+  },
+  "features": {
+    "eyebrow": "WHY ATTEND",
+    "title": "What's Inside DevFest",
+    "talk": {
+      "title": "Expert Talks",
+      "desc": "Learn from industry leaders and innovators sharing their insights and experiences."
+    },
+    "workshop": {
+      "title": "Hands-on Workshops",
+      "desc": "Get practical experience with the latest technologies and frameworks."
+    },
+    "networking": {
+      "title": "Networking",
+      "desc": "Connect with fellow developers, entrepreneurs, and tech enthusiasts."
+    },
+    "awards": {
+      "title": "Awards & Recognition",
+      "desc": "Celebrate excellence in the developer community."
+    }
+  },
+  "pricing": {
+    "eyebrow": "// TICKETS",
+    "title": "Get your ticket",
+    "subtitle": "Pick your tier. All tickets include access to the main stage, lunch, and the afterparty.",
+    "popular": "MOST POPULAR",
+    "student": {
+      "label": "// STUDENT",
+      "name": "Student",
+      "priceNote": "with valid ID",
+      "btn": "Apply with student ID",
+      "f1": "Full main stage access",
+      "f2": "Lunch and coffee breaks",
+      "f3": "DevFest sticker pack",
+      "f4": "Community networking lounge",
+      "f5": "Workshops and afterparty"
+    },
+    "general": {
+      "label": "// GENERAL",
+      "name": "General Admission",
+      "priceNote": "USD",
+      "btn": "Get general ticket",
+      "f1": "All 6 tech tracks (AI, Dev, Security, Data, UI/UX, Testing)",
+      "f2": "DevFest T-shirt and sticker pack",
+      "f3": "Lunch, coffee and afterparty access",
+      "f4": "Speaker Q&A lounge",
+      "f5": "Hands-on workshops"
+    },
+    "supporter": {
+      "label": "// SUPPORTER",
+      "name": "Supporter",
+      "priceNote": "USD",
+      "btn": "Become a supporter",
+      "f1": "Everything in General",
+      "f2": "Exclusive merch bundle (hoodie + cap + pins)",
+      "f3": "Access to 2 hands-on workshops",
+      "f4": "VIP speaker dinner invite"
+    }
+  },
+  "pastTalks": {
+    "eyebrow": "ARCHIVE",
+    "title": "Talks from past editions",
+    "description": "Relive the best moments from DevFest Santo Domingo — deep dives, lightning talks, and code walkthroughs.",
+    "watchAll": "Watch all talks"
+  },
+  "videoRecap": {
+    "eyebrow": "ARCHIVE // 2022",
+    "title": "Watch our last recap",
+    "description": "See what DevFest Santo Domingo 2022 looked like — talks, hallway conversations, and the community energy.",
+    "recapLabel": "OFFICIAL RECAP",
+    "videoTitle": "DevFest SDQ 2022 Recap",
+    "videoMeta": "GDG Santo Domingo • 12K views",
+    "watchBtn": "Watch on YouTube"
+  },
+  "mapLocation": {
+    "eyebrow": "// VENUE",
+    "title": "Find us in Santo Domingo",
+    "venueLabel": "VENUE",
+    "addressLabel": "ADDRESS",
+    "nearbyLabel": "NEARBY",
+    "directionsBtn": "Get directions",
+    "shareBtn": "Share location"
+  },
+  "sponsors": {
+    "eyebrow": "// SPONSORS",
+    "title": "Our sponsors",
+    "subtitle": "Companies that make DevFest Santo Domingo possible.",
+    "becomeBtn": "Become a sponsor"
+  },
+  "footer": {
+    "tagline": "The largest community-run tech event in the Dominican Republic. Powered by GDG Santo Domingo.",
+    "categories": {
+      "EVENT": "EVENT",
+      "COMMUNITY": "COMMUNITY",
+      "RESOURCES": "RESOURCES"
+    },
+    "links": {
+      "Schedule": "Schedule",
+      "Speakers": "Speakers",
+      "Past Talks": "Past Talks",
+      "Call for Papers": "Call for Papers",
+      "Code of Conduct": "Code of Conduct",
+      "About GDG": "About GDG",
+      "Blog": "Blog",
+      "Donate": "Donate",
+      "Contact Us": "Contact Us",
+      "Partners": "Partners",
+      "Speaker Guides": "Speaker Guides",
+      "Swag Store": "Swag Store",
+      "Design Kit": "Design Kit",
+      "Press Kit": "Press Kit",
+      "Media": "Media"
+    },
+    "copyright": "© 2023 GDG Santo Domingo. Made with ❤️ by the community."
+  },
+  "faqPage": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Everything you need to know about DevFest Santo Domingo.",
+    "searchPlaceholder": "Search questions...",
+    "categories": {
+      "all": "All",
+      "tickets": "Tickets",
+      "schedule": "Schedule",
+      "venue": "Venue",
+      "speakers": "Speakers",
+      "conduct": "Conduct"
+    },
+    "contactTitle": "Have another question?",
+    "contactDesc": "If you didn't find what you were looking for, contact us directly.",
+    "contactBtn": "Contact Us",
+    "discordBtn": "Join Discord"
+  },
+  "schedulePage": {
+    "title": "Schedule",
+    "subtitle": "Two days. Six tracks. 25+ talks.",
+    "day1": "Day 1",
+    "day2": "Day 2",
+    "date1": "Saturday Nov 18",
+    "date2": "Sunday Nov 19",
+    "morning": "Morning",
+    "afternoon": "Afternoon",
+    "room": "Room",
+    "keynote": "KEYNOTE",
+    "talk": "TALK",
+    "workshop": "WORKSHOP",
+    "break": "BREAK",
+    "panel": "PANEL"
+  },
+  "speakersPage": {
+    "title": "Speakers",
+    "subtitle": "Meet the experts shaping DevFest Santo Domingo 2023.",
+    "filterAll": "All",
+    "viewProfile": "View profile"
+  },
+  "teamPage": {
+    "title": "Our Team",
+    "subtitle": "The people behind DevFest Santo Domingo.",
+    "coreTeam": "CORE TEAM",
+    "volunteers": "VOLUNTEERS"
+  },
+  "conductPage": {
+    "title": "Code of Conduct",
+    "subtitle": "DevFest Santo Domingo is committed to providing a harassment-free experience for everyone.",
+    "download": "Download PDF",
+    "reportBtn": "Report incident"
+  },
+  "languageSwitcher": {
+    "label": "Language",
+    "es": "Español",
+    "en": "English"
+  }
+}

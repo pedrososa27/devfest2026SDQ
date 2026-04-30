@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import { useTheme } from '../context/ThemeContext';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
+import { useTheme } from '../../context/ThemeContext';
+import Header from '../../components/Header';
+import Footer from '../../components/Footer';
 import styles from './page.module.scss';
 
 function useTokens(isDark: boolean) {

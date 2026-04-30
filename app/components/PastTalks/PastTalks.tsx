@@ -1,11 +1,13 @@
 'use client';
 
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './PastTalks.module.scss';
 
 export default function PastTalks() {
   const { isDark } = useTheme();
+  const t = useTranslations('pastTalks');
 
   const talks = [
     { title: 'Building scalable AI pipelines with Vertex', speaker: 'Maria Reyes', duration: '42:15', year: '2022', avatar: '#22D3EE' },
@@ -36,11 +38,11 @@ export default function PastTalks() {
           <div className={styles.headerLeft}>
             <div className={styles.eyebrow}>
               <div className={styles.eyebrowDot} />
-              <span className={styles.eyebrowText}>ARCHIVE</span>
+              <span className={styles.eyebrowText}>{t('eyebrow')}</span>
             </div>
-            <h2 className={styles.title}>Talks from past editions</h2>
+            <h2 className={styles.title}>{t('title')}</h2>
             <p className={styles.description}>
-              Relive the best moments from DevFest Santo Domingo — deep dives, lightning talks, and code walkthroughs.
+              {t('description')}
             </p>
           </div>
           <div className={styles.navButtons}>
@@ -90,7 +92,7 @@ export default function PastTalks() {
           <span className={styles.footerCount}>24 talks archived across 3 editions</span>
           <a href="#" className={styles.ytLink}>
             <Image src="/icons/ytblue.png" alt="YouTube icon" width={16} height={16} />
-            <span>See all on YouTube</span>
+            <span>{t('watchAll')}</span>
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
               <line x1="7" y1="17" x2="17" y2="7"></line>
               <polyline points="7 7 17 7 17 17"></polyline>

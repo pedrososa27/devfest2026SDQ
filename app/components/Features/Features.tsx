@@ -1,34 +1,24 @@
+'use client';
+
+import { useTranslations } from 'next-intl';
+
 export default function Features() {
+  const t = useTranslations('features');
+
   const features = [
-    {
-      icon: '🎤',
-      title: 'Expert Talks',
-      description: 'Learn from industry leaders and innovators sharing their insights and experiences.',
-    },
-    {
-      icon: '🛠️',
-      title: 'Hands-on Workshops',
-      description: 'Get practical experience with the latest technologies and frameworks.',
-    },
-    {
-      icon: '🤝',
-      title: 'Networking',
-      description: 'Connect with fellow developers, entrepreneurs, and tech enthusiasts.',
-    },
-    {
-      icon: '🏆',
-      title: 'Awards & Recognition',
-      description: 'Celebrate excellence in the developer community.',
-    },
+    { icon: '🎤', title: t('talk.title'), description: t('talk.desc') },
+    { icon: '🛠️', title: t('workshop.title'), description: t('workshop.desc') },
+    { icon: '🤝', title: t('networking.title'), description: t('networking.desc') },
+    { icon: '🏆', title: t('awards.title'), description: t('awards.desc') },
   ];
 
   return (
     <section className="py-20 md:py-32 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <p className="text-blue-600 font-semibold mb-4">WHY ATTEND</p>
+          <p className="text-blue-600 font-semibold mb-4">{t('eyebrow')}</p>
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            What's Inside DevFest
+            {t('title')}
           </h2>
         </div>
 
