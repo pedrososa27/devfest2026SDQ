@@ -24,21 +24,7 @@ export default function Hero() {
         '--btn-sec-hover':  isDark ? '#2A2A35' : '#E5E5E5',
       } as React.CSSProperties}
     >
-      {/* Background Video - blurred fill layer */}
-      <video
-        className={styles.videoBgBlur}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        aria-hidden="true"
-      >
-        <source src="/assets/hero-bg.webm" type="video/webm" />
-        <source src="/assets/hero-bg.mp4" type="video/mp4" />
-      </video>
-
-      {/* Background Video - main contain layer */}
+      {/* Background Video */}
       <video
         className={styles.videoBg}
         autoPlay
