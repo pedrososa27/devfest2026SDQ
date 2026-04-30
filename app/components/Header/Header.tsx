@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
 import { useState, useEffect } from 'react';
-import { usePathname, useRouter } from 'next/navigation';
 import { useTranslations, useLocale } from 'next-intl';
+import { usePathname, useRouter, Link } from '../../../i18n/navigation';
 import { useTheme } from '../../context/ThemeContext';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import styles from './Header.module.scss';
@@ -26,15 +25,26 @@ export default function Header() {
   }, [isMobile]);
 
   // Strip locale prefix for active link comparison
-  const pathWithoutLocale = locale === 'es' ? pathname : pathname.replace(`/${locale}`, '') || '/';
+  // (usePathname from next-intl already returns locale-stripped path)
 
-  // Language switcher: toggle between es and en
+  // Language switcher
   const handleLangSwitch = () => {
     const nextLocale = locale === 'es' ? 'en' : 'es';
-    const strippedPath = pathWithoutLocale;
-    const newPath = nextLocale === 'es' ? strippedPath : `/${nextLocale}${strippedPath === '/' ? '' : strippedPath}`;
-    router.push(newPath);
+    router.replace(pathname, { locale: nextLocale });
   };
+
+  const navLinks = [
+    { labelKey: 'home' as const, href: '/', weight: 500 },
+    { labelKey: 'schedule' as const, href: '/schedule', weight: 400 },
+    { labelKey: 'speakers' as const, href: '/speakers', weight: 400 },
+    { labelKey: 'team' as const, href: '/team', weight: 400 },
+    { labelKey: 'faq' as const, href: '/faq', weight: 400 },
+    { labelKey: 'codeOfConduct' as const, href: '/code-of-conduct', weight: 400 },
+  ].map((link) => ({
+    ...link,
+    label: t(link.labelKey),
+    isActive: pathname === link.href,
+  }));
 
   const colors = {
     bgPrimary:    isDark ? '#0A0A0F' : '#FFFFFF',
@@ -51,21 +61,6 @@ export default function Header() {
     accentGreen:  '#34A853',
     toggleBg:     isDark ? '#A855F7' : '#E5E5E5',
   };
-
-  const navLinks = [
-    { labelKey: 'home' as const, href: '/', weight: 500 },
-    { labelKey: 'schedule' as const, href: '/schedule', weight: 400 },
-    { labelKey: 'speakers' as const, href: '/speakers', weight: 400 },
-    { labelKey: 'team' as const, href: '/team', weight: 400 },
-    { labelKey: 'faq' as const, href: '/faq', weight: 400 },
-    { labelKey: 'codeOfConduct' as const, href: '/code-of-conduct', weight: 400 },
-  ].map((link) => ({
-    ...link,
-    label: t(link.labelKey),
-    isActive: pathWithoutLocale === link.href,
-    // Build href with locale prefix for English
-    fullHref: locale === 'es' ? link.href : `/${locale}${link.href === '/' ? '' : link.href}`,
-  }));
 
   return (
     <header
@@ -102,7 +97,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.labelKey}
-                href={link.fullHref}
+                href={link.href}
                 className={link.isActive ? styles.navLinkActive : styles.navLink}
                 style={{ fontWeight: link.weight }}
               >
@@ -147,7 +142,7 @@ export default function Header() {
             {navLinks.map((link) => (
               <Link
                 key={link.labelKey}
-                href={link.fullHref}
+                href={link.href}
                 className={`${styles.mobileNavLink} ${link.isActive ? styles.mobileNavLinkActive : ''}`}
                 style={{ fontWeight: link.weight }}
               >

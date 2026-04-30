@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -47,10 +48,11 @@ function PhotoBlob({ color, className }: { color: string; className?: string }) 
 export default function SpeakersPage() {
   const { isDark } = useTheme();
   const t = useTokens(isDark);
-  const [activeFilter, setActiveFilter] = useState('All speakers');
+  const tp = useTranslations('speakersPage');
+  const [activeFilter, setActiveFilter] = useState(tp('filterAll'));
 
   const filters = [
-    { label: 'All speakers', count: 42, color: t.neonPurple },
+    { label: tp('filterAll'), count: 42, color: t.neonPurple },
     { label: 'AI', count: 12, color: t.neonPurple },
     { label: 'Cybersecurity', count: 7, color: t.accentRed },
     { label: 'Testing', count: 6, color: t.accentGreen },
@@ -153,35 +155,32 @@ export default function SpeakersPage() {
         {/* World-class badge */}
         <div className={styles.heroBadge}>
           <div className={styles.heroBadgeDot} />
-          <span className={styles.heroBadgeText}>WORLD-CLASS LINEUP // 2026 EDITION</span>
+          <span className={styles.heroBadgeText}>{tp('badgeText')}</span>
         </div>
 
         {/* "Meet the speakers" */}
-        <span className={styles.heroLabel}>Meet the speakers</span>
+        <span className={styles.heroLabel}>{tp('meetLabel')}</span>
 
         {/* Main title */}
         <h1
-          className={`text-[44px] md:text-[88px] font-bold text-center tracking-[-1px] md:tracking-[-3px] leading-[1.02] m-0 max-w-full md:max-w-[1100px] ${styles.heroTitle}`}
+          className={`text-[44px] md:text-[88px] font-bold text-center tracking-[-1px] md:tracking-[-3px] leading-[1.02] m-0 max-w-full md:max-w-[1100px] whitespace-pre-line ${styles.heroTitle}`}
         >
-          The minds shaping
-          <br />
-          our 2026 stage.
+          {tp('heroTitle')}
         </h1>
 
         {/* Subtitle */}
         <p
           className={`text-[16px] md:text-[18px] text-center leading-[1.6] m-0 max-w-[720px] ${styles.heroSubtitle}`}
         >
-          40+ engineers, designers, and researchers from across Latin America and beyond — sharing
-          what they&apos;re building, breaking, and learning right now.
+          {tp('heroSubtitle')}
         </p>
 
         {/* Meta pills */}
         <div className={styles.heroPills}>
           {[
-            { color: t.neonCyan, label: '42 speakers' },
-            { color: t.neonPink, label: '12 countries' },
-            { color: t.accentYellow, label: '5 tracks' },
+            { color: t.neonCyan, label: tp('pillSpeakers') },
+            { color: t.neonPink, label: tp('pillCountries') },
+            { color: t.accentYellow, label: tp('pillTracks') },
           ].map(({ color, label }) => (
             <div
               key={label}
@@ -215,7 +214,7 @@ export default function SpeakersPage() {
             >
               <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
             </svg>
-            <span className={styles.filterLabelText}>FILTER BY TRACK</span>
+            <span className={styles.filterLabelText}>{tp('filterByTrack')}</span>
           </div>
 
           <div
@@ -235,7 +234,7 @@ export default function SpeakersPage() {
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
             </svg>
-            <span className={styles.searchText}>Search speakers, talks, companies…</span>
+            <span className={styles.searchText}>{tp('searchSpeakers')}</span>
           </div>
         </div>
 
@@ -285,23 +284,20 @@ export default function SpeakersPage() {
               >
                 <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
               </svg>
-              <span className={styles.keynoteLabelText}>FEATURED KEYNOTES</span>
+              <span className={styles.keynoteLabelText}>{tp('featuredTitle')}</span>
             </div>
 
             <h2
-              className={`text-[36px] md:text-[56px] font-bold m-0 leading-[1.1] ${styles.keynoteTitle}`}
+              className={`text-[36px] md:text-[56px] font-bold m-0 leading-[1.1] whitespace-pre-line ${styles.keynoteTitle}`}
             >
-              Headlining the
-              <br />
-              main stage.
+              {tp('headliningTitle')}
             </h2>
           </div>
 
           <p
             className={`hidden md:block max-w-[380px] m-0 shrink-0 leading-[1.6] ${styles.keynoteDesc}`}
           >
-            Two days. Two opening keynotes from people who don&apos;t just write the specs — they
-            ship the systems that millions of developers build on top of.
+            {tp('keynoteDesc')}
           </p>
         </div>
 
@@ -374,10 +370,10 @@ export default function SpeakersPage() {
         {/* Grid header */}
         <div className={styles.speakersGridHeader}>
           <h2 className={`text-[28px] md:text-[40px] font-bold m-0 ${styles.speakersGridTitle}`}>
-            Meet the full lineup
+            {tp('fullLineup')}
           </h2>
           <div className={styles.sortBtn}>
-            <span className={styles.sortBtnText}>Sort by: Name</span>
+            <span className={styles.sortBtnText}>{tp('sortBy')}</span>
             <span className={styles.sortBtnArrow}>↕</span>
           </div>
         </div>
@@ -437,7 +433,7 @@ export default function SpeakersPage() {
         {/* Load more */}
         <div className={styles.loadMore}>
           <button className={styles.loadMoreBtn}>
-            See all 42 speakers
+            {tp('seeAll')}
             <span>→</span>
           </button>
         </div>
@@ -469,25 +465,22 @@ export default function SpeakersPage() {
               <line x1="16" y1="17" x2="8" y2="17" />
               <polyline points="10 9 9 9 8 9" />
             </svg>
-            <span className={styles.ctaBadgeText}>CALL FOR PAPERS · OPEN UNTIL APR 30</span>
+            <span className={styles.ctaBadgeText}>{tp('cfpBadge')}</span>
           </div>
 
           <h2
-            className={`text-[40px] md:text-[64px] font-bold m-0 leading-[1.1] tracking-[-1px] md:tracking-[-2px] ${styles.ctaTitle}`}
+            className={`text-[40px] md:text-[64px] font-bold m-0 leading-[1.1] tracking-[-1px] md:tracking-[-2px] whitespace-pre-line ${styles.ctaTitle}`}
           >
-            Got something
-            <br />
-            worth sharing?
+            {tp('ctaTitle')}
           </h2>
 
           <p className={styles.ctaSubtext}>
-            We&apos;re still looking for talks, lightning sessions, and workshops on AI, cloud,
-            security, data engineering, and more.
+            {tp('ctaSubtext')}
           </p>
 
           <div className={styles.ctaButtons}>
             <button className={styles.ctaSubmitBtn}>
-              Submit a talk
+              {tp('submitBtn')}
               <span>→</span>
             </button>
             <button className={styles.ctaGuidelinesBtn}>
@@ -505,7 +498,7 @@ export default function SpeakersPage() {
                 <line x1="12" y1="8" x2="12" y2="12" />
                 <line x1="12" y1="16" x2="12.01" y2="16" />
               </svg>
-              CFP guidelines
+              {tp('guidelinesBtn')}
             </button>
           </div>
         </div>

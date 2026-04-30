@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
+import { useTranslations } from 'next-intl';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import styles from './page.module.scss';
@@ -33,41 +34,6 @@ function useTokens(isDark: boolean) {
     accentRed: '#EA4335',
   };
 }
-
-const PLEDGE_CARDS = [
-  {
-    icon: Users,
-    iconColor: '#A855F7',
-    iconBg: '#A855F722',
-    iconBorder: '#A855F744',
-    title: 'Be inclusive',
-    desc: 'Welcome people of every race, gender, orientation, ability, age, and experience level. Assume good faith.',
-  },
-  {
-    icon: HeartHandshake,
-    iconColor: '#22D3EE',
-    iconBg: '#22D3EE22',
-    iconBorder: '#22D3EE44',
-    title: 'Be respectful',
-    desc: 'Disagree on ideas, never on people. Listen actively. Use names and pronouns people share with you.',
-  },
-  {
-    icon: Shield,
-    iconColor: '#34A853',
-    iconBg: '#34A85322',
-    iconBorder: '#34A85344',
-    title: 'Be safe',
-    desc: 'Zero tolerance for harassment, intimidation, threats, or unsolicited photography. Consent is mandatory.',
-  },
-  {
-    icon: Sparkles,
-    iconColor: '#FBBC04',
-    iconBg: '#FBBC0422',
-    iconBorder: '#FBBC0444',
-    title: 'Be helpful',
-    desc: 'Lift others up. Mentor where you can. Celebrate first-time speakers, junior devs, and people new to our community.',
-  },
-];
 
 const GOOD_ITEMS = [
   'Use welcoming, inclusive language. Default to people\'s stated names and pronouns.',
@@ -126,41 +92,25 @@ const REPORT_CHANNELS = [
   },
 ];
 
-const ENFORCEMENT_STEPS = [
-  {
-    num: '01',
-    numColor: '#FBBC04',
-    icon: MessageCircleWarning,
-    title: 'Private warning',
-    desc: 'For minor or first-time issues. The reported person is contacted privately, told what happened, and asked to stop.',
-  },
-  {
-    num: '02',
-    numColor: '#EA4335',
-    icon: TriangleAlert,
-    title: 'Public warning',
-    desc: 'A formal warning, with the offending behavior named. Continued behavior moves directly to step 3 or 4.',
-  },
-  {
-    num: '03',
-    numColor: '#EC4899',
-    icon: DoorOpen,
-    title: 'Removal from event',
-    desc: 'For serious incidents: the person is asked to leave the venue. No refund. Speakers\' talks may be removed from the program.',
-  },
-  {
-    num: '04',
-    numColor: '#A855F7',
-    icon: Ban,
-    title: 'Permanent ban',
-    desc: 'For severe or repeat violations: a permanent ban from all GDG Santo Domingo events and online community spaces.',
-  },
-];
-
 export default function CodeOfConductPage() {
   const { isDark } = useTheme();
   const t = useTokens(isDark);
   const isMobile = useBreakpoint();
+  const tp = useTranslations('conductPage');
+
+  const PLEDGE_CARDS = [
+    { icon: Users, iconColor: '#A855F7', iconBg: '#A855F722', iconBorder: '#A855F744', title: tp('inclusive'), desc: tp('inclusive_desc') },
+    { icon: HeartHandshake, iconColor: '#22D3EE', iconBg: '#22D3EE22', iconBorder: '#22D3EE44', title: tp('respectful'), desc: tp('respectful_desc') },
+    { icon: Shield, iconColor: '#34A853', iconBg: '#34A85322', iconBorder: '#34A85344', title: tp('safe'), desc: tp('safe_desc') },
+    { icon: Sparkles, iconColor: '#FBBC04', iconBg: '#FBBC0422', iconBorder: '#FBBC0444', title: tp('helpful'), desc: tp('helpful_desc') },
+  ];
+
+  const ENFORCEMENT_STEPS = [
+    { num: '01', numColor: '#FBBC04', icon: MessageCircleWarning, title: tp('warning'), desc: tp('warning_desc') },
+    { num: '02', numColor: '#EA4335', icon: TriangleAlert, title: tp('publicWarning'), desc: tp('publicWarning_desc') },
+    { num: '03', numColor: '#EC4899', icon: DoorOpen, title: tp('removal'), desc: tp('removal_desc') },
+    { num: '04', numColor: '#A855F7', icon: Ban, title: tp('ban'), desc: tp('ban_desc') },
+  ];
 
   return (
     <div
@@ -191,36 +141,35 @@ export default function CodeOfConductPage() {
         {/* Version badge */}
         <div className={styles.versionBadge}>
           <ShieldCheck size={14} color="var(--accent-green)" />
-          <span className={styles.versionBadgeText}>v 2.1 · LAST UPDATED MAR 2026</span>
+          <span className={styles.versionBadgeText}>{tp('version')}</span>
         </div>
 
         {/* Kicker */}
-        <span className={styles.heroKicker}>Code of Conduct</span>
+        <span className={styles.heroKicker}>{tp('kicker')}</span>
 
         {/* Headline */}
         <h1 className={`text-[48px] md:text-[84px] ${styles.heroHeadline}`}>
-          A safe space{'\n'}for every developer.
+          {tp('headline')}
         </h1>
 
         {/* Subtitle */}
         <p className={styles.heroSubtitle}>
-          DevFest Santo Domingo is a community event for everyone — regardless of background, identity, or experience level.
-          By attending, speaking, sponsoring, or volunteering, you agree to follow the rules below.
+          {tp('subtitle')}
         </p>
 
         {/* Meta buttons */}
         <div className="flex flex-wrap items-center gap-[10px] pt-3">
           <button className={styles.metaBtn}>
             <Download size={14} color="var(--neon-cyan)" />
-            <span className={styles.metaBtnText}>Download as PDF</span>
+            <span className={styles.metaBtnText}>{tp('download')}</span>
           </button>
           <button className={styles.metaBtn}>
             <Languages size={14} color="var(--neon-pink)" />
-            <span className={styles.metaBtnText}>Leer en español</span>
+            <span className={styles.metaBtnText}>{tp('readLang')}</span>
           </button>
           <button className={styles.reportIncidentBtn}>
             <Siren size={14} color="#ffffff" />
-            <span className={styles.reportIncidentBtnText}>Report an incident</span>
+            <span className={styles.reportIncidentBtnText}>{tp('reportBtn')}</span>
           </button>
         </div>
       </section>
@@ -229,12 +178,12 @@ export default function CodeOfConductPage() {
       <section className={`${styles.sectionSecondary} py-20 px-5 md:px-[120px] flex flex-col gap-10`}>
         {/* Section head */}
         <div className="flex flex-col items-center gap-[14px] w-full">
-          <span className={styles.sectionKicker}>01 · OUR PLEDGE</span>
+          <span className={styles.sectionKicker}>{tp('pledge01')}</span>
           <h2 className={`text-[36px] md:text-[48px] ${styles.sectionHeading}`}>
-            Our four ground rules.
+            {tp('pledgeTitle')}
           </h2>
           <p className={styles.sectionSubtitle}>
-            These aren&apos;t suggestions. They&apos;re the floor — the minimum we expect from everyone who shares space with our community for two days.
+            {tp('pledgeSubtitle')}
           </p>
         </div>
 
@@ -260,9 +209,9 @@ export default function CodeOfConductPage() {
       <section className={`${styles.sectionPrimary} py-20 px-5 md:px-[120px] flex flex-col gap-12`}>
         {/* Section head */}
         <div className="flex flex-col items-center gap-3 w-full">
-          <span className={styles.sectionKicker}>02 · WHAT WE EXPECT</span>
+          <span className={styles.sectionKicker}>{tp('expect02')}</span>
           <h2 className={`text-[36px] md:text-[48px] ${styles.sectionHeading}`}>
-            What&apos;s in. What&apos;s out.
+            {tp('expectTitle')}
           </h2>
         </div>
 
@@ -274,7 +223,7 @@ export default function CodeOfConductPage() {
               <div className={styles.behaviorIconGreen}>
                 <Check size={22} color="#ffffff" />
               </div>
-              <span className={styles.behaviorTitle}>Expected behavior</span>
+              <span className={styles.behaviorTitle}>{tp('expectedTitle')}</span>
             </div>
             <div className={styles.behaviorList}>
               {GOOD_ITEMS.map((item, i) => (
@@ -294,7 +243,7 @@ export default function CodeOfConductPage() {
               <div className={styles.behaviorIconRed}>
                 <X size={22} color="#ffffff" />
               </div>
-              <span className={styles.behaviorTitle}>Unacceptable behavior</span>
+              <span className={styles.behaviorTitle}>{tp('unacceptableTitle')}</span>
             </div>
             <div className={styles.behaviorList}>
               {BAD_ITEMS.map((item, i) => (
@@ -314,9 +263,9 @@ export default function CodeOfConductPage() {
       <section className={`${styles.sectionSecondary} py-20 px-5 md:px-[120px] flex flex-col gap-12`}>
         {/* Section head */}
         <div className="flex flex-col items-center gap-[14px] w-full">
-          <span className={styles.sectionKicker}>03 · HOW TO REPORT</span>
+          <span className={styles.sectionKicker}>{tp('report03')}</span>
           <h2 className={`text-[36px] md:text-[48px] ${styles.sectionHeading}`}>
-            Three ways to reach us — fast.
+            {tp('reportTitle')}
           </h2>
           <p className={styles.reportSectionSubtitle}>
             If something happens during the event — or has already happened — pick whichever channel feels safest. All reports are taken seriously and handled by a dedicated CoC response team within 24 hours.
@@ -365,9 +314,9 @@ export default function CodeOfConductPage() {
         {/* Section head — two-column layout */}
         <div className="flex flex-col md:flex-row justify-between md:items-end gap-10">
           <div className={styles.enforcementHeadLeft}>
-            <span className={styles.sectionKicker}>04 · ENFORCEMENT</span>
+            <span className={styles.sectionKicker}>{tp('enforce04')}</span>
             <h2 className={`text-[36px] md:text-[48px] ${styles.sectionHeadingLeft}`}>
-              How we respond.
+              {tp('enforceTitle')}
             </h2>
           </div>
           <p className={styles.enforcementSectionSubtitle}>

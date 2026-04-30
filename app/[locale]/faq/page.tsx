@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import {
   Info, Search, LayoutGrid, Ticket, CalendarDays, MapPin, Mic, ShieldCheck,
   Plus, Minus, ArrowUpRight, MessageCircle, Mail, Send, ArrowRight
@@ -141,15 +142,6 @@ const FAQ_DATA: FaqItem[] = [
   },
 ];
 
-const CATEGORIES = [
-  { id: 'all' as Category, label: 'All', count: 24, icon: LayoutGrid, color: '$neon-purple' },
-  { id: 'tickets' as Category, label: 'Tickets', count: 6, icon: Ticket, color: '$neon-purple' },
-  { id: 'schedule' as Category, label: 'Schedule', count: 5, icon: CalendarDays, color: '$neon-cyan' },
-  { id: 'venue' as Category, label: 'Venue', count: 4, icon: MapPin, color: '$neon-pink' },
-  { id: 'speakers' as Category, label: 'Speakers & CFP', count: 5, icon: Mic, color: '$accent-yellow' },
-  { id: 'conduct' as Category, label: 'Code of Conduct', count: 4, icon: ShieldCheck, color: '$accent-green' },
-];
-
 const QUICK_LINKS = [
   'Tickets & Refunds',
   'Schedule & Sessions',
@@ -161,6 +153,16 @@ const QUICK_LINKS = [
 export default function FAQPage() {
   const { isDark } = useTheme();
   const t = useTokens(isDark);
+  const tp = useTranslations('faqPage');
+
+  const CATEGORIES = [
+    { id: 'all' as Category, label: tp('categories.all'), count: 24, icon: LayoutGrid, color: '$neon-purple' },
+    { id: 'tickets' as Category, label: tp('categories.tickets'), count: 6, icon: Ticket, color: '$neon-purple' },
+    { id: 'schedule' as Category, label: tp('categories.schedule'), count: 5, icon: CalendarDays, color: '$neon-cyan' },
+    { id: 'venue' as Category, label: tp('categories.venue'), count: 4, icon: MapPin, color: '$neon-pink' },
+    { id: 'speakers' as Category, label: tp('categories.speakers'), count: 5, icon: Mic, color: '$accent-yellow' },
+    { id: 'conduct' as Category, label: tp('categories.conduct'), count: 4, icon: ShieldCheck, color: '$accent-green' },
+  ];
 
   const [activeCategory, setActiveCategory] = useState<Category>('all');
   const [openId, setOpenId] = useState<string | null>('q1');
@@ -218,18 +220,17 @@ export default function FAQPage() {
         {/* Badge */}
         <div className={styles.badge}>
           <Info size={14} color={t.neonCyan} />
-          <span className={styles.badgeText}>FREQUENTLY ASKED QUESTIONS</span>
+          <span className={styles.badgeText}>{tp('badgeText')}</span>
         </div>
 
         {/* Headline */}
         <h1 className={`${styles.headline} text-[48px] md:text-[84px] whitespace-pre-line`}>
-          {`Got questions?\nWe\u2019ve got answers.`}
+          {tp('headline')}
         </h1>
 
         {/* Subtitle */}
         <p className={styles.subtitle}>
-          Everything you need to know about DevFest Santo Domingo 2026 — tickets, schedule,
-          venue, code of conduct, and how to get involved.
+          {tp('subtitle')}
         </p>
 
         {/* Search Bar */}
@@ -239,7 +240,7 @@ export default function FAQPage() {
             type="text"
             value={search}
             onChange={e => setSearch(e.target.value)}
-            placeholder="Search questions…"
+            placeholder={tp('searchPlaceholder')}
             className={styles.searchInput}
           />
           <div className={styles.searchKbd}>
@@ -277,7 +278,7 @@ export default function FAQPage() {
             <span className={styles.sidebarBadgeText}>BROWSING ALL · 24</span>
           </div>
 
-          <h3 className={styles.sidebarHeading}>Quick links</h3>
+          <h3 className={styles.sidebarHeading}>{tp('quickLinksTitle')}</h3>
 
           <div className={styles.quickLinks}>
             {QUICK_LINKS.map(link => (
@@ -332,12 +333,12 @@ export default function FAQPage() {
                     <p className={styles.answer}>{item.answer}</p>
                     <div className={styles.itemFooter}>
                       <div className={styles.itemFooterLink}>
-                        <span className={styles.itemFooterLinkLabel}>See all ticket tiers</span>
+                        <span className={styles.itemFooterLinkLabel}>{tp('seeTickets')}</span>
                         <ArrowRight size={13} color={t.fgPrimary} />
                       </div>
                       <div className={styles.helpfulHint}>
                         <span className={styles.helpfulEmoji}>👍</span>
-                        <span className={styles.helpfulHintText}>Was this helpful?</span>
+                        <span className={styles.helpfulHintText}>{tp('helpful')}</span>
                       </div>
                     </div>
                   </div>
@@ -355,13 +356,13 @@ export default function FAQPage() {
           <div className="flex flex-col gap-[14px] max-w-[560px] w-full">
             <div className={styles.ctaBadge}>
               <MessageCircle size={14} color={t.neonCyan} />
-              <span className={styles.ctaBadgeText}>STILL STUCK? WE&apos;RE HERE.</span>
+              <span className={styles.ctaBadgeText}>{tp('stuckBadge')}</span>
             </div>
             <h2 className={`${styles.ctaHeadline} text-[36px] md:text-[48px] whitespace-pre-line`}>
-              {`Can\u2019t find what\nyou\u2019re looking for?`}
+              {tp('stuckHeadline')}
             </h2>
             <p className={styles.ctaBody}>
-              Drop us a message and a real human from the GDG Santo Domingo team will get back to you within 24 hours.
+              {tp('stuckBody')}
             </p>
           </div>
 
@@ -369,11 +370,11 @@ export default function FAQPage() {
           <div className="flex flex-col gap-3 w-full md:w-[300px]">
             <button className={styles.ctaBtnPrimary}>
               <Mail size={16} color="#ffffff" />
-              <span className={styles.ctaBtnPrimaryLabel}>Email the team</span>
+              <span className={styles.ctaBtnPrimaryLabel}>{tp('emailBtn')}</span>
             </button>
             <button className={styles.ctaBtnSecondary}>
               <Send size={16} color={t.fgPrimary} />
-              <span className={styles.ctaBtnSecondaryLabel}>Message on Discord</span>
+              <span className={styles.ctaBtnSecondaryLabel}>{tp('discordMsg')}</span>
             </button>
           </div>
         </div>

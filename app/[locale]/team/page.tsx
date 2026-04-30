@@ -1,6 +1,7 @@
 'use client';
 
 import { Users, MapPin, CalendarClock, Sparkles, Truck, Coffee, Video, Palette, PenLine, ArrowRight, ClipboardList, Calendar, Clock3 } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -186,6 +187,7 @@ function VolGroup({ Icon, iconColor, title, subtitle, count, countColor, members
 export default function TeamPage() {
   const { isDark } = useTheme();
   const t = useTokens(isDark);
+  const tp = useTranslations('teamPage');
 
   const leads = [
     { accentColor: t.neonPurple, gradientTo: '#A855F700', accentLabel: 'LEAD', roleLabel: 'GDG LEAD', name: 'Carolina Méndez', title: 'Chapter Organizer, GDG Santo Domingo', bio: 'Started the chapter in 2017. Runs the conference end-to-end and refuses to sleep in October.', handle: '@carolina.dev' },
@@ -226,11 +228,11 @@ export default function TeamPage() {
   ];
 
   const volGroups: VolGroupProps[] = [
-    { Icon: Truck, iconColor: t.neonPurple, title: 'Logistics & Check-in', subtitle: 'Welcome desk, badges, swag, signage', count: '12 people', countColor: t.neonPurple, members: volMembers12 },
-    { Icon: Coffee, iconColor: t.neonPink, title: 'Hospitality', subtitle: 'Coffee, snacks, attendee experience', count: '9 people', countColor: t.neonPink, members: volMembers12.slice(0, 9) },
-    { Icon: Video, iconColor: t.neonCyan, title: 'Tech & A/V', subtitle: 'Livestream, recording, mic line', count: '8 people', countColor: t.neonCyan, members: volMembers12.slice(0, 8) },
-    { Icon: Palette, iconColor: t.accentYellow, title: 'Design', subtitle: 'Signage, slides, social graphics', count: '6 people', countColor: t.accentYellow, members: volMembers12.slice(0, 6) },
-    { Icon: PenLine, iconColor: t.accentGreen, title: 'Content & Comms', subtitle: 'Notes, social posts, recap content', count: '10 people', countColor: t.accentGreen, members: volMembers12.slice(0, 10) },
+    { Icon: Truck, iconColor: t.neonPurple, title: tp('volLogisticsTitle'), subtitle: tp('volLogisticsSub'), count: '12 people', countColor: t.neonPurple, members: volMembers12 },
+    { Icon: Coffee, iconColor: t.neonPink, title: tp('volHospTitle'), subtitle: tp('volHospSub'), count: '9 people', countColor: t.neonPink, members: volMembers12.slice(0, 9) },
+    { Icon: Video, iconColor: t.neonCyan, title: tp('volTechTitle'), subtitle: tp('volTechSub'), count: '8 people', countColor: t.neonCyan, members: volMembers12.slice(0, 8) },
+    { Icon: Palette, iconColor: t.accentYellow, title: tp('volDesignTitle'), subtitle: tp('volDesignSub'), count: '6 people', countColor: t.accentYellow, members: volMembers12.slice(0, 6) },
+    { Icon: PenLine, iconColor: t.accentGreen, title: tp('volCommsTitle'), subtitle: tp('volCommsSub'), count: '10 people', countColor: t.accentGreen, members: volMembers12.slice(0, 10) },
   ];
 
   return (
@@ -269,32 +271,32 @@ export default function TeamPage() {
         {/* Badge */}
         <div className={styles.heroBadge}>
           <div className={styles.heroBadgeDot} />
-          <span className={styles.heroBadgeText}>THE PEOPLE BEHIND DEVFEST</span>
+          <span className={styles.heroBadgeText}>{tp('badge')}</span>
         </div>
 
         {/* Headline */}
         <div className={`text-[52px] md:text-[88px] ${styles.heroHeadline}`}>
-          Built by the<br />community, for<br />the community.
+          {tp('headline')}
         </div>
 
         {/* Subtitle */}
         <p className={`text-[15px] md:text-[18px] ${styles.heroSubtitle}`}>
-          DevFest Santo Domingo runs on volunteer time. Sixty-plus organizers, captains, and helpers across eight GDG chapters — these are the people who make the weekend happen.
+          {tp('subtitle')}
         </p>
 
         {/* Stats pills */}
         <div className="flex flex-wrap gap-3 justify-center">
           <div className={styles.statPill}>
             <Users size={14} color={t.neonPurple} />
-            <span className={styles.statPillText}>60+ volunteers</span>
+            <span className={styles.statPillText}>{tp('statVolunteers')}</span>
           </div>
           <div className={styles.statPill}>
             <MapPin size={14} color={t.neonCyan} />
-            <span className={styles.statPillText}>8 GDG chapters</span>
+            <span className={styles.statPillText}>{tp('statChapters')}</span>
           </div>
           <div className={styles.statPill}>
             <CalendarClock size={14} color={t.neonPink} />
-            <span className={styles.statPillText}>6 months of planning</span>
+            <span className={styles.statPillText}>{tp('statPlanning')}</span>
           </div>
         </div>
       </section>
@@ -303,7 +305,7 @@ export default function TeamPage() {
       <section className={`w-full py-24 px-5 md:px-[120px] flex flex-col gap-12 ${styles.sectionPrimary}`}>
         <div className="flex items-end justify-between flex-wrap gap-5">
           <div className={styles.sectionHeaderContent}>
-            <SectionKicker num="// 01" label="CORE TEAM" color={t.neonPurple} />
+            <SectionKicker num="// 01" label={tp('coreTeam')} color={t.neonPurple} />
             <div className={`text-[32px] md:text-[48px] ${styles.sectionTitle}`}>Lead organizers</div>
             <p className={styles.sectionSubtitle}>
               The four people steering the ship — programming, operations, content, and the GDG chapter behind it all.
@@ -324,7 +326,7 @@ export default function TeamPage() {
       <section className={`w-full py-20 px-5 md:px-[120px] flex flex-col gap-10 ${styles.sectionSecondary}`}>
         <div className="flex items-end justify-between flex-wrap gap-5">
           <div className={styles.sectionHeaderContent}>
-            <SectionKicker num="// 02" label="ORGANIZING COMMITTEE" color={t.neonCyan} />
+            <SectionKicker num="// 02" label={tp('committee')} color={t.neonCyan} />
             <div className={`text-[28px] md:text-[42px] ${styles.sectionTitleSm}`}>Track captains &amp; area owners</div>
             <p className={styles.sectionSubtitleSm}>
               Twelve people running the tracks, partner relationships, and the operational threads that hold a two-day conference together.
@@ -353,7 +355,7 @@ export default function TeamPage() {
       <section className={`w-full py-24 px-5 md:px-[120px] flex flex-col gap-12 ${styles.sectionPrimary}`}>
         <div className="flex items-end justify-between flex-wrap gap-5">
           <div className={styles.sectionHeaderContent}>
-            <SectionKicker num="// 03" label="VOLUNTEERS" color={t.neonPink} />
+            <SectionKicker num="// 03" label={tp('volunteers')} color={t.neonPink} />
             <div className={`text-[28px] md:text-[42px] ${styles.sectionTitleSm}`}>The crew on the floor.</div>
             <p className={styles.sectionSubtitleSm}>
               45+ volunteers across five workstreams — handling check-in, the mic line, livestream, signage, and everything in between.

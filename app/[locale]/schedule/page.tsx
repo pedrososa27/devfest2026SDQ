@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -429,27 +430,30 @@ function SessionCard({
 
 // ─── page ─────────────────────────────────────────────────────────────────────
 
-const FILTERS = [
-  { label: 'All', color: null },
-  { label: 'AI', color: '#A855F7' },
-  { label: 'Cybersecurity', color: '#EA4335' },
-  { label: 'Testing', color: '#34A853' },
-  { label: 'Data Engineering', color: '#4285F4' },
-  { label: 'UI/UX', color: '#EC4899' },
-  { label: 'Workshops', color: '#FBBC04' },
-];
-
 export default function SchedulePage() {
   const { isDark } = useTheme();
   const t = useTokens(isDark);
+  const tp = useTranslations('schedulePage');
+
+  const FILTERS = [
+    { label: tp('filterAll'), color: null },
+    { label: 'AI', color: '#A855F7' },
+    { label: 'Cybersecurity', color: '#EA4335' },
+    { label: 'Testing', color: '#34A853' },
+    { label: 'Data Engineering', color: '#4285F4' },
+    { label: 'UI/UX', color: '#EC4899' },
+    { label: 'Workshops', color: '#FBBC04' },
+  ];
 
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
-  const [activeFilter, setActiveFilter] = useState('All');
+  const [activeFilter, setActiveFilter] = useState(tp('filterAll'));
 
   const dayData = activeDay === 1 ? DAY1_SESSIONS : DAY2_SESSIONS;
 
+  const filterAll = tp('filterAll');
+
   function filterSessions(sessions: Session[]) {
-    if (activeFilter === 'All') return sessions;
+    if (activeFilter === filterAll) return sessions;
     if (activeFilter === 'Workshops')
       return sessions.filter((s) => s.type === 'WORKSHOP');
     return sessions.filter((s) => s.trackKey === activeFilter);
@@ -496,21 +500,18 @@ export default function SchedulePage() {
         <div className={styles.heroBadge}>
           <div className={styles.heroBadgeDot} />
           <span className={styles.heroBadgeText}>
-            EVENT SCHEDULE // NOV 14-15, 2026
+            {tp('badgeText')}
           </span>
         </div>
 
         {/* Title */}
-        <h1 className={`text-[40px] md:text-[72px] text-center [letter-spacing:-1px] md:[letter-spacing:-2px] max-w-full md:max-w-[1000px] m-0 ${styles.heroTitle}`}>
-          Two days of talks,
-          <br />
-          workshops &amp; community
+        <h1 className={`text-[40px] md:text-[72px] text-center [letter-spacing:-1px] md:[letter-spacing:-2px] max-w-full md:max-w-[1000px] m-0 whitespace-pre-line ${styles.heroTitle}`}>
+          {tp('heroTitle')}
         </h1>
 
         {/* Subtitle */}
         <p className={`text-base md:text-[18px] text-center max-w-[720px] m-0 ${styles.heroSubtitle}`}>
-          Explore 40+ sessions across AI, Cybersecurity, Testing, Data Engineering, and UI/UX.
-          Filter by track, bookmark favorites, and plan your two days at DevFest Santo Domingo.
+          {tp('heroSubtitle')}
         </p>
       </section>
 
@@ -527,8 +528,8 @@ export default function SchedulePage() {
                   onClick={() => setActiveDay(day)}
                   className={`${styles.tab} ${active ? styles.tabActive : ''}`}
                 >
-                  <span className={styles.tabLabel}>Day {day}</span>
-                  <span className={styles.tabDate}>{day === 1 ? 'Nov 14' : 'Nov 15'}</span>
+                  <span className={styles.tabLabel}>{day === 1 ? tp('day1') : tp('day2')}</span>
+                  <span className={styles.tabDate}>{day === 1 ? tp('date1') : tp('date2')}</span>
                 </button>
               );
             })}
@@ -570,7 +571,7 @@ export default function SchedulePage() {
               <circle cx="11" cy="11" r="8" />
               <path d="m21 21-4.35-4.35" />
             </svg>
-            <span className={styles.searchText}>Search sessions...</span>
+            <span className={styles.searchText}>{tp('searchSessions')}</span>
           </div>
         </div>
 
@@ -578,7 +579,7 @@ export default function SchedulePage() {
         {filterSessions(dayData.morning).length > 0 && (
           <div className={styles.timeBlock}>
             <BlockHeader
-              label="MORNING"
+              label={tp('morning')}
               iconColor={t.accentYellow}
               timeRange="09:00 — 12:30"
             />
@@ -589,18 +590,18 @@ export default function SchedulePage() {
         )}
 
         {/* ── LUNCH BREAK ── */}
-        {activeFilter === 'All' && (
+        {activeFilter === filterAll && (
           <div className={`flex items-center gap-4 px-6 py-5 rounded-2xl flex-wrap md:flex-nowrap ${styles.breakStrip}`}>
             <div className={styles.breakIcon}>
               <span className="text-[18px]">🍽</span>
             </div>
             <div className="flex-1">
-              <div className={styles.breakTitle}>Lunch &amp; Networking</div>
+              <div className={styles.breakTitle}>{tp('lunchTitle')}</div>
               <div className={styles.breakSubtitle}>
-                Sponsored by Google Cloud — food trucks on the patio
+                {tp('lunchSubtitle')}
               </div>
             </div>
-            <span className={styles.breakTime}>12:30 — 13:30</span>
+            <span className={styles.breakTime}>{tp('lunchTime')}</span>
           </div>
         )}
 
@@ -608,7 +609,7 @@ export default function SchedulePage() {
         {filterSessions(dayData.afternoon).length > 0 && (
           <div className={styles.timeBlock}>
             <BlockHeader
-              label="AFTERNOON"
+              label={tp('afternoon')}
               iconColor={t.accentYellow}
               timeRange="13:30 — 17:15"
             />
