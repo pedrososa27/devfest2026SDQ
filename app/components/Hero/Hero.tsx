@@ -32,10 +32,8 @@ export default function Hero() {
         loop
         playsInline
         preload="auto"
-        poster="/assets/hero-poster.jpg"
       >
-        <source src="/assets/hero-bg.webm" type="video/webm" />
-        <source src="/assets/hero-bg.mp4" type="video/mp4" />
+        <source src="/assets/Hero-bg.mp4" type="video/mp4" />
       </video>
       <div className={styles.videoOverlay} />
 
