@@ -1,11 +1,14 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ComingSoon from '../../components/ComingSoon/ComingSoon';
 import styles from './page.module.scss';
+import { createClient } from '../../../lib/supabase/client';
 
 function useTokens(isDark: boolean) {
   return {
@@ -28,7 +31,97 @@ function useTokens(isDark: boolean) {
     accentYellow: '#FBBC04',
   };
 }
+// ── Track color helper ───────────────────────────────────────────────
+const TRACK_COLORS: Record<string, string> = {
+  // From image reference
+  'General': '#9CA3AF',
+  'Testing': '#F97316',
+  'DevOps': '#8B5CF6',
+  'UX': '#3B82F6', 'UI / UX': '#3B82F6', 'UI/UX': '#3B82F6', 'Design': '#3B82F6',
+  'AI': '#06B6D4', 'AI/ML': '#06B6D4', 'Machine Learning': '#06B6D4',
+  'Community': '#EC4899',
+  'Development': '#F59E0B', 'Web': '#F59E0B',
+  'Android': '#22C55E',
+ 'Mobile': '#10B981',
+  'Flutter': '#38BDF8',
+  'gRPC': '#64748B',
+  // Additional tracks
+  'Cybersecurity': '#EF4444', 'Security': '#EF4444',
+  'QA': '#F97316',
+  'Data Engineering': '#6366F1', 'Data': '#6366F1',
+  'Cloud': '#22D3EE',
+  'Workshop': '#FBBF24', 'Firebase': '#FBBF24',
+};
+function getTrackColor(track?: string | null): string {
+  return (track && TRACK_COLORS[track]) ?? '#A855F7';
+}
 
+// ── DB talk → Session shape ─────────────────────────────────────────
+type TalkRow = {
+  id: string;
+  title: string;
+  description: string | null;
+  track: string | null;
+  room: string | null;
+  starts_at: string;
+  ends_at: string;
+  talk_type: string;
+  speakers: { name: string; title: string | null; company: string | null } | null;
+};
+
+function talkToSession(t: TalkRow): Session {
+  const start = new Date(t.starts_at);
+  const end = new Date(t.ends_at);
+  const fmt = (d: Date) =>
+    d.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false });
+  const speakerName = t.speakers?.name ?? '';
+  const speakerRole = [t.speakers?.title, t.speakers?.company].filter(Boolean).join(', ');
+  const initials = speakerName
+    .split(' ')
+    .slice(0, 2)
+    .map((w: string) => w[0] ?? '')
+    .join('')
+    .toUpperCase();
+  const color = getTrackColor(t.track);
+  return {
+    time: `${fmt(start)} — ${fmt(end)}`,
+    type: t.talk_type.toUpperCase(),
+    room: t.room ?? '',
+    trackKey: t.track ?? 'General',
+    tagColor: color,
+    tagBg: color + '1F',
+    title: t.title,
+    desc: t.description ?? '',
+    initials: initials || '??',
+    avColor: color,
+    speaker: speakerName,
+    role: speakerRole,
+  };
+}
+
+type DayBlock = { morning: Session[]; afternoon: Session[]; evening: Session[] };
+
+function groupByDays(talks: TalkRow[]): DayBlock[] {
+  const dayMap = new Map<string, TalkRow[]>();
+  for (const talk of talks) {
+    const day = talk.starts_at.slice(0, 10);
+    if (!dayMap.has(day)) dayMap.set(day, []);
+    dayMap.get(day)!.push(talk);
+  }
+  return Array.from(dayMap.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([, dayTalks]) => {
+      dayTalks.sort((a, b) => a.starts_at.localeCompare(b.starts_at));
+      return {
+        morning: dayTalks.filter((t) => new Date(t.starts_at).getHours() < 12).map(talkToSession),
+        afternoon: dayTalks.filter((t) => {
+          const h = new Date(t.starts_at).getHours();
+          return h >= 12 && h < 17;
+        }).map(talkToSession),
+        evening: dayTalks.filter((t) => new Date(t.starts_at).getHours() >= 17).map(talkToSession),
+      };
+    });
+}
 // ─── data ────────────────────────────────────────────────────────────────────
 
 const DAY1_SESSIONS = {
@@ -432,8 +525,19 @@ function SessionCard({
 
 export default function SchedulePage() {
   const { isDark } = useTheme();
+  const siteConfig = useSiteConfig();
   const t = useTokens(isDark);
   const tp = useTranslations('schedulePage');
+
+  if (!siteConfig.show_schedule) {
+    return (
+      <div className={styles.page} style={{ '--bg-primary': isDark ? '#0A0A0F' : '#FFFFFF', display: 'flex', flexDirection: 'column', minHeight: '100vh' } as React.CSSProperties}>
+        <Header />
+        <ComingSoon message={siteConfig.schedule_coming_soon_msg} isDark={isDark} />
+        <Footer />
+      </div>
+    );
+  }
 
   const FILTERS = [
     { label: tp('filterAll'), color: null },
@@ -447,8 +551,21 @@ export default function SchedulePage() {
 
   const [activeDay, setActiveDay] = useState<1 | 2>(1);
   const [activeFilter, setActiveFilter] = useState(tp('filterAll'));
+  const [dbDays, setDbDays] = useState<DayBlock[] | null>(null);
 
-  const dayData = activeDay === 1 ? DAY1_SESSIONS : DAY2_SESSIONS;
+  useEffect(() => {
+    const supabase = createClient();
+    supabase
+      .from('talks')
+      .select('id, title, description, track, room, starts_at, ends_at, talk_type, speakers(name, title, company)')
+      .order('starts_at')
+      .then(({ data }) => {
+        if (data && data.length > 0) setDbDays(groupByDays(data as unknown as TalkRow[]));
+      });
+  }, []);
+
+  const daysData = dbDays ?? [DAY1_SESSIONS, DAY2_SESSIONS];
+  const dayData = daysData[activeDay - 1] ?? { morning: [], afternoon: [], evening: [] };
 
   const filterAll = tp('filterAll');
 

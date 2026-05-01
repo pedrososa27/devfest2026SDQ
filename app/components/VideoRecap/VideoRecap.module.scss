@@ -74,11 +74,6 @@
   border-radius: 12px;
   border: 1px solid var(--border-strong);
   overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  padding: 24px;
-  gap: 24px;
-  justify-content: space-between;
   box-shadow: var(--video-shadow);
 
   @media (max-width: 767px) {
@@ -183,6 +178,7 @@
   font-weight: 600;
   font-family: 'Geist', system-ui, sans-serif;
   cursor: pointer;
+  text-decoration: none;
   transition: background-color 0.2s;
 
   &:hover {

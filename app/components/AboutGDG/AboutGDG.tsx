@@ -82,10 +82,10 @@ export default function AboutGDG() {
         {/* Stats strip */}
         <div className={styles.statsStrip}>
           {[
-            { num: '03', label: 'Editions hosted' },
-            { num: '2.4k', label: 'Attendees to date' },
-            { num: '42', label: 'Speakers and workshops' },
-            { num: '06', label: 'Tech tracks covered' },
+            { num: t('stat1Num'), label: t('stat1Label') },
+            { num: t('stat2Num'), label: t('stat2Label') },
+            { num: t('stat3Num'), label: t('stat3Label') },
+            { num: t('stat4Num'), label: t('stat4Label') },
           ].map((stat, idx) => (
             <div key={idx} className={styles.stripStat}>
               <span className={styles.stripNum}>{stat.num}</span>

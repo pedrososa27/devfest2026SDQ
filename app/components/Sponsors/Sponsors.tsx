@@ -1,73 +1,69 @@
 'use client';
 
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
 import styles from './Sponsors.module.scss';
+import { createClient } from '../../../lib/supabase/client';
+import type { Sponsor } from '../../../lib/supabase/types';
+
+const TIER_ORDER: Sponsor['tier'][] = ['platinum', 'gold', 'silver', 'bronze', 'community'];
+
+const TIER_ICONS: Record<Sponsor['tier'], string> = {
+  platinum:  'platIcon',
+  gold:      'goldIcon',
+  silver:    'silverIcon',
+  bronze:    'silverIcon',
+  community: 'partIcon',
+};
+
+const TIER_HEIGHTS: Record<Sponsor['tier'], number> = {
+  platinum:  110,
+  gold:      90,
+  silver:    72,
+  bronze:    60,
+  community: 60,
+};
+
+const TIER_FONT: Record<Sponsor['tier'], number> = {
+  platinum:  18,
+  gold:      15,
+  silver:    13,
+  bronze:    12,
+  community: 12,
+};
 
 export default function Sponsors() {
   const { isDark } = useTheme();
   const t = useTranslations('sponsors');
+  const [dbSponsors, setDbSponsors] = useState<Sponsor[]>([]);
 
-  const tiers = [
-    {
-      icon: 'diamondIcon',
-      label: 'DIAMOND',
-      count: '01',
-      sponsors: [
-        { name: 'google.cloud', height: 140, fontSize: 22 },
-        { name: 'Claro', height: 140, fontSize: 22 },
-      ],
-    },
-    {
-      icon: 'platIcon',
-      label: 'PLATINUM',
-      count: '03',
-      sponsors: [
-        { name: 'Microsoft', height: 110, fontSize: 18 },
-        { name: 'Altice', height: 110, fontSize: 18 },
-        { name: 'Globant', height: 110, fontSize: 18 },
-      ],
-    },
-    {
-      icon: 'goldIcon',
-      label: 'GOLD',
-      count: '04',
-      sponsors: [
-        { name: 'GitHub', height: 90, fontSize: 15 },
-        { name: 'JetBrains', height: 90, fontSize: 15 },
-        { name: 'MongoDB', height: 90, fontSize: 15 },
-        { name: 'Vercel', height: 90, fontSize: 15 },
-      ],
-    },
-    {
-      icon: 'silverIcon',
-      label: 'SILVER',
-      count: '05',
-      sponsors: [
-        { name: 'DataStax', height: 72, fontSize: 13 },
-        { name: 'Auth0', height: 72, fontSize: 13 },
-        { name: 'Firebase', height: 72, fontSize: 13 },
-        { name: 'Stripe', height: 72, fontSize: 13 },
-        { name: 'Twilio', height: 72, fontSize: 13 },
-      ],
-    },
-    {
-      icon: 'partIcon',
-      label: 'PARTNERS',
-      count: '06',
-      sponsors: [
-        { name: 'UNIBE', height: 60, fontSize: 12 },
-        { name: 'INTEC', height: 60, fontSize: 12 },
-        { name: 'ITLA', height: 60, fontSize: 12 },
-        { name: 'PUCMM', height: 60, fontSize: 12 },
-        { name: 'INDOTEL', height: 60, fontSize: 12 },
-        { name: 'MESCYT', height: 60, fontSize: 12 },
-      ],
-    },
-  ];
+  useEffect(() => {
+    const supabase = createClient();
+    supabase
+      .from('sponsors')
+      .select('*')
+      .eq('active', true)
+      .order('tier')
+      .order('display_order')
+      .then(({ data }) => { if (data) setDbSponsors(data); });
+  }, []);
+
+  // Group sponsors by tier (only tiers that have at least one sponsor)
+  const tiers = TIER_ORDER
+    .map((tier) => ({
+      tier,
+      icon:      TIER_ICONS[tier],
+      label:     tier.toUpperCase(),
+      height:    TIER_HEIGHTS[tier],
+      fontSize:  TIER_FONT[tier],
+      sponsors:  dbSponsors.filter((s) => s.tier === tier),
+    }))
+    .filter((g) => g.sponsors.length > 0);
 
   return (
+
     <section
       className={styles.section}
       style={{
@@ -95,32 +91,49 @@ export default function Sponsors() {
 
         {/* Sponsor Tiers */}
         <div className={styles.tiers}>
-          {tiers.map((tier, tierIdx) => (
-            <div key={tierIdx} className={styles.tier}>
+          {tiers.map((tier) => (
+            <div key={tier.tier} className={styles.tier}>
               <div className={styles.tierHeader}>
                 <Image src={`/icons/${tier.icon}.png`} alt={`${tier.label} icon`} width={18} height={18} />
                 <span className={styles.tierLabel}>{tier.label}</span>
                 <div className={styles.tierDivider} />
-                <span className={styles.tierCount}>{tier.count}</span>
+                <span className={styles.tierCount}>{String(tier.sponsors.length).padStart(2, '0')}</span>
               </div>
               <div
                 className={styles.sponsorGrid}
                 style={{ gridTemplateColumns: `repeat(${tier.sponsors.length}, 1fr)` }}
               >
-                {tier.sponsors.map((sponsor, sIdx) => (
-                  <div
-                    key={sIdx}
+                {tier.sponsors.map((sponsor) => (
+                  <a
+                    key={sponsor.id}
+                    href={sponsor.website_url ?? undefined}
+                    target="_blank"
+                    rel="noreferrer"
                     className={styles.sponsorCard}
-                    style={{ height: sponsor.height }}
+                    style={{ height: tier.height, textDecoration: 'none', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                   >
-                    <span className={styles.sponsorName} style={{ fontSize: sponsor.fontSize }}>
-                      {sponsor.name}
-                    </span>
-                  </div>
+                    {sponsor.logo_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={sponsor.logo_url}
+                        alt={sponsor.name}
+                        style={{ maxHeight: tier.height * 0.55, maxWidth: '80%', objectFit: 'contain' }}
+                      />
+                    ) : (
+                      <span className={styles.sponsorName} style={{ fontSize: tier.fontSize }}>
+                        {sponsor.name}
+                      </span>
+                    )}
+                  </a>
                 ))}
               </div>
             </div>
           ))}
+          {tiers.length === 0 && (
+            <p style={{ textAlign: 'center', color: 'var(--fg-dim)', fontSize: 14 }}>
+              Los sponsors se anunciarán pronto.
+            </p>
+          )}
         </div>
 
         {/* Become a Sponsor */}

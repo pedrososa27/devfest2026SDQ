@@ -3,6 +3,8 @@ import { notFound } from 'next/navigation';
 import { getMessages } from 'next-intl/server';
 import { routing } from '../../i18n/routing';
 import { ThemeProvider } from '../context/ThemeContext';
+import { SiteConfigProvider } from '../context/SiteConfigContext';
+import { getSiteConfig } from '../../lib/supabase/queries';
 
 export default async function LocaleLayout({
   children,
@@ -17,11 +19,18 @@ export default async function LocaleLayout({
     notFound();
   }
 
-  const messages = await getMessages();
+  const [messages, siteConfig] = await Promise.all([
+    getMessages(),
+    getSiteConfig(),
+  ]);
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <ThemeProvider>{children}</ThemeProvider>
+      <ThemeProvider>
+        <SiteConfigProvider config={siteConfig}>
+          {children}
+        </SiteConfigProvider>
+      </ThemeProvider>
     </NextIntlClientProvider>
   );
 }

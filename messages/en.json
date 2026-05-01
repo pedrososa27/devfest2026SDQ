@@ -11,21 +11,21 @@
   },
   "hero": {
     "badge": "GDG SANTO DOMINGO // COMMUNITY EVENT",
-    "subtitle": "DevFest Santo Domingo 2023",
+    "subtitle": "DevFest Santo Domingo 2026",
     "title": "Where developers\nbuild the future.",
     "description": "Two days of deep-dive talks on AI, Cybersecurity, Testing, Data engineering, and UI/UX — built by the Dominican dev community, for the Dominican dev community.",
-    "date": "Nov 18-19, 2023",
+    "date": "Oct 09-10, 2026",
     "location": "Santo Domingo, DR",
     "registerBtn": "Register Now",
     "scheduleBtn": "View Schedule"
   },
   "eventInfo": {
     "dateLabel": "// DATE",
-    "dateTitle": "November 18-19",
+    "dateTitle": "October 09 - 10",
     "dateDesc": "Two full days of tech talks, workshops, and networking with the local community.",
     "venueLabel": "// VENUE",
-    "venueTitle": "Universidad UNIBE",
-    "venueDesc": "Santo Domingo, Dominican Republic — accessible campus with modern auditoriums.",
+    "venueTitle": "Biblioteca Nacional Pedro Henríquez Ureña",
+    "venueDesc": "Santo Domingo, Dominican Republic — well-equipped and accessible spaces.",
     "formatLabel": "// FORMAT",
     "formatTitle": "In-person + Streaming",
     "formatDesc": "Attend live on campus or join remotely through our official YouTube live stream.",
@@ -44,7 +44,15 @@
     "devfestText": "DevFest is the annual tech conference organized by Google Developer Groups around the world. Each edition brings together developers, designers, and tech enthusiasts to explore the latest in Android, Web, Cloud, AI/ML, and community-driven technology.",
     "gdgTitle": "What is a GDG?",
     "gdgText": "Google Developer Groups are community-run chapters for developers interested in Google technologies. GDG Santo Domingo is the local chapter for the Dominican Republic — we host meetups, workshops, study jams, and of course, DevFest.",
-    "gdgMembers": "1.2k+ members"
+    "gdgMembers": "1.2k+ members",
+    "stat1Num": "03",
+    "stat1Label": "Editions hosted",
+    "stat2Num": "2.4k",
+    "stat2Label": "Attendees to date",
+    "stat3Num": "42",
+    "stat3Label": "Speakers and workshops",
+    "stat4Num": "06",
+    "stat4Label": "Tech tracks covered"
   },
   "cfp": {
     "openBadge": "CALL FOR PAPERS // OPEN",
@@ -125,24 +133,38 @@
   "pastTalks": {
     "eyebrow": "ARCHIVE",
     "title": "Talks from past editions",
-    "description": "Relive the best moments from DevFest Santo Domingo — deep dives, lightning talks, and code walkthroughs.",
-    "watchAll": "Watch all talks"
+    "description": "Relive the best moments from DevFest Santo Domingo ",
+    "watchAll": "Watch all talks",
+    "comingSoon": "Coming soon…",
+    "prevBtn": "Previous",
+    "nextBtn": "Next",
+    "slideLabel": "Go to slide {n}",
+    "footerCount": "{count} archived talks"
   },
   "videoRecap": {
-    "eyebrow": "ARCHIVE // 2022",
+    "eyebrow": "ARCHIVE // 2023",
     "title": "Watch our last recap",
-    "description": "See what DevFest Santo Domingo 2022 looked like — talks, hallway conversations, and the community energy.",
+    "description": "See what DevFest Santo Domingo 2023 looked like — talks, hallway conversations, and the community energy.",
     "recapLabel": "OFFICIAL RECAP",
-    "videoTitle": "DevFest SDQ 2022 Recap",
+    "videoTitle": "DevFest SDQ 2023 Recap",
     "videoMeta": "GDG Santo Domingo • 12K views",
     "watchBtn": "Watch on YouTube"
   },
   "mapLocation": {
     "eyebrow": "// VENUE",
     "title": "Find us in Santo Domingo",
+    "eventDate": "OCT 09-10, 2026 8:30 AM",
     "venueLabel": "VENUE",
+    "venueName": "Biblioteca Nacional Pedro Henríquez Ureña",
     "addressLabel": "ADDRESS",
+    "addressLine1": "C. César Nicolás Penson 91",
+    "addressLine2": "Gazcue, Santo Domingo",
+    "addressLine3": "Dominican Republic",
     "nearbyLabel": "NEARBY",
+    "nearbyBus": "Subway bus stop 3 min walk",
+    "nearbyParking": "Free parking for attendees",
+    "nearbyCafe": "Cafes and restaurants in Gazcue",
+    "mapView": "Map View",
     "directionsBtn": "Get directions",
     "shareBtn": "Share location"
   },
@@ -361,5 +383,9 @@
     "label": "Language",
     "es": "Español",
     "en": "English"
+  },
+  "comingSoon": {
+    "title": "Coming Soon",
+    "subtitle": "This section is being prepared. Check back soon!"
   }
 }

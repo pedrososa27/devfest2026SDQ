@@ -9,8 +9,11 @@ import MapLocation from "../components/MapLocation";
 import Sponsors from "../components/Sponsors";
 import CFPSection from "../components/CFPSection";
 import Footer from "../components/Footer";
+import { getSiteConfig } from "../../lib/supabase/queries";
 
-export default function Home() {
+export default async function Home() {
+  const config = await getSiteConfig();
+
   return (
     <div className="min-h-screen">
       <Header />
@@ -18,12 +21,12 @@ export default function Home() {
         <Hero />
         <EventInfo />
         <VideoRecap />
-        <PastTalks />
+        {config.show_past_talks && <PastTalks />}
         <AboutGDG />
-        <Pricing />
-        <MapLocation />
-        <Sponsors />
-        <CFPSection />
+        {config.show_pricing && <Pricing />}
+        {config.show_map && <MapLocation />}
+        {config.show_sponsors && <Sponsors />}
+        {config.show_cfp && <CFPSection />}
       </main>
       <Footer />
     </div>

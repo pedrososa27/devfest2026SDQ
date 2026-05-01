@@ -37,32 +37,25 @@ export default function VideoRecap() {
 
       {/* Video Card */}
       <div className={styles.videoCard}>
-        {/* Top Bar */}
-        <div className={styles.videoTopBar}>
-          <div className={styles.recapBadge}>
-            <span>📺</span>
-            <span>{t('recapLabel')}</span>
-          </div>
-          <div className={styles.durationBadge}>04:32</div>
-        </div>
-
-        {/* Play Button */}
-        <div className={styles.playButton}>
-          <span className={styles.playIcon}>▶</span>
-        </div>
-
-        {/* Bottom Info */}
-        <div className={styles.videoInfo}>
-          <h3 className={styles.videoTitle}>{t('videoTitle')}</h3>
-          <p className={styles.videoMeta}>{t('videoMeta')}</p>
-        </div>
+        <iframe
+          src="https://www.youtube.com/embed/8PCLmte00jw?rel=0&modestbranding=1"
+          title="DevFest Video Recap"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowFullScreen
+          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', border: 'none' }}
+        />
       </div>
 
       {/* YouTube Button */}
-      <button className={styles.ytButton}>
+      <a
+        href="https://www.youtube.com/watch?v=8PCLmte00jw"
+        target="_blank"
+        rel="noopener noreferrer"
+        className={styles.ytButton}
+      >
         <Image src="/icons/yt.png" alt="YouTube icon" width={16} height={16} />
         <span>{t('watchBtn')}</span>
-      </button>
+      </a>
     </section>
   );
 }

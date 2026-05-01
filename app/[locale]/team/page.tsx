@@ -1,11 +1,16 @@
 'use client';
 
+import { useState, useEffect } from 'react';
 import { Users, MapPin, CalendarClock, Sparkles, Truck, Coffee, Video, Palette, PenLine, ArrowRight, ClipboardList, Calendar, Clock3 } from 'lucide-react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ComingSoon from '../../components/ComingSoon/ComingSoon';
 import styles from './page.module.scss';
+import { createClient } from '../../../lib/supabase/client';
+import type { CoreTeamMember, CommitteeMember, Volunteer } from '../../../lib/supabase/types';
 
 function useTokens(isDark: boolean) {
   return {
@@ -47,9 +52,10 @@ interface LeadCardProps {
   bio: string;
   handle: string;
   gradientTo: string;
+  photoUrl?: string | null;
 }
 
-function LeadCard({ accentColor, accentLabel, roleLabel, name, title, bio, handle, gradientTo }: LeadCardProps) {
+function LeadCard({ accentColor, accentLabel, roleLabel, name, title, bio, handle, gradientTo, photoUrl }: LeadCardProps) {
   return (
     <div
       className={styles.leadCard}
@@ -57,7 +63,16 @@ function LeadCard({ accentColor, accentLabel, roleLabel, name, title, bio, handl
     >
       {/* Avatar blob */}
       <div className={styles.leadAvatarArea}>
-        <div className={styles.leadAvatarCircle} />
+        {photoUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img
+            src={photoUrl}
+            alt={name}
+            style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: 0 }}
+          />
+        ) : (
+          <div className={styles.leadAvatarCircle} />
+        )}
         <div className={styles.leadAvatarTag}>
           <span className={styles.leadAvatarTagText}>{accentLabel}</span>
         </div>
@@ -96,9 +111,10 @@ interface CommitteeCardProps {
   name: string;
   role: string;
   handle: string;
+  photoUrl?: string | null;
 }
 
-function CommitteeCard({ badge, badgeColor, initials, name, role, handle }: CommitteeCardProps) {
+function CommitteeCard({ badge, badgeColor, initials, name, role, handle, photoUrl }: CommitteeCardProps) {
   return (
     <div
       className={styles.committeeCard}
@@ -107,7 +123,12 @@ function CommitteeCard({ badge, badgeColor, initials, name, role, handle }: Comm
       {/* Avatar row: avatar left, badge tag top-right */}
       <div className={styles.committeeAvatarRow}>
         <div className={styles.committeeAvatar}>
-          <span className={styles.committeeAvatarInitials}>{initials}</span>
+          {photoUrl ? (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={photoUrl} alt={name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%' }} />
+          ) : (
+            <span className={styles.committeeAvatarInitials}>{initials}</span>
+          )}
         </div>
         <div className={styles.committeeBadge}>
           <span className={styles.committeeBadgeText}>{badge}</span>
@@ -132,14 +153,19 @@ function CommitteeCard({ badge, badgeColor, initials, name, role, handle }: Comm
   );
 }
 
-function VolAvatar({ initials, fullName, color }: { initials: string; fullName: string; color: string }) {
+function VolAvatar({ initials, fullName, color, photoUrl }: { initials: string; fullName: string; color: string; photoUrl?: string | null }) {
   return (
     <div className="flex flex-col items-center gap-2">
       <div
         className={styles.volAvatarCircle}
         style={{ '--accent': color } as React.CSSProperties}
       >
-        <span className={styles.volAvatarInitials}>{initials}</span>
+        {photoUrl ? (
+          // eslint-disable-next-line @next/next/no-img-element
+          <img src={photoUrl} alt={fullName} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top', borderRadius: '50%' }} />
+        ) : (
+          <span className={styles.volAvatarInitials}>{initials}</span>
+        )}
       </div>
       <span className={styles.volAvatarName}>{fullName}</span>
     </div>
@@ -153,7 +179,7 @@ interface VolGroupProps {
   subtitle: string;
   count: string;
   countColor: string;
-  members: { initials: string; name: string; color: string }[];
+  members: { initials: string; name: string; color: string; photoUrl?: string | null }[];
 }
 
 function VolGroup({ Icon, iconColor, title, subtitle, count, countColor, members }: VolGroupProps) {
@@ -176,7 +202,7 @@ function VolGroup({ Icon, iconColor, title, subtitle, count, countColor, members
       <div className={styles.volGrid}>
         {members.map((m) => (
           <div key={m.initials + m.name} className={styles.volGridItem}>
-            <VolAvatar initials={m.initials} fullName={m.name} color={m.color} />
+            <VolAvatar initials={m.initials} fullName={m.name} color={m.color} photoUrl={m.photoUrl} />
           </div>
         ))}
       </div>
@@ -186,54 +212,100 @@ function VolGroup({ Icon, iconColor, title, subtitle, count, countColor, members
 
 export default function TeamPage() {
   const { isDark } = useTheme();
+  const siteConfig = useSiteConfig();
   const t = useTokens(isDark);
   const tp = useTranslations('teamPage');
+  const [dbCore, setDbCore] = useState<CoreTeamMember[]>([]);
+  const [dbCommittee, setDbCommittee] = useState<CommitteeMember[]>([]);
+  const [dbVolunteers, setDbVolunteers] = useState<Volunteer[]>([]);
 
-  const leads = [
-    { accentColor: t.neonPurple, gradientTo: '#A855F700', accentLabel: 'LEAD', roleLabel: 'GDG LEAD', name: 'Carolina Méndez', title: 'Chapter Organizer, GDG Santo Domingo', bio: 'Started the chapter in 2017. Runs the conference end-to-end and refuses to sleep in October.', handle: '@carolina.dev' },
-    { accentColor: t.neonCyan, gradientTo: '#22D3EE00', accentLabel: 'PROG', roleLabel: 'PROGRAM CHAIR', name: 'Luis Hernández', title: 'Talks Curator & Track Owner', bio: 'Reviewed 230+ CFP submissions in 2025. If a talk made the schedule, Luis read it twice.', handle: '@luis.codes' },
-    { accentColor: t.neonPink, gradientTo: '#EC489900', accentLabel: 'OPS', roleLabel: 'OPERATIONS LEAD', name: 'Andrea Disla', title: 'Logistics & Venue Operations', bio: 'Owns the run-of-show, vendor calls, and the Slack channel that never sleeps the week of the event.', handle: '@andrea.builds' },
-    { accentColor: t.accentYellow, gradientTo: '#FBBC0400', accentLabel: 'CONT', roleLabel: 'SPEAKERS & CONTENT', name: 'Rafael Núñez', title: 'Speaker Care & Programming', bio: 'Coordinates speaker travel, dry runs, and last-minute slide rescues. Patron saint of HDMI cables.', handle: '@raf.eng' },
+  useEffect(() => {
+    const supabase = createClient();
+    Promise.all([
+      supabase.from('core_team').select('*').eq('active', true).order('display_order'),
+      supabase.from('committee_members').select('*').eq('active', true).order('display_order'),
+      supabase.from('volunteers').select('*').eq('active', true).order('display_order'),
+    ]).then(([core, committee, vols]) => {
+      if (core.data) setDbCore(core.data);
+      if (committee.data) setDbCommittee(committee.data);
+      if (vols.data) setDbVolunteers(vols.data);
+    });
+  }, []);
+
+  if (!siteConfig.show_team) {
+    return (
+      <div className={styles.page} style={{ '--bg-primary': isDark ? '#0A0A0F' : '#FFFFFF', display: 'flex', flexDirection: 'column', minHeight: '100vh' } as React.CSSProperties}>
+        <Header />
+        <ComingSoon message={siteConfig.team_coming_soon_msg} isDark={isDark} />
+        <Footer />
+      </div>
+    );
+  }
+
+  const LEAD_COLORS = [
+    { accentColor: t.neonPurple,   gradientTo: '#A855F700' },
+    { accentColor: t.neonCyan,     gradientTo: '#22D3EE00' },
+    { accentColor: t.neonPink,     gradientTo: '#EC489900' },
+    { accentColor: t.accentYellow, gradientTo: '#FBBC0400' },
   ];
 
-  const committee = [
-    { badge: 'AI', badgeColor: t.neonCyan, initials: 'AB', name: 'Alejandro Báez', role: 'Track Captain — AI/ML', handle: '@alejandro.ai' },
-    { badge: 'SEC', badgeColor: t.neonPink, initials: 'MR', name: 'María Rosario', role: 'Track Captain — Cybersecurity', handle: '@maria.sec' },
-    { badge: 'DATA', badgeColor: t.accentGreen, initials: 'DG', name: 'Diego Gómez', role: 'Track Captain — Data Eng', handle: '@diego.data' },
-    { badge: 'TEST', badgeColor: t.accentBlue, initials: 'PV', name: 'Patricia Vargas', role: 'Track Captain — Testing/QA', handle: '@pat.tests' },
-    { badge: 'UI/UX', badgeColor: t.accentYellow, initials: 'JS', name: 'Joseline Santos', role: 'Track Captain — UI/UX', handle: '@josi.design' },
-    { badge: 'WEB', badgeColor: t.neonPurple, initials: 'OF', name: 'Omar Familia', role: 'Track Captain — Web/Cloud', handle: '@omar.web' },
-    { badge: 'MOB', badgeColor: t.accentRed, initials: 'VC', name: 'Valeria Cordero', role: 'Track Captain — Mobile', handle: '@val.mobile' },
-    { badge: 'PART', badgeColor: t.neonCyan, initials: 'FT', name: 'Frank Tavárez', role: 'Sponsorships & Partners', handle: '@frank.partners' },
-    { badge: 'COMM', badgeColor: t.neonPink, initials: 'NM', name: 'Noelia Marte', role: 'Communications & Marketing', handle: '@noe.writes' },
-    { badge: 'DEI', badgeColor: t.accentGreen, initials: 'KP', name: 'Kevin Pérez', role: 'Diversity & Inclusion', handle: '@kev.dei' },
-    { badge: 'FIN', badgeColor: t.accentYellow, initials: 'GA', name: 'Gabriela Adames', role: 'Finance & Treasury', handle: '@gab.numbers' },
-    { badge: 'VOL', badgeColor: t.neonPurple, initials: 'HC', name: 'Hugo Carrasco', role: 'Volunteer Coordination', handle: '@hugo.crew' },
-  ];
-  
+  const leads = dbCore.map((m, i) => ({
+    accentColor: LEAD_COLORS[i % LEAD_COLORS.length].accentColor,
+    gradientTo:  LEAD_COLORS[i % LEAD_COLORS.length].gradientTo,
+    accentLabel: m.accent_label,
+    roleLabel:   m.role_label,
+    name:        m.name,
+    title:       m.title ?? '',
+    bio:         m.bio ?? '',
+    handle:      m.handle ?? '',
+    photoUrl:    m.photo_url,
+  }));
 
-  const volMembers12 = [
-    { initials: 'AS', name: 'Ana S.',     color: t.neonPurple },
-    { initials: 'BR', name: 'Brian R.',   color: t.neonCyan },
-    { initials: 'CM', name: 'Carla M.',   color: t.neonPink },
-    { initials: 'DJ', name: 'Daniel J.',  color: t.accentYellow },
-    { initials: 'EP', name: 'Elena P.',   color: t.accentGreen },
-    { initials: 'FA', name: 'Fátima A.',  color: t.accentBlue },
-    { initials: 'GT', name: 'Gerson T.',  color: t.accentRed },
-    { initials: 'HM', name: 'Helena M.',  color: t.neonPurple },
-    { initials: 'IB', name: 'Iván B.',    color: t.neonCyan },
-    { initials: 'JL', name: 'Julia L.',   color: t.neonPink },
-    { initials: 'KH', name: 'Karol H.',   color: t.accentGreen },
-    { initials: '+1', name: 'Liz V.',     color: t.accentYellow },
-  ];
+  const BADGE_COLORS: Record<string, string> = {
+    AI: t.neonCyan, SEC: t.neonPink, DATA: t.accentGreen, TEST: t.accentBlue,
+    QA: t.accentBlue, 'UI/UX': t.accentYellow, WEB: t.neonPurple, MOB: t.accentRed,
+    PART: t.neonCyan, COMM: t.neonPink, DEI: t.accentGreen, FIN: t.accentYellow,
+    VOL: t.neonPurple, CLOUD: t.neonCyan, FLUTTER: '#38BDF8', DEVOPS: '#8B5CF6',
+  };
 
-  const volGroups: VolGroupProps[] = [
-    { Icon: Truck, iconColor: t.neonPurple, title: tp('volLogisticsTitle'), subtitle: tp('volLogisticsSub'), count: '12 people', countColor: t.neonPurple, members: volMembers12 },
-    { Icon: Coffee, iconColor: t.neonPink, title: tp('volHospTitle'), subtitle: tp('volHospSub'), count: '9 people', countColor: t.neonPink, members: volMembers12.slice(0, 9) },
-    { Icon: Video, iconColor: t.neonCyan, title: tp('volTechTitle'), subtitle: tp('volTechSub'), count: '8 people', countColor: t.neonCyan, members: volMembers12.slice(0, 8) },
-    { Icon: Palette, iconColor: t.accentYellow, title: tp('volDesignTitle'), subtitle: tp('volDesignSub'), count: '6 people', countColor: t.accentYellow, members: volMembers12.slice(0, 6) },
-    { Icon: PenLine, iconColor: t.accentGreen, title: tp('volCommsTitle'), subtitle: tp('volCommsSub'), count: '10 people', countColor: t.accentGreen, members: volMembers12.slice(0, 10) },
-  ];
+  const committee = dbCommittee.map((m) => ({
+    badge:      m.badge,
+    badgeColor: BADGE_COLORS[m.badge] ?? t.neonPurple,
+    initials:   m.initials,
+    name:       m.name,
+    role:       m.role,
+    handle:     m.handle ?? '',
+    photoUrl:   m.photo_url,
+  }));
+
+  const AREA_COLORS = [t.neonPurple, t.neonCyan, t.neonPink, t.accentYellow, t.accentGreen, t.accentBlue, t.accentRed];
+
+  const VOL_AREA_CONFIG: Record<string, { Icon: React.ComponentType<{ size: number; color: string }>; iconColor: string; title: string; subtitle: string; countColor: string }> = {
+    logistics:   { Icon: Truck,   iconColor: t.neonPurple,   title: tp('volLogisticsTitle'), subtitle: tp('volLogisticsSub'), countColor: t.neonPurple },
+    hospitality: { Icon: Coffee,  iconColor: t.neonPink,     title: tp('volHospTitle'),      subtitle: tp('volHospSub'),      countColor: t.neonPink },
+    tech:        { Icon: Video,   iconColor: t.neonCyan,     title: tp('volTechTitle'),      subtitle: tp('volTechSub'),      countColor: t.neonCyan },
+    design:      { Icon: Palette, iconColor: t.accentYellow, title: tp('volDesignTitle'),    subtitle: tp('volDesignSub'),    countColor: t.accentYellow },
+    comms:       { Icon: PenLine, iconColor: t.accentGreen,  title: tp('volCommsTitle'),     subtitle: tp('volCommsSub'),     countColor: t.accentGreen },
+  };
+
+  const volGroups: VolGroupProps[] = (['logistics', 'hospitality', 'tech', 'design', 'comms'] as const)
+    .map((area) => {
+      const config = VOL_AREA_CONFIG[area];
+      const areaVols = dbVolunteers.filter((v) => v.area === area);
+      return {
+        ...config,
+        count: `${areaVols.length} ${areaVols.length === 1 ? 'persona' : 'personas'}`,
+        members: areaVols.map((v, i) => ({
+          initials: v.initials,
+          name:     v.full_name,
+          color:    AREA_COLORS[i % AREA_COLORS.length],
+          photoUrl: v.photo_url,
+        })),
+      };
+    })
+    .filter((g) => g.members.length > 0);
+
+  const totalVols = dbVolunteers.length;
 
   return (
     <div
@@ -363,7 +435,7 @@ export default function TeamPage() {
           </div>
           {/* Big number */}
           <div className={styles.volSectionNum}>
-            <span className={styles.volSectionBigNum}>45</span>
+            <span className={styles.volSectionBigNum}>{totalVols || '–'}</span>
             <span className={styles.volSectionNumLabel}>{tp('volSectionLabel')}</span>
           </div>
         </div>

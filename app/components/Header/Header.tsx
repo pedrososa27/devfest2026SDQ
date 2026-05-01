@@ -4,11 +4,13 @@ import { useState, useEffect } from 'react';
 import { useTranslations, useLocale } from 'next-intl';
 import { usePathname, useRouter, Link } from '../../../i18n/navigation';
 import { useTheme } from '../../context/ThemeContext';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 import { useBreakpoint } from '../../hooks/useBreakpoint';
 import styles from './Header.module.scss';
 
 export default function Header() {
   const { isDark, toggleTheme } = useTheme();
+  const siteConfig = useSiteConfig();
   const isMobile = useBreakpoint();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -34,17 +36,19 @@ export default function Header() {
   };
 
   const navLinks = [
-    { labelKey: 'home' as const, href: '/', weight: 500 },
-    { labelKey: 'schedule' as const, href: '/schedule', weight: 400 },
-    { labelKey: 'speakers' as const, href: '/speakers', weight: 400 },
-    { labelKey: 'team' as const, href: '/team', weight: 400 },
-    { labelKey: 'faq' as const, href: '/faq', weight: 400 },
-    { labelKey: 'codeOfConduct' as const, href: '/code-of-conduct', weight: 400 },
-  ].map((link) => ({
-    ...link,
-    label: t(link.labelKey),
-    isActive: pathname === link.href,
-  }));
+    { labelKey: 'home' as const, href: '/', weight: 500, visible: true },
+    { labelKey: 'schedule' as const, href: '/schedule', weight: 400, visible: siteConfig.show_schedule },
+    { labelKey: 'speakers' as const, href: '/speakers', weight: 400, visible: siteConfig.show_speakers },
+    { labelKey: 'team' as const, href: '/team', weight: 400, visible: siteConfig.show_team },
+    { labelKey: 'faq' as const, href: '/faq', weight: 400, visible: true },
+    { labelKey: 'codeOfConduct' as const, href: '/code-of-conduct', weight: 400, visible: true },
+  ]
+    .filter((link) => link.visible)
+    .map((link) => ({
+      ...link,
+      label: t(link.labelKey),
+      isActive: pathname === link.href,
+    }));
 
   const colors = {
     bgPrimary:    isDark ? '#0A0A0F' : '#FFFFFF',

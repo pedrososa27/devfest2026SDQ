@@ -1,11 +1,38 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { useTheme } from '../../context/ThemeContext';
+import { useSiteConfig } from '../../context/SiteConfigContext';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
+import ComingSoon from '../../components/ComingSoon/ComingSoon';
 import styles from './page.module.scss';
+import { createClient } from '../../../lib/supabase/client';
+import type { Speaker } from '../../../lib/supabase/types';
+
+const TRACK_COLORS: Record<string, string> = {
+  // From image reference
+  'General': '#9CA3AF',
+  'Testing': '#F97316',
+  'DevOps': '#8B5CF6',
+  'UX': '#3B82F6', 'UI / UX': '#3B82F6', 'UI/UX': '#3B82F6', 'Design': '#3B82F6',
+  'AI': '#06B6D4', 'AI/ML': '#06B6D4', 'Machine Learning': '#06B6D4',
+  'Community': '#EC4899',
+  'Development': '#F59E0B', 'Web': '#F59E0B',
+  'Android': '#22C55E', 'Mobile': '#10B981',
+  'Flutter': '#38BDF8',
+  'gRPC': '#64748B',
+  // Additional tracks
+  'Cybersecurity': '#EF4444', 'Security': '#EF4444',
+  'QA': '#F97316',
+  'Data Engineering': '#6366F1', 'Data': '#6366F1',
+  'Cloud': '#22D3EE',
+  'Workshop': '#FBBF24', 'Firebase': '#FBBF24',
+};
+function getTrackColor(track?: string | null): string {
+  return (track && TRACK_COLORS[track]) ?? '#A855F7';
+}
 
 function useTokens(isDark: boolean) {
   return {
@@ -47,65 +74,74 @@ function PhotoBlob({ color, className }: { color: string; className?: string }) 
 
 export default function SpeakersPage() {
   const { isDark } = useTheme();
+  const siteConfig = useSiteConfig();
   const t = useTokens(isDark);
   const tp = useTranslations('speakersPage');
   const [activeFilter, setActiveFilter] = useState(tp('filterAll'));
+  const [dbSpeakers, setDbSpeakers] = useState<Speaker[]>([]);
 
+  useEffect(() => {
+    const supabase = createClient();
+    supabase.from('speakers').select('*').order('name').then(({ data }) => {
+      if (data) setDbSpeakers(data);
+    });
+  }, []);
+
+  if (!siteConfig.show_speakers) {
+    return (
+      <div className={styles.page} style={{ '--bg-primary': isDark ? '#0A0A0F' : '#FFFFFF', display: 'flex', flexDirection: 'column', minHeight: '100vh' } as React.CSSProperties}>
+        <Header />
+        <ComingSoon message={siteConfig.speakers_coming_soon_msg} isDark={isDark} />
+        <Footer />
+      </div>
+    );
+  }
+
+  // ── Derive display data from DB speakers ─────────────────────────
+  const topicCounts: Record<string, number> = {};
+  for (const sp of dbSpeakers) {
+    for (const topic of sp.topics ?? []) {
+      topicCounts[topic] = (topicCounts[topic] ?? 0) + 1;
+    }
+  }
   const filters = [
-    { label: tp('filterAll'), count: 42, color: t.neonPurple },
-    { label: 'AI', count: 12, color: t.neonPurple },
-    { label: 'Cybersecurity', count: 7, color: t.accentRed },
-    { label: 'Testing', count: 6, color: t.accentGreen },
-    { label: 'Data Engineering', count: 9, color: t.accentBlue },
-    { label: 'UI / UX', count: 8, color: t.neonPink },
-    { label: 'Workshops', count: 5, color: t.accentYellow },
+    { label: tp('filterAll'), count: dbSpeakers.length, color: t.neonPurple },
+    ...Object.entries(topicCounts).map(([topic, count]) => ({
+      label: topic,
+      count,
+      color: getTrackColor(topic),
+    })),
   ];
 
-  const keynotes = [
-    {
-      day: 'DAY 1 — OPENING KEYNOTE',
-      dayDot: t.neonPurple,
-      name: 'María Valentina Reyes',
-      role: 'Principal Engineer · Google DeepMind',
-      location: 'London, UK',
-      locationColor: t.neonCyan,
-      talk: '"Beyond benchmarks: how we ship reliable agents at planet scale."',
+  const dotColors = [t.neonPurple, t.neonCyan, t.neonPink, t.accentYellow];
+  const locColors = [t.neonCyan, t.neonPink, t.neonPurple, t.accentYellow];
+  const keynotes = dbSpeakers
+    .filter((sp) => sp.featured)
+    .map((sp, i) => ({
+      day: i === 0 ? 'DAY 1 — OPENING KEYNOTE' : `DAY ${i + 1} — KEYNOTE`,
+      dayDot: dotColors[i % dotColors.length],
+      name: sp.name,
+      role: [sp.title, sp.company].filter(Boolean).join(' · '),
+      location: sp.company ?? '',
+      locationColor: locColors[i % locColors.length],
+      locationLabel: [sp.city, sp.country].filter(Boolean).join(', ') || sp.company || '',
+      talk: sp.bio ? `"${sp.bio}"` : '',
       pills: [
-        { label: 'AI', color: t.neonPurple },
+        ...(sp.topics?.slice(0, 1).map((topic) => ({ label: topic, color: getTrackColor(topic) })) ?? []),
         { label: '45 min', color: null },
       ],
-      photoColor: t.neonPurple,
-    },
-    {
-      day: 'DAY 2 — OPENING KEYNOTE',
-      dayDot: t.neonCyan,
-      name: 'Diego Kaminetzky',
-      role: 'VP Engineering · Stripe',
-      location: 'Buenos Aires, AR',
-      locationColor: t.neonPink,
-      talk: '"Engineering at fintech speed: building global payments without losing your mind."',
-      pills: [
-        { label: 'Data Engineering', color: t.accentBlue },
-        { label: '45 min', color: null },
-      ],
-      photoColor: t.neonCyan,
-    },
-  ];
+      photoColor: getTrackColor(sp.topics?.[0]),
+    }));
 
-  const speakers = [
-    { name: 'Andrea Núñez', role: 'Staff ML Engineer · Hugging Face', location: 'Madrid, ES', track: 'AI', color: t.neonPurple },
-    { name: 'Lorenzo Pérez', role: 'Security Researcher · GitHub', location: 'Lima, PE', track: 'CYBERSEC', color: t.accentRed },
-    { name: 'Camila Rojas', role: 'QA Lead · Mercado Libre', location: 'Bogotá, CO', track: 'TESTING', color: t.accentGreen },
-    { name: 'Sofía Tavárez', role: 'Design Director · Figma', location: 'Santo Domingo, DR', track: 'UI / UX', color: t.neonPink },
-    { name: 'Rafael Méndez', role: 'Sr. Data Eng · Snowflake', location: 'Mexico City, MX', track: 'DATA ENG', color: t.accentBlue },
-    { name: 'Mateo Ferrari', role: 'Research Eng · Anthropic', location: 'São Paulo, BR', track: 'AI', color: t.neonPurple },
-    { name: 'Isabella Capellán', role: 'Pen Tester · Cloudflare', location: 'Santo Domingo, DR', track: 'CYBERSEC', color: t.accentRed },
-    { name: 'Joaquín Bermúdez', role: 'DX Lead · Vercel', location: 'Madrid, ES', track: 'WORKSHOP', color: t.accentYellow },
-    { name: 'Valentina Ortiz', role: 'Product Designer · Linear', location: 'Santiago, CL', track: 'UI / UX', color: t.neonPink },
-    { name: 'Carlos Eusebio', role: 'Principal Eng · Databricks', location: 'Punta Cana, DR', track: 'DATA ENG', color: t.accentBlue },
-    { name: 'Lina Contreras', role: 'SDET Lead · Microsoft', location: 'San José, CR', track: 'TESTING', color: t.accentGreen },
-    { name: 'Aldo Sánchez', role: 'AI Lead · Replit', location: 'Buenos Aires, AR', track: 'AI', color: t.neonCyan },
-  ];
+  const speakers = dbSpeakers
+    .filter((sp) => !sp.featured)
+    .map((sp) => ({
+      name: sp.name,
+      role: [sp.title, sp.company].filter(Boolean).join(' · '),
+      location: [sp.city, sp.country].filter(Boolean).join(', '),
+      track: (sp.topics?.[0] ?? 'General').toUpperCase(),
+      color: getTrackColor(sp.topics?.[0]),
+    }));
 
   const heroBg = isDark
     ? `radial-gradient(ellipse 120% 90% at 50% 10%, rgba(168,85,247,0.35) 0%, transparent 70%),
@@ -331,7 +367,7 @@ export default function SpeakersPage() {
                     style={{ '--accent': k.locationColor } as React.CSSProperties}
                   >
                     <div className={styles.keynoteLocationDot} />
-                    <span className={styles.keynoteLocationText}>{k.location}</span>
+                    <span className={styles.keynoteLocationText}>{k.locationLabel ?? k.location}</span>
                   </div>
                 </div>
 

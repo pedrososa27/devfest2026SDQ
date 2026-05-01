@@ -11,28 +11,28 @@
   },
   "hero": {
     "badge": "GDG SANTO DOMINGO // EVENTO COMUNITARIO",
-    "subtitle": "DevFest Santo Domingo 2023",
+    "subtitle": "DevFest Santo Domingo 2026",
     "title": "Donde los developers\nconstruyen el futuro.",
     "description": "Dos días de charlas profundas sobre IA, Ciberseguridad, Testing, Ingeniería de Datos y UI/UX — hecho por la comunidad dominicana de desarrollo, para la comunidad dominicana.",
-    "date": "18-19 Nov, 2023",
-    "location": "Santo Domingo, DR",
+    "date": "09 - 10 Oct, 2026",
+    "location": "Santo Domingo, RD",
     "registerBtn": "Regístrate ahora",
     "scheduleBtn": "Ver agenda"
   },
   "eventInfo": {
     "dateLabel": "// FECHA",
-    "dateTitle": "18-19 de Noviembre",
+    "dateTitle": "09 - 10 de Octubre",
     "dateDesc": "Dos días completos de charlas técnicas, talleres y networking con la comunidad local.",
     "venueLabel": "// SEDE",
-    "venueTitle": "Universidad UNIBE",
-    "venueDesc": "Santo Domingo, República Dominicana — campus accesible con auditorios modernos.",
+    "venueTitle": "Biblioteca Nacional Pedro Henríquez Ureña",
+    "venueDesc": "Santo Domingo, República Dominicana — Espacios bien equipados y accesibles.",
     "formatLabel": "// FORMATO",
     "formatTitle": "Presencial + Streaming",
     "formatDesc": "Asiste en el campus o únete de forma remota a través de nuestra transmisión oficial en YouTube.",
     "statsDays": "DÍAS",
     "statsTracks": "TRACKS",
     "statsTalks": "CHARLAS",
-    "statsSpeakers": "PONENTES",
+    "statsSpeakers": "SPEAKERS",
     "statsAttendees": "ASISTENTES / DÍA"
   },
   "about": {
@@ -44,7 +44,15 @@
     "devfestText": "DevFest es la conferencia tecnológica anual organizada por los Google Developer Groups alrededor del mundo. Cada edición reúne a desarrolladores, diseñadores y entusiastas de la tecnología para explorar lo último en Android, Web, Cloud, IA/ML y tecnología orientada a la comunidad.",
     "gdgTitle": "¿Qué es un GDG?",
     "gdgText": "Los Google Developer Groups son capítulos comunitarios para desarrolladores interesados en las tecnologías de Google. GDG Santo Domingo es el capítulo local de la República Dominicana — organizamos meetups, talleres, study jams y, por supuesto, DevFest.",
-    "gdgMembers": "1.2k+ miembros"
+    "gdgMembers": "1.2k+ miembros",
+    "stat1Num": "03",
+    "stat1Label": "Ediciones realizadas",
+    "stat2Num": "2.4k",
+    "stat2Label": "Asistentes hasta la fecha",
+    "stat3Num": "42",
+    "stat3Label": "speakers y talleres",
+    "stat4Num": "06",
+    "stat4Label": "Tracks tecnológicos"
   },
   "cfp": {
     "openBadge": "CALL FOR PAPERS // ABIERTO",
@@ -125,24 +133,38 @@
   "pastTalks": {
     "eyebrow": "ARCHIVO",
     "title": "Charlas de ediciones anteriores",
-    "description": "Revive los mejores momentos de DevFest Santo Domingo — deep dives, lightning talks y code walkthroughs.",
-    "watchAll": "Ver todas las charlas"
+    "description": "Revive los mejores momentos de DevFest Santo Domingo",
+    "watchAll": "Ver todas las charlas",
+    "comingSoon": "Próximamente…",
+    "prevBtn": "Anterior",
+    "nextBtn": "Siguiente",
+    "slideLabel": "Ir a slide {n}",
+    "footerCount": "{count} charlas archivadas"
   },
   "videoRecap": {
-    "eyebrow": "ARCHIVO // 2022",
+    "eyebrow": "ARCHIVO // 2023",
     "title": "Mira nuestro último recap",
-    "description": "Así fue DevFest Santo Domingo 2022 — charlas, conversaciones en los pasillos y la energía de la comunidad.",
+    "description": "Así fue DevFest Santo Domingo 2023 — charlas, conversaciones en los pasillos y la energía de la comunidad.",
     "recapLabel": "RECAP OFICIAL",
-    "videoTitle": "DevFest SDQ 2022 Recap",
+    "videoTitle": "DevFest SDQ 2023 Recap",
     "videoMeta": "GDG Santo Domingo • 12K vistas",
     "watchBtn": "Ver en YouTube"
   },
   "mapLocation": {
     "eyebrow": "// SEDE",
     "title": "Encuéntranos en Santo Domingo",
+    "eventDate": "9-10 OCT, 2026 8:30 AM",
     "venueLabel": "SEDE",
+    "venueName": "Biblioteca Nacional Pedro Henríquez Ureña",
     "addressLabel": "DIRECCIÓN",
+    "addressLine1": "C. César Nicolás Penson 91",
+    "addressLine2": "Gazcue, Santo Domingo",
+    "addressLine3": "República Dominicana",
     "nearbyLabel": "CERCA",
+    "nearbyBus": "Estación del metro a 5 min a pie",
+    "nearbyParking": "Estacionamiento gratuito para asistentes",
+    "nearbyCafe": "Cafés y restaurantes en Gazcue",
+    "mapView": "Vista del mapa",
     "directionsBtn": "Obtener direcciones",
     "shareBtn": "Compartir ubicación"
   },
@@ -361,5 +383,9 @@
     "label": "Idioma",
     "es": "Español",
     "en": "English"
+  },
+  "comingSoon": {
+    "title": "Próximamente",
+    "subtitle": "Esta sección está en preparación. ¡Vuelve pronto!"
   }
 }
