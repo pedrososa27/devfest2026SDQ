@@ -79,7 +79,7 @@ export default function Hero() {
           <span className={styles.btnArrow}>→</span>
         </button>
         <button className={styles.secondaryButton}>
-          <Image src="/icons/schedule-white.png" alt="Calendar icon" width={16} height={16} />
+          <Image src={isDark ? '/icons/schedule-white.png' : '/icons/schedule-purple.png'} alt="Calendar icon" width={16} height={16} />
           {t('scheduleBtn')}
         </button>
       </div>

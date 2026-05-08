@@ -27,6 +27,15 @@
 .headerTransparent {
   background-color: transparent !important;
   border-bottom-color: transparent !important;
+
+  // Force white text and borders so it's readable over the dark hero video
+  --fg-primary:    #FFFFFF !important;
+  --fg-secondary:  rgba(255,255,255,0.75) !important;
+  --fg-muted:      rgba(255,255,255,0.6) !important;
+  --border-subtle: rgba(255,255,255,0.15) !important;
+  --border-muted:  rgba(255,255,255,0.25) !important;
+  --bg-secondary:  rgba(255,255,255,0.1) !important;
+  --bg-card:       rgba(255,255,255,0.15) !important;
 }
 
 // ─── Top Row ─────────────────────────────────────────────────────────────────

@@ -88,7 +88,7 @@ export default function MapLocation() {
 
             <div className={styles.btnRow}>
               <button className={styles.dirBtn}>
-                <Image src="/icons/direction.png" alt="Directions icon" width={14} height={14} />
+                <Image src="/icons/direction.png" alt="Directions icon" width={14} height={14} style={{ filter: 'brightness(0) invert(1)' }} />
                 {t('directionsBtn')}
               </button>
               <button className={styles.shareBtn}>

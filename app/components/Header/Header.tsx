@@ -84,6 +84,7 @@ export default function Header() {
         isLanding ? styles.headerLanding : '',
         isLanding && !isScrolled ? styles.headerTransparent : '',
       ].join(' ')}
+      data-transparent={isLanding && !isScrolled ? 'true' : undefined}
       style={{
         '--bg-primary':    colors.bgPrimary,
         '--bg-secondary':  colors.bgSecondary,
