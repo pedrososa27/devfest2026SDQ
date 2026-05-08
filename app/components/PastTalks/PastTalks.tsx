@@ -25,7 +25,12 @@ export default function PastTalks() {
       .select('*')
       .eq('active', true)
       .order('display_order', { ascending: true })
-      .then(({ data }) => { if (data) setTalks(data); });
+      .then(({ data }) => {
+        if (data) {
+          const shuffled = [...data].sort(() => Math.random() - 0.5);
+          setTalks(shuffled);
+        }
+      });
   }, []);
 
   const maxIndex = Math.max(0, talks.length - VISIBLE);

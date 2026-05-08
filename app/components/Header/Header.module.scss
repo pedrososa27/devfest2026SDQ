@@ -8,11 +8,25 @@
   flex-direction: column;
   box-sizing: border-box;
   height: 72px;
+  transition: background-color 0.3s ease, border-color 0.3s ease, backdrop-filter 0.3s ease;
 
   @media (max-width: 767px) {
     height: auto;
     padding: 0 16px;
   }
+}
+
+.headerLanding {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+}
+
+.headerTransparent {
+  background-color: transparent !important;
+  border-bottom-color: transparent !important;
 }
 
 // ─── Top Row ─────────────────────────────────────────────────────────────────

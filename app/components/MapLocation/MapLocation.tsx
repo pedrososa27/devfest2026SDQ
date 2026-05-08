@@ -79,23 +79,11 @@ export default function MapLocation() {
             <div className={styles.nearbyBlock}>
               <p className={styles.nearbyLabel}>{t('nearbyLabel')}</p>
               <div className={styles.nearbyItem}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2">
-                  <path d="M2 6h16M6 6v-2c0-1 0-2 2-2h0c2 0 2 1 2 2v2M6 6v10M18 6v10M3 16h2M19 16h2M3 20h18"></path>
-                </svg>
+
+                <Image src="/icons/omsa.png" alt="Directions icon" width={14} height={14} />
                 <span className={styles.nearbyText}>{t('nearbyBus')}</span>
               </div>
-              <div className={styles.nearbyItem}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2">
-                  <path d="M18 8h1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V10a2 2 0 0 1 2-2h1M9 4h6a2 2 0 0 1 2 2v0a2 2 0 0 1-2 2H9a2 2 0 0 1-2-2v0a2 2 0 0 1 2-2z"></path>
-                </svg>
-                <span className={styles.nearbyText}>{t('nearbyParking')}</span>
-              </div>
-              <div className={styles.nearbyItem}>
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#22D3EE" strokeWidth="2">
-                  <path d="M3 11h18M3 11v4a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4M5 11V7a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v4M18 12h2a1 1 0 0 1 0 2h-2"></path>
-                </svg>
-                <span className={styles.nearbyText}>{t('nearbyCafe')}</span>
-              </div>
+
             </div>
 
             <div className={styles.btnRow}>

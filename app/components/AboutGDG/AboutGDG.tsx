@@ -27,7 +27,7 @@ export default function AboutGDG() {
         <div className={styles.headerRow}>
           <div className={styles.headerLeft}>
             <span className={styles.eyebrow}>
-              <Image src="/icons/tagIcon.png" alt="About icon" width={12} height={12} /> {t('eyebrow')}
+              <Image src="/icons/TagIcon.png" alt="About icon" width={12} height={12} /> {t('eyebrow')}
             </span>
             <h2 className={styles.title}>{t('title')}</h2>
           </div>

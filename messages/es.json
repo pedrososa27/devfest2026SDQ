@@ -27,8 +27,8 @@
     "venueTitle": "Biblioteca Nacional Pedro Henríquez Ureña",
     "venueDesc": "Santo Domingo, República Dominicana — Espacios bien equipados y accesibles.",
     "formatLabel": "// FORMATO",
-    "formatTitle": "Presencial + Streaming",
-    "formatDesc": "Asiste en el campus o únete de forma remota a través de nuestra transmisión oficial en YouTube.",
+    "formatTitle": "Presencial ",
+    "formatDesc": "Asiste presencialmente en el campus y vive la experiencia completa junto a la comunidad, con networking, actividades y acceso directo a cada charla y dinámica del evento.",
     "statsDays": "DÍAS",
     "statsTracks": "TRACKS",
     "statsTalks": "CHARLAS",
@@ -162,8 +162,6 @@
     "addressLine3": "República Dominicana",
     "nearbyLabel": "CERCA",
     "nearbyBus": "Estación del metro a 5 min a pie",
-    "nearbyParking": "Estacionamiento gratuito para asistentes",
-    "nearbyCafe": "Cafés y restaurantes en Gazcue",
     "mapView": "Vista del mapa",
     "directionsBtn": "Obtener direcciones",
     "shareBtn": "Compartir ubicación"
@@ -198,7 +196,7 @@
       "Press Kit": "Kit de prensa",
       "Media": "Medios"
     },
-    "copyright": "© 2023 GDG Santo Domingo. Hecho con ❤️ por la comunidad."
+    "copyright": "© 2026 GDG Santo Domingo. Hecho con ❤️ por la comunidad."
   },
   "faqPage": {
     "badgeText": "PREGUNTAS FRECUENTES",

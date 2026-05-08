@@ -13,10 +13,21 @@ export default function Header() {
   const siteConfig = useSiteConfig();
   const isMobile = useBreakpoint();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const pathname = usePathname();
   const locale = useLocale();
   const router = useRouter();
   const t = useTranslations('nav');
+
+  const isLanding = pathname === '/';
+
+  useEffect(() => {
+    if (!isLanding) return;
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    handleScroll();
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isLanding]);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -68,7 +79,11 @@ export default function Header() {
 
   return (
     <header
-      className={styles.header}
+      className={[
+        styles.header,
+        isLanding ? styles.headerLanding : '',
+        isLanding && !isScrolled ? styles.headerTransparent : '',
+      ].join(' ')}
       style={{
         '--bg-primary':    colors.bgPrimary,
         '--bg-secondary':  colors.bgSecondary,

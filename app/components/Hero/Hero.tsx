@@ -45,15 +45,15 @@ export default function Hero() {
         <span className={styles.badgeText}>{t('badge')}</span>
       </div>
 
-      {/* Subtitle */}
-      <span className={styles.subtitle}>{t('subtitle')}</span>
+      {/* Event Name — primary heading */}
+      <h1 className={styles.subtitle}>{t('subtitle')}</h1>
 
-      {/* Main Title */}
-      <h1 className={styles.title}>
+      {/* Tagline */}
+      <p className={styles.title}>
         {t('title').split('\n').map((line, i, arr) => (
           <span key={i}>{line}{i < arr.length - 1 && <br />}</span>
         ))}
-      </h1>
+      </p>
 
       {/* Description */}
       <p className={styles.description}>

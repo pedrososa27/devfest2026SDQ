@@ -5,7 +5,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 
 const intlMiddleware = createMiddleware(routing);
 
-export async function middleware(request: NextRequest) {
+export default async function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
   // ── Admin route protection ───────────────────────────────────────────────
@@ -32,9 +32,13 @@ export async function middleware(request: NextRequest) {
       }
     );
 
-    const { data: { user } } = await supabase.auth.getUser();
-
-    if (!user) {
+    try {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user) {
+        return NextResponse.redirect(new URL('/admin/login', request.url));
+      }
+    } catch {
+      // Supabase unreachable — redirect to login as a safe fallback
       return NextResponse.redirect(new URL('/admin/login', request.url));
     }
 

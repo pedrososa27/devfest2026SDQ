@@ -38,7 +38,7 @@ export default function VideoRecap() {
       {/* Video Card */}
       <div className={styles.videoCard}>
         <iframe
-          src="https://www.youtube.com/embed/8PCLmte00jw?rel=0&modestbranding=1"
+          src="https://www.youtube.com/embed/8PCLmte00jw?rel=0&modestbranding=1&vq=hd1080&hd=1"
           title="DevFest Video Recap"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           allowFullScreen

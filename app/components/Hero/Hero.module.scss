@@ -95,35 +95,41 @@
 }
 
 .subtitle {
-  font-family: 'Geist Mono', monospace;
-  font-size: 16px;
-  font-weight: 500;
-  letter-spacing: 3px;
-  color: #A855F7;
+  font-family: 'Geist', system-ui, -apple-system, sans-serif;
+  font-size: 76px;
+  font-weight: 800;
+  letter-spacing: -2.5px;
+  line-height: 1;
   text-align: center;
+  background: linear-gradient(135deg, #A855F7 0%, #22D3EE 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  max-width: 960px;
+  margin: 0;
 
   @media (max-width: 767px) {
-    font-size: 13px;
-    letter-spacing: 2px;
+    font-size: 38px;
+    letter-spacing: -1.5px;
   }
 }
 
 .title {
   font-family: 'Geist', system-ui, -apple-system, sans-serif;
-  font-size: 88px;
-  font-weight: 700;
-  letter-spacing: -3px;
-  line-height: 1.05;
+  font-size: 44px;
+  font-weight: 500;
+  letter-spacing: -1px;
+  line-height: 1.15;
   text-align: center;
-  color: #FFFFFF;
-  max-width: 1000px;
+  color: rgba(255, 255, 255, 0.72);
+  max-width: 800px;
   margin: 0;
 
   @media (max-width: 767px) {
-    font-size: 42px;
-    letter-spacing: -1.5px;
+    font-size: 22px;
+    letter-spacing: -0.5px;
     max-width: 100%;
-    color: var(--fg-primary);
+    color: var(--fg-secondary);
   }
 }
 

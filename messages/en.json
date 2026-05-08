@@ -27,8 +27,8 @@
     "venueTitle": "Biblioteca Nacional Pedro Henríquez Ureña",
     "venueDesc": "Santo Domingo, Dominican Republic — well-equipped and accessible spaces.",
     "formatLabel": "// FORMAT",
-    "formatTitle": "In-person + Streaming",
-    "formatDesc": "Attend live on campus or join remotely through our official YouTube live stream.",
+    "formatTitle": "In-person",
+    "formatDesc": "Attend in person on campus and enjoy the full experience alongside the community, with networking opportunities, activities, and direct access to every talk and event activity.",
     "statsDays": "DAYS",
     "statsTracks": "TRACKS",
     "statsTalks": "TALKS",
@@ -161,9 +161,7 @@
     "addressLine2": "Gazcue, Santo Domingo",
     "addressLine3": "Dominican Republic",
     "nearbyLabel": "NEARBY",
-    "nearbyBus": "Subway bus stop 3 min walk",
-    "nearbyParking": "Free parking for attendees",
-    "nearbyCafe": "Cafes and restaurants in Gazcue",
+    "nearbyBus": "Subway stop 3 min walk",
     "mapView": "Map View",
     "directionsBtn": "Get directions",
     "shareBtn": "Share location"
@@ -198,7 +196,7 @@
       "Press Kit": "Press Kit",
       "Media": "Media"
     },
-    "copyright": "© 2023 GDG Santo Domingo. Made with ❤️ by the community."
+    "copyright": "© 2026 GDG Santo Domingo. Made with ❤️ by the community."
   },
   "faqPage": {
     "badgeText": "FREQUENTLY ASKED QUESTIONS",
